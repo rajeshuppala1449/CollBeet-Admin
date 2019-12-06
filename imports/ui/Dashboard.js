@@ -22,13 +22,15 @@ import SchoolIcon from "@material-ui/icons/School";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import App from "./App";
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = theme => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    background: 'linear-gradient(45deg, #ff9800 30%, #ffc107 90%)',
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -43,10 +45,16 @@ const useStyles = theme => ({
     })
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    color: 'black',
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    color: 'black',
+    fontFamily: 'Sniglet'
+  },
+  userButton: {
+    color: 'black',
   },
   hide: {
     display: "none"
@@ -58,6 +66,7 @@ const useStyles = theme => ({
   },
   drawerOpen: {
     width: 240,
+    background: 'linear-gradient(45deg, #ff9200 30%, #ff9800 90%)',
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -68,6 +77,7 @@ const useStyles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
+    background: 'linear-gradient(45deg, #ff9800 30%, #ffc107 90%)',
     overflowX: "hidden",
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
@@ -84,7 +94,7 @@ const useStyles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
-  }
+  },
 });
 
 class Appbar extends Component {
@@ -169,14 +179,15 @@ class Appbar extends Component {
               >
                 <MenuIcon />
               </IconButton>
+              <Avatar variant="square" alt="Logo" src="./logo.png"></Avatar>
               <Typography
                 variant="h6"
                 noWrap
                 className={this.props.classes.title}
               >
-                CollBee Admin
+                CollBee
               </Typography>
-              <Button color="inherit">Login</Button>
+              <Button color="inherit" className={this.props.classes.userButton}>Login</Button>
             </Toolbar>
           </AppBar>
           <Drawer
