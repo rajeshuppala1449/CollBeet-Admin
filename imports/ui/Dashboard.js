@@ -30,7 +30,7 @@ const useStyles = theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    background: 'linear-gradient(45deg, #ff9800 30%, #ffc107 90%)',
+    background: 'linear-gradient(45deg, #ef6c00 30%, #ffca28 90%)',
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
