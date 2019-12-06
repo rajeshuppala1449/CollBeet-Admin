@@ -21,20 +21,20 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import SchoolIcon from "@material-ui/icons/School";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from '@material-ui/core/Avatar';
-import { Link } from 'react-router-dom'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Login from './Login';
-import Signup from './SignUp';
-import Mock from './Mock';
+import Avatar from "@material-ui/core/Avatar";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./Login";
+import Signup from "./SignUp";
+import Mock from "./Mock";
 
 const useStyles = theme => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    background: 'linear-gradient(45deg, #ef6c00 30%, #ffca28 90%)',
+    background: "linear-gradient(45deg, #ef6c00 30%, #ffca28 90%)",
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -50,15 +50,15 @@ const useStyles = theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: 'black',
+    color: "black"
   },
   title: {
     flexGrow: 1,
-    color: 'black',
-    fontFamily: 'Sniglet'
+    color: "black",
+    fontFamily: "Sniglet"
   },
   userButton: {
-    color: 'black',
+    color: "black"
   },
   hide: {
     display: "none"
@@ -70,7 +70,7 @@ const useStyles = theme => ({
   },
   drawerOpen: {
     width: 240,
-    background: 'linear-gradient(45deg, #ff9200 30%, #ff9800 90%)',
+    background: "linear-gradient(45deg, #ff9200 30%, #ff9800 90%)",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -81,7 +81,7 @@ const useStyles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    background: 'linear-gradient(45deg, #ff9800 30%, #ffc107 90%)',
+    background: "linear-gradient(45deg, #ff9800 30%, #ffc107 90%)",
     overflowX: "hidden",
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
@@ -98,12 +98,12 @@ const useStyles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
-  },
+  }
 });
 
 class Dashboard extends Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleDrawerOpen = () => {
@@ -159,7 +159,9 @@ class Dashboard extends Component {
               >
                 CollBee
               </Typography>
-              <Button color="inherit" className={this.props.classes.userButton}>Login</Button>
+              <Button color="inherit" className={this.props.classes.userButton}>
+                Login
+              </Button>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -184,6 +186,13 @@ class Dashboard extends Component {
                   <ChevronLeftIcon />
                 )}
               </IconButton>
+              <Typography
+                variant="h6"
+                noWrap
+                className={this.props.classes.title}
+              >
+                Menu
+              </Typography>
             </div>
             <Divider />
             <List>
@@ -222,10 +231,10 @@ class Dashboard extends Component {
           <main className={this.props.classes.content}>
             <div className={this.props.classes.toolbar} />
             <Switch>
-              <Route path='/' exact component={Login} />
-              <Route path='/login' component={Login} />
-              <Route path='/register' component={Signup} />
-              <Route path='/mock' component={Mock} />
+              <Route path="/" exact component={Login} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Signup} />
+              <Route path="/mock" component={Mock} />
             </Switch>
           </main>
         </div>
