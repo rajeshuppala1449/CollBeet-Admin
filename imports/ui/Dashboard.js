@@ -21,8 +21,12 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import SchoolIcon from "@material-ui/icons/School";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import App from "./App";
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Login from './Login';
+import Signup from './SignUp';
+import Mock from './Mock';
 
 const useStyles = theme => ({
   root: {
@@ -97,10 +101,9 @@ const useStyles = theme => ({
   },
 });
 
-class Appbar extends Component {
+class Dashboard extends Component {
   state = {
     open: false,
-    step: 1,
   };
 
   handleDrawerOpen = () => {
@@ -115,36 +118,6 @@ class Appbar extends Component {
     });
   };
 
-  changeIndex1 = () => {
-    this.setState({
-      step: 1
-    });
-  };
-
-  changeIndex2 = () => {
-    this.setState({
-      step: 2
-    });
-  };
-
-  changeIndex3 = () => {
-    this.setState({
-      step: 3
-    });
-  };
-
-  changeIndex4 = () => {
-    this.setState({
-      step: 4
-    });
-  };
-
-  changeIndex5 = () => {
-    this.setState({
-      step: 5
-    });
-  };
-
   handleFieldsChange = input => e => {
     this.setState({
       [input]: e.target.value
@@ -155,10 +128,9 @@ class Appbar extends Component {
     const { open } = this.state;
     const { handleDrawerOpen, handleDrawerClose } = this;
     const theme = useTheme;
-    const { step } = this.state;
 
     return (
-      <React.Fragment>
+      <Router>
         <div className={this.props.classes.root}>
           <CssBaseline />
           <AppBar
@@ -215,31 +187,31 @@ class Appbar extends Component {
             </div>
             <Divider />
             <List>
-              <ListItem button onClick={this.changeIndex1}>
+              <ListItem button component={Link} to="/register">
                 <ListItemIcon>
                   <MenuBookIcon />
                 </ListItemIcon>
                 <ListItemText primary="Student Schedule" />
               </ListItem>
-              <ListItem button onClick={this.changeIndex2}>
+              <ListItem button component={Link} to="/login">
                 <ListItemIcon>
                   <SupervisorAccountIcon />
                 </ListItemIcon>
                 <ListItemText primary="Staff Schedule" />
               </ListItem>
-              <ListItem button onClick={this.changeIndex3}>
+              <ListItem button component={Link} to="/mock">
                 <ListItemIcon>
                   <FastfoodIcon />
                 </ListItemIcon>
                 <ListItemText primary="Mess Schedule" />
               </ListItem>
-              <ListItem button onClick={this.changeIndex4}>
+              <ListItem button component={Link} to="/login">
                 <ListItemIcon>
                   <NavigationIcon />
                 </ListItemIcon>
                 <ListItemText primary="Locations" />
               </ListItem>
-              <ListItem button onClick={this.changeIndex5}>
+              <ListItem button component={Link} to="/mock">
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
@@ -249,14 +221,17 @@ class Appbar extends Component {
           </Drawer>
           <main className={this.props.classes.content}>
             <div className={this.props.classes.toolbar} />
-            <App
-              step={step}
-            />
+            <Switch>
+              <Route path='/' exact component={Login} />
+              <Route path='/login' component={Login} />
+              <Route path='/register' component={Signup} />
+              <Route path='/mock' component={Mock} />
+            </Switch>
           </main>
         </div>
-      </React.Fragment>
+      </Router>
     );
   }
 }
 
-export default withStyles(useStyles)(Appbar);
+export default withStyles(useStyles)(Dashboard);
