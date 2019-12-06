@@ -3,9 +3,7 @@
 **/node_modules/*
 **/tmp/*
 **/.meteor/.id
-**/.meteor/dev_bundle
 **/.meteor/local*
-**/.meteor/meteorite
 /private/certs/*
 *.bak
 *.iml
