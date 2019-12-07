@@ -93,7 +93,7 @@ const useStyles = theme => ({
   toolbar: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
