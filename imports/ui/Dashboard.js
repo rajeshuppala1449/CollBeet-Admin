@@ -40,7 +40,7 @@ const useStyles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    position: 'fixed'
+    position: 'fixed',
   },
   appBarShift: {
     marginLeft: 240,
