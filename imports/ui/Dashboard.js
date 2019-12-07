@@ -24,10 +24,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./SignUp";
-import Mock from "./Mock";
-import StudentDrawer from "./schedule/student/dept-drawer"
+import StudentDepartmentDrawer from "./schedule/student/StudentDepartmentDrawer";
+import StaffDepartmentDrawer from "./schedule/staff/StaffDepartmentDrawer";
+import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
 
 const useStyles = theme => ({
   root: {
@@ -204,25 +203,25 @@ class Dashboard extends Component {
                 </ListItemIcon>
                 <ListItemText primary="Student Schedule" />
               </ListItem>
-              <ListItem button component={Link} to="/register">
+              <ListItem button component={Link} to="/staff">
                 <ListItemIcon>
                   <SupervisorAccountIcon />
                 </ListItemIcon>
                 <ListItemText primary="Staff Schedule" />
               </ListItem>
-              <ListItem button component={Link} to="/mock">
+              <ListItem button component={Link} to="/mess">
                 <ListItemIcon>
                   <FastfoodIcon />
                 </ListItemIcon>
                 <ListItemText primary="Mess Schedule" />
               </ListItem>
-              <ListItem button component={Link} to="/login">
+              <ListItem button component={Link} to="#">
                 <ListItemIcon>
                   <NavigationIcon />
                 </ListItemIcon>
                 <ListItemText primary="Locations" />
               </ListItem>
-              <ListItem button component={Link} to="/mock">
+              <ListItem button component={Link} to="#">
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
@@ -233,10 +232,9 @@ class Dashboard extends Component {
           <main className={this.props.classes.content}>
             <div className={this.props.classes.toolbar} />
             <Switch>
-              <Route path="/" exact component={StudentDrawer} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Signup} />
-              <Route path="/mock" component={Mock} />
+              <Route path="/" exact component={StudentDepartmentDrawer} />
+              <Route path="/staff" component={StaffDepartmentDrawer} />
+              <Route path="/mess" component={MessDepartmentDrawer} />
             </Switch>
           </main>
         </div>

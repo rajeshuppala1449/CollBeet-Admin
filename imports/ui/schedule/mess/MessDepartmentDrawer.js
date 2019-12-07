@@ -1,40 +1,44 @@
 import React, { Component } from "react";
-import { withStyles, useTheme } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import Container from "@material-ui/core/Container";
 import Avatar from '@material-ui/core/Avatar';
-import Login from "../../Login";
 
 const drawerWidth = 70;
 const arr = [
     {
-        dept: "IT",
-        path: "./it-logo.png"
+        day: "Monday",
+        initial: "Mo"
     },
     {
-        dept: "EE",
-        path: "./electrical-logo.png"
+      day: "Tuesday",
+      initial: "Tu"
     },
     {
-        dept: "CS",
-        path: "./cs-logo.png"
+      day: "Wednesday",
+      initial: "We"
     },
     {
-        dept: "ME",
-        path: "./mechanical-logo.png"
+      day: "Thursday",
+      initial: "Th"
     },
     {
-        dept: "CE",
-        path: "./civil-logo.png"
-    }
+      day: "Friday",
+      initial: "Fr"
+    },
+    {
+      day: "Saturday",
+      initial: "Sa"
+    },
+    {
+      day: "Sunday",
+      initial: "Su"
+    },
+
 ]
 
 
@@ -51,13 +55,16 @@ const useStyles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   content: {
+      flex: 1
   },
   departmentButtons: {
+    color: "#212121",
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
+    fontFamily: "Sniglet"
   },
 });
 
-class Department_Drawer extends Component {
+class MessDepartmentDrawer extends Component {
   render() {
     return (
       <React.Fragment>
@@ -65,10 +72,7 @@ class Department_Drawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-              <div className={this.props.classes.toolbar} />
-              <Container>
-            <Login />
-            </Container>
+              <h1>MessDepartmentDrawer</h1>
           </main>
 
           <Drawer
@@ -82,19 +86,11 @@ class Department_Drawer extends Component {
             <div className={this.props.classes.toolbar} />
             <Divider />
             <List>
-            <ListItem button key="plus">
-                    <ListItemIcon>
-                      <Avatar src="./plus-logo.png" className={this.props.classes.departmentButtons}>Plus</Avatar>
-                    </ListItemIcon>
-                  </ListItem>
-            </List>
-            <Divider />
-            <List>
               {arr.map(
-                ({dept, path}) => (
-                  <ListItem button key={dept}>
+                ({day, initial}) => (
+                  <ListItem button key={day}>
                     <ListItemIcon>
-                      <Avatar src={path} className={this.props.classes.departmentButtons}>{dept}</Avatar>
+                      <Avatar className={this.props.classes.departmentButtons}>{initial}</Avatar>
                     </ListItemIcon>
                   </ListItem>
                 )
@@ -107,4 +103,4 @@ class Department_Drawer extends Component {
   }
 }
 
-export default withStyles(useStyles)(Department_Drawer);
+export default withStyles(useStyles)(MessDepartmentDrawer);
