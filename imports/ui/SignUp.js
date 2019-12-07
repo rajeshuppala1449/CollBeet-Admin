@@ -50,7 +50,7 @@ const useStyles = theme => ({
   
 
 
-class Login extends Component {
+class Register extends Component {
   render() {
       return(
         <Container component="main" maxWidth="xs">
@@ -60,7 +60,7 @@ class Login extends Component {
             <AcUnitIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            MOTHERFUCKER
+            REGISTER
           </Typography>
           <form className={this.props.classes.form} noValidate>
             <TextField
@@ -69,7 +69,7 @@ class Login extends Component {
               required
               fullWidth
               id="email"
-              label="FUCK YOU"
+              label="EMAIL"
               name="email"
               autoComplete="email"
               autoFocus
@@ -80,7 +80,7 @@ class Login extends Component {
               required
               fullWidth
               name="password"
-              label="BITCH"
+              label="PASSWORD"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -121,4 +121,4 @@ class Login extends Component {
   }
 
 
- export default withStyles(useStyles)(Login);
+ export default withStyles(useStyles)(Register);

@@ -27,10 +27,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./SignUp";
 import Mock from "./Mock";
+import StudentDrawer from "./schedule/student/dept-drawer"
 
 const useStyles = theme => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -38,7 +39,8 @@ const useStyles = theme => ({
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    position: 'fixed'
   },
   appBarShift: {
     marginLeft: 240,
@@ -93,12 +95,12 @@ const useStyles = theme => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
-  }
+    padding: theme.spacing(3),
+  },
 });
 
 class Dashboard extends Component {
@@ -196,13 +198,13 @@ class Dashboard extends Component {
             </div>
             <Divider />
             <List>
-              <ListItem button component={Link} to="/register">
+              <ListItem button component={Link} to="/">
                 <ListItemIcon>
                   <MenuBookIcon />
                 </ListItemIcon>
                 <ListItemText primary="Student Schedule" />
               </ListItem>
-              <ListItem button component={Link} to="/login">
+              <ListItem button component={Link} to="/register">
                 <ListItemIcon>
                   <SupervisorAccountIcon />
                 </ListItemIcon>
@@ -231,7 +233,7 @@ class Dashboard extends Component {
           <main className={this.props.classes.content}>
             <div className={this.props.classes.toolbar} />
             <Switch>
-              <Route path="/" exact component={Login} />
+              <Route path="/" exact component={StudentDrawer} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Signup} />
               <Route path="/mock" component={Mock} />
