@@ -74,8 +74,8 @@ class MessExpansionPanel extends Component {
         <ExpansionPanel>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
+            aria-controls="panel3a-content"
+            id="panel3a-header"
           >
             <Typography className={this.props.classes.heading}>
               Snack/Tea
@@ -95,8 +95,8 @@ class MessExpansionPanel extends Component {
           <ExpansionPanel>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
+              aria-controls="panel4a-content"
+              id="panel4a-header"
             >
               <Typography className={this.props.classes.heading}>
                 Dinner
