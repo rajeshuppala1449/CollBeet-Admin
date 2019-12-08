@@ -10,6 +10,7 @@ import RestaurantOutlinedIcon from "@material-ui/icons/RestaurantOutlined";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import EmojiFoodBeverageOutlinedIcon from "@material-ui/icons/EmojiFoodBeverageOutlined";
 import compose from "recompose/compose";
+import MessForm from "./MessForm"
 
 const useStyles = theme => ({
     root: {
@@ -104,7 +105,15 @@ class MessExpansionPanel extends Component {
               <NightsStayIcon className={this.props.classes.expandIcons} />
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography>HELLO</Typography>
+
+            <Typography>
+              Food Items:
+            </Typography>
+
+            <br />
+
+             <MessForm />
+
             </ExpansionPanelDetails>
           </ExpansionPanel>
       </div>
