@@ -11,6 +11,11 @@ import NightsStayIcon from "@material-ui/icons/NightsStay";
 import EmojiFoodBeverageOutlinedIcon from "@material-ui/icons/EmojiFoodBeverageOutlined";
 import compose from "recompose/compose";
 
+import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+
+export const Tests = new Mongo.Collection("tasks");
+
 const useStyles = theme => ({
     root: {
         flex: 1
@@ -92,6 +97,7 @@ class MessExpansionPanel extends Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
+        {this.props.incompleteCount != 4 ?
           <ExpansionPanel>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
@@ -106,12 +112,19 @@ class MessExpansionPanel extends Component {
             <ExpansionPanelDetails>
               <Typography>HELLO</Typography>
             </ExpansionPanelDetails>
-          </ExpansionPanel>
+          </ExpansionPanel> : '' }
       </div>
     );
   }
 }
 
 export default compose(
-  withStyles(useStyles)
+  withStyles(useStyles),
+  withTracker(() => {
+    Meteor.subscribe("tasks");
+
+    return {
+      incompleteCount: Tests.find().count()
+    };
+  })
 )(MessExpansionPanel);
