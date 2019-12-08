@@ -7,6 +7,8 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from '@material-ui/core/Avatar';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const drawerWidth = 70;
 const arr = [
@@ -51,6 +53,13 @@ const useStyles = theme => ({
   departmentButtons: {
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
   },
+  fab: {
+    position: 'absolute',
+    right: theme.spacing(10),
+    bottom: theme.spacing(2),
+    width: 40,
+    height: 40,
+  }
 });
 
 class StudentDepartmentDrawer extends Component {
@@ -61,7 +70,9 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-              <h1>StudentDepartmentDrawer</h1>
+            <Fab color="primary" aria-label="add" className={this.props.classes.fab}>
+              <AddIcon />
+            </Fab>
           </main>
 
           <Drawer

@@ -7,6 +7,8 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography'
+
 
 const drawerWidth = 70;
 const arr = [
@@ -55,12 +57,16 @@ const useStyles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   content: {
-      flex: 1
+      flex: 1,
+      background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
   },
   departmentButtons: {
     color: "#212121",
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
     fontFamily: "Sniglet"
+  },
+  typo: {
+    padding: theme.spacing(1),
   },
 });
 
@@ -72,7 +78,21 @@ class MessDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-              <h1>MessDepartmentDrawer</h1>
+          
+          
+
+          <Typography paragraph className={this.props.classes.typo}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+          donec massa sapien faucibus et molestie ac.
+        </Typography>
           </main>
 
           <Drawer
