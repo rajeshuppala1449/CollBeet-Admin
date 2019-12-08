@@ -6,43 +6,48 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography'
-
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
+import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
+import EmojiFoodBeverageOutlinedIcon from '@material-ui/icons/EmojiFoodBeverageOutlined';
 
 const drawerWidth = 70;
 const arr = [
-    {
-        day: "Monday",
-        initial: "Mo"
-    },
-    {
-      day: "Tuesday",
-      initial: "Tu"
-    },
-    {
-      day: "Wednesday",
-      initial: "We"
-    },
-    {
-      day: "Thursday",
-      initial: "Th"
-    },
-    {
-      day: "Friday",
-      initial: "Fr"
-    },
-    {
-      day: "Saturday",
-      initial: "Sa"
-    },
-    {
-      day: "Sunday",
-      initial: "Su"
-    },
-
-]
-
+  {
+    day: "MONDAY",
+    initial: "Mo"
+  },
+  {
+    day: "TUESDAY",
+    initial: "Tu"
+  },
+  {
+    day: "WEDNESDAY",
+    initial: "We"
+  },
+  {
+    day: "THURSDAY",
+    initial: "Th"
+  },
+  {
+    day: "FRIDAY",
+    initial: "Fr"
+  },
+  {
+    day: "SATURDAY",
+    initial: "Sa"
+  },
+  {
+    day: "SUNDAY",
+    initial: "Su"
+  }
+];
 
 const useStyles = theme => ({
   root: {
@@ -57,42 +62,129 @@ const useStyles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   content: {
-      flex: 1,
-      background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
+    flex: 1,
   },
   departmentButtons: {
     color: "#212121",
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
     fontFamily: "Sniglet"
   },
-  typo: {
-    padding: theme.spacing(1),
+  dayTitle: {
+    padding: theme.spacing(3),
+    fontFamily: "Open Sans",
+    color: "#e65100",
+    fontSize: 23,
   },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+    color: '#e65100',
+    fontFamily: "Sniglet",
+  },
+  expandIcons: {
+    color: "#e65100",
+  }
 });
 
 class MessDepartmentDrawer extends Component {
+  state = {
+    day: "MONDAY"
+  };
+
+  changeDay = input => e => {
+    this.setState({
+      day: `${input}`
+    });
+  };
+
   render() {
+    const { day } = this.state;
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-          
-          
+            <Typography className={this.props.classes.dayTitle}>
+              {day}
+            </Typography>
 
-          <Typography paragraph className={this.props.classes.typo}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={this.props.classes.heading}>
+                  Breakfast
+                </Typography>
+                <FreeBreakfastIcon className={this.props.classes.expandIcons} />
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography className={this.props.classes.heading}>
+                  Lunch
+                </Typography>
+                <RestaurantOutlinedIcon className={this.props.classes.expandIcons} />
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography className={this.props.classes.heading}>
+                  Snack/Tea
+                </Typography>
+                <EmojiFoodBeverageOutlinedIcon className={this.props.classes.expandIcons} />
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography className={this.props.classes.heading}>
+                  Dinner
+                </Typography>
+                <NightsStayIcon className={this.props.classes.expandIcons} />
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </main>
 
           <Drawer
@@ -106,15 +198,15 @@ class MessDepartmentDrawer extends Component {
             <div className={this.props.classes.toolbar} />
             <Divider />
             <List>
-              {arr.map(
-                ({day, initial}) => (
-                  <ListItem button key={day}>
-                    <ListItemIcon>
-                      <Avatar className={this.props.classes.departmentButtons}>{initial}</Avatar>
-                    </ListItemIcon>
-                  </ListItem>
-                )
-              )}
+              {arr.map(({ day, initial }) => (
+                <ListItem button key={day} onClick={this.changeDay(`${day}`)}>
+                  <ListItemIcon>
+                    <Avatar className={this.props.classes.departmentButtons}>
+                      {initial}
+                    </Avatar>
+                  </ListItemIcon>
+                </ListItem>
+              ))}
             </List>
           </Drawer>
         </div>
