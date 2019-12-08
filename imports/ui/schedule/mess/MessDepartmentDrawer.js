@@ -8,14 +8,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
-import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined';
-import NightsStayIcon from '@material-ui/icons/NightsStay';
-import EmojiFoodBeverageOutlinedIcon from '@material-ui/icons/EmojiFoodBeverageOutlined';
+import MessExpansionPanel from './MessExpansionPanel'
 
 const drawerWidth = 70;
 const arr = [
@@ -106,86 +99,13 @@ class MessDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
+
             <Typography className={this.props.classes.dayTitle}>
               {day}
             </Typography>
 
-            <ExpansionPanel>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={this.props.classes.heading}>
-                  Breakfast
-                </Typography>
-                <FreeBreakfastIcon className={this.props.classes.expandIcons} />
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography className={this.props.classes.heading}>
-                  Lunch
-                </Typography>
-                <RestaurantOutlinedIcon className={this.props.classes.expandIcons} />
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography className={this.props.classes.heading}>
-                  Snack/Tea
-                </Typography>
-                <EmojiFoodBeverageOutlinedIcon className={this.props.classes.expandIcons} />
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography className={this.props.classes.heading}>
-                  Dinner
-                </Typography>
-                <NightsStayIcon className={this.props.classes.expandIcons} />
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+            <MessExpansionPanel />
+
           </main>
 
           <Drawer
@@ -215,5 +135,6 @@ class MessDepartmentDrawer extends Component {
     );
   }
 }
+
 
 export default withStyles(useStyles)(MessDepartmentDrawer);
