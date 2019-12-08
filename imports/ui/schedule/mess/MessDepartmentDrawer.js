@@ -51,14 +51,14 @@ const arr = [
 
 const useStyles = theme => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -80,6 +80,7 @@ const useStyles = theme => ({
     fontWeight: theme.typography.fontWeightRegular,
     color: '#e65100',
     fontFamily: "Sniglet",
+    fontSize: 18,
   },
   expandIcons: {
     color: "#e65100",

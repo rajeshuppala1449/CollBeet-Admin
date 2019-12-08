@@ -6,5 +6,5 @@ import '../imports/startup/accounts-config.js';
 import Dashboard from '../imports/ui/Dashboard';
 
 Meteor.startup(() => {
-  render(<Dashboard />, document.getElementById('render-target'));
+    render(<Dashboard />, document.getElementById('render-target')); 
 });
