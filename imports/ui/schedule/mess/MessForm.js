@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import compose from "recompose/compose";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import HelpIcon from '@material-ui/icons/Help';
+import HelpIcon from "@material-ui/icons/Help";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography"
-import FormControl from '@material-ui/core/FormControl';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
+import Typography from "@material-ui/core/Typography";
+import FormControl from "@material-ui/core/FormControl";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import Grid from "@material-ui/core/Grid";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = theme => ({
   root: {
@@ -17,9 +17,9 @@ const useStyles = theme => ({
   },
   grid: {
     flex: 1,
-    alignItems:"center"
+    alignItems: "center"
   },
-  margin: {
+  form: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
@@ -35,50 +35,53 @@ const useStyles = theme => ({
     color: "#e65100"
   },
   helpbutton: {
-    color: "#e65100",
+    color: "#e65100"
   }
- 
 });
 
 class MessForm extends Component {
-
   render() {
     return (
       <div className={this.props.classes.root}>
-
-        
-
         <Grid container className={this.props.classes.grid}>
+          <Grid item>
+            <Typography className={this.props.classes.title}>
+              Please Add Food Items Here:
+            </Typography>
+          </Grid>
 
-        <Grid item>
-
-        <Typography className={this.props.classes.title}>
-          Please Add Food Items Here:
-        </Typography>
-
+          <Grid item>
+            <Tooltip
+              disableFocusListener
+              disableTouchListener
+              title="Separate Every Food Item with a Comma(,)"
+            >
+              <IconButton
+                aria-label="delete"
+                className={this.props.classes.helpbutton}
+              >
+                <HelpIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
         </Grid>
 
-        <Grid item>
-          
-          <Tooltip disableFocusListener disableTouchListener title="Separate Every Food Item with a Comma(,)">
-          <IconButton aria-label="delete" className={this.props.classes.helpbutton}>
-            <HelpIcon />
-          </IconButton>
-          </Tooltip>
-
-        </Grid>
-
-        </Grid>
-
-      <FormControl fullWidth className={this.props.classes.margin} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-amount">Food Items</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            labelWidth={80}
-          />
+        <FormControl
+          fullWidth
+          className={this.props.classes.form}
+          variant="outlined"
+        >
+          <InputLabel htmlFor="outlined-adornment-amount">
+            Food Items
+          </InputLabel>
+          <OutlinedInput id="outlined-adornment-amount" labelWidth={80} />
         </FormControl>
-        
-        <Button variant="outlined" className={this.props.classes.submit} type="submit">
+
+        <Button
+          variant="outlined"
+          className={this.props.classes.submit}
+          type="submit"
+        >
           Submit
         </Button>
       </div>

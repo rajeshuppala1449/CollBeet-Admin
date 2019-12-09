@@ -14,7 +14,8 @@ import MessForm from "./MessForm";
 
 const useStyles = theme => ({
   root: {
-    flex: 1
+    flex: 1,
+    padding: theme.spacing(1),
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

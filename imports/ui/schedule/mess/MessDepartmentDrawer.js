@@ -63,7 +63,7 @@ const useStyles = theme => ({
     fontFamily: "Sniglet"
   },
   dayTitle: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     fontFamily: "Open Sans",
     color: "#e65100",
     fontSize: 23,

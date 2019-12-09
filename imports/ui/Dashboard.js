@@ -51,7 +51,7 @@ const useStyles = theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: "black"
+    color: "black",
   },
   title: {
     flexGrow: 1,
@@ -100,6 +100,9 @@ const useStyles = theme => ({
     flexGrow: 1,
     padding: theme.spacing(0),
   },
+  listitem: {
+    fontFamily: "Sniglet",
+  }
 });
 
 class Dashboard extends Component {
