@@ -1,77 +1,89 @@
 import React, { Component } from "react";
-import TextField from '@material-ui/core/TextField';
 import compose from "recompose/compose";
 import { withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import HelpIcon from '@material-ui/icons/Help';
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography"
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = theme => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: 200,
-    },
+    flex: 1,
   },
+  grid: {
+    flex: 1,
+    alignItems:"center"
+  },
+  margin: {
+    margin: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
+  title: {
+    margin: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#000"
+  },
+  submit: {
+    margin: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
+  helpbutton: {
+    color: "#e65100",
+  }
+ 
 });
 
 class MessForm extends Component {
-  state = { values: [{ value: null }] };
-
-  createUI() {
-    return this.state.values.map((el, i) => (
-      <div key={i}>
-        <TextField id="standard-basic" label="Standard" />
-        <input
-          type="button"
-          value="remove"
-          onClick={this.removeClick.bind(this, i)}
-        />
-      </div>
-    ));
-  }
-
-  handleChange(i, event) {
-    let values = [...this.state.values];
-    values[i].value = event.target.value;
-    this.setState({ values });
-  }
-
-  addClick() {
-    this.setState(prevState => ({
-      values: [...prevState.values, { value: null }]
-    }));
-  }
-
-  removeClick(i) {
-    let values = [...this.state.values];
-    values.splice(i, 1);
-    this.setState({ values });
-  }
-
-  handleSubmit(event) {
-    alert("A name was submitted: " + this.state.values.join(", "));
-    event.preventDefault();
-  }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className={this.props.classes.root}>
-        {this.state.values.map((el, i) => (
-          <div key={i}>
-            <TextField id="standard-basic" label="Standard" />
-            <input
-              type="button"
-              value="remove"
-              onClick={() => this.removeClick(i)}
-            />
-          </div>
-        ))}
+      <div className={this.props.classes.root}>
 
-        <input type="button" value="add more" onClick={() => this.addClick()} />
-        <input type="submit" value="Submit" />
-      </form>
+        
+
+        <Grid container className={this.props.classes.grid}>
+
+        <Grid item>
+
+        <Typography className={this.props.classes.title}>
+          Please Add Food Items Here:
+        </Typography>
+
+        </Grid>
+
+        <Grid item>
+          
+          <Tooltip disableFocusListener disableTouchListener title="Separate Every Food Item with a Comma(,)">
+          <IconButton aria-label="delete" className={this.props.classes.helpbutton}>
+            <HelpIcon />
+          </IconButton>
+          </Tooltip>
+
+        </Grid>
+
+        </Grid>
+
+      <FormControl fullWidth className={this.props.classes.margin} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-amount">Food Items</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            labelWidth={80}
+          />
+        </FormControl>
+        
+        <Button variant="outlined" className={this.props.classes.submit} type="submit">
+          Submit
+        </Button>
+      </div>
     );
   }
 }
 
-export default compose(
-  withStyles(useStyles)
-)(MessForm);
+export default compose(withStyles(useStyles))(MessForm);

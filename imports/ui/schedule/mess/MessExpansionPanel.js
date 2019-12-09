@@ -10,12 +10,12 @@ import RestaurantOutlinedIcon from "@material-ui/icons/RestaurantOutlined";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import EmojiFoodBeverageOutlinedIcon from "@material-ui/icons/EmojiFoodBeverageOutlined";
 import compose from "recompose/compose";
-import MessForm from "./MessForm"
+import MessForm from "./MessForm";
 
 const useStyles = theme => ({
-    root: {
-        flex: 1
-    },
+  root: {
+    flex: 1
+  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
@@ -44,11 +44,7 @@ class MessExpansionPanel extends Component {
             <FreeBreakfastIcon className={this.props.classes.expandIcons} />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+            <MessForm />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -65,11 +61,7 @@ class MessExpansionPanel extends Component {
             />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+            <MessForm />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -86,41 +78,27 @@ class MessExpansionPanel extends Component {
             />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+            <MessForm />
           </ExpansionPanelDetails>
         </ExpansionPanel>
-          <ExpansionPanel>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel4a-content"
-              id="panel4a-header"
-            >
-              <Typography className={this.props.classes.heading}>
-                Dinner
-              </Typography>
-              <NightsStayIcon className={this.props.classes.expandIcons} />
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-
-            <Typography>
-              Food Items:
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel4a-content"
+            id="panel4a-header"
+          >
+            <Typography className={this.props.classes.heading}>
+              Dinner
             </Typography>
-
-            <br />
-
-             <MessForm />
-
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+            <NightsStayIcon className={this.props.classes.expandIcons} />
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <MessForm />
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </div>
     );
   }
 }
 
-export default compose(
-  withStyles(useStyles)
-)(MessExpansionPanel);
+export default compose(withStyles(useStyles))(MessExpansionPanel);
