@@ -104,7 +104,8 @@ class MessDepartmentDrawer extends Component {
               {day}
             </Typography>
 
-            <MessExpansionPanel />
+            <MessExpansionPanel 
+              day={day}/>
 
           </main>
 

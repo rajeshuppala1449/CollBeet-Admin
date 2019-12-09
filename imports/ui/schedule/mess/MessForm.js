@@ -41,12 +41,13 @@ const useStyles = theme => ({
 
 class MessForm extends Component {
   render() {
+    const { day } = this.props;
     return (
       <div className={this.props.classes.root}>
         <Grid container className={this.props.classes.grid}>
           <Grid item>
             <Typography className={this.props.classes.title}>
-              Please Add Food Items Here:
+              Please Add Food Items Here:{day}
             </Typography>
           </Grid>
 
