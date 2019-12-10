@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import TextField from "@material-ui/core/TextField";
+import { Meteor } from 'meteor/meteor';
 
 const useStyles = theme => ({
   root: {
@@ -38,14 +39,38 @@ const useStyles = theme => ({
 });
 
 class MessForm extends Component {
+
+  state = {
+    fooditems: ''
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { day, dayid, type } = this.props;
+    const fooditems = this.state.fooditems;
+
+    console.log(this.props);
+    Meteor.call('mess.insert',day,dayid,type,fooditems);
+  }
+
+  changeFoodItems = (input,day, dayid, type) => e => {
+    this.setState({
+      [input]: e.target.value,
+      dayid: dayid,
+      day: day,
+      type: type
+    });
+  };
+
+
   render() {
-    const { day, id, type } = this.props;
+    const { day, dayid, type } = this.props;
     return (
       <div className={this.props.classes.root}>
         <Grid container className={this.props.classes.grid}>
           <Grid item>
             <Typography className={this.props.classes.title}>
-              Please Add Food Items Here: {day} {id}
+              Please Add Food Items Here: {day} {dayid}
             </Typography>
           </Grid>
 
@@ -72,12 +97,13 @@ class MessForm extends Component {
           variant="outlined"
           fullWidth
           defaultValue={type}
+          onChange={this.changeFoodItems('fooditems')}
         />
 
         <Button
           variant="outlined"
           className={this.props.classes.submit}
-          type="submit"
+          onClick={this.handleSubmit}
         >
           Submit
         </Button>

@@ -2,10 +2,19 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-export const Tasks = new Mongo.Collection('mess');
+export const Mess = new Mongo.Collection('mess');
 
 if (Meteor.isServer) {
-    // Add Server Side Code Here
+    
+    var Api = new Restivus({
+        prettyJson: true
+      });
+    
+      // Generates: GET, POST on /api/items and GET, PUT, PATCH, DELETE on
+      // /api/items/:id for the Items collection
+      Api.addCollection(Mess);
+    
+    
 }
 
 Meteor.methods({
@@ -17,8 +26,8 @@ Meteor.methods({
     check(type, String);
     check(fooditems, String);
 
-    Tasks.insert({
-      day,
+    Mess.insert({
+      [day]:day,
       dayid,
       type,
       fooditems,

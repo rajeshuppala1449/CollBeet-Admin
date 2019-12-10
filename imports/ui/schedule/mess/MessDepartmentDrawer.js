@@ -13,39 +13,39 @@ import MessExpansionPanel from './MessExpansionPanel'
 const drawerWidth = 70;
 const arr = [
   {
-    day: "SUNDAY",
+    day: "sunday",
     initial: "Su",
-    id: 0
+    dayid: 0
   },
   {
-    day: "MONDAY",
+    day: "monday",
     initial: "Mo",
-    id: 1
+    dayid: 1
   },
   {
-    day: "TUESDAY",
+    day: "tuesday",
     initial: "Tu",
-    id: 2
+    dayid: 2
   },
   {
-    day: "WEDNESDAY",
+    day: "wednesday",
     initial: "We",
-    id: 3
+    dayid: 3
   },
   {
-    day: "THURSDAY",
+    day: "thursday",
     initial: "Th",
-    id: 4
+    dayid: 4
   },
   {
-    day: "FRIDAY",
+    day: "friday",
     initial: "Fr",
-    id: 5
+    dayid: 5
   },
   {
-    day: "SATURDAY",
+    day: "saturday",
     initial: "Sa",
-    id: 6
+    dayid: 6
   }
 ];
 
@@ -89,19 +89,19 @@ const useStyles = theme => ({
 
 class MessDepartmentDrawer extends Component {
   state = {
-    day: "SUNDAY",
-    id: 0
+    day: "sunday",
+    dayid: 0
   };
 
-  changeDay = (input,id) => e => {
+  changeDay = (input,dayid) => e => {
     this.setState({
       day: `${input}`,
-      id: `${id}`
+      dayid
     });
   };
 
   render() {
-    const { day,id } = this.state;
+    const { day,dayid } = this.state;
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
@@ -110,12 +110,12 @@ class MessDepartmentDrawer extends Component {
           <main className={this.props.classes.content}>
 
             <Typography className={this.props.classes.dayTitle}>
-              {day}
+              {day.toUpperCase()}
             </Typography>
 
             <MessExpansionPanel 
               day={day}
-              id={id}/>
+              dayid={dayid}/>
 
           </main>
 
@@ -130,8 +130,8 @@ class MessDepartmentDrawer extends Component {
             <div className={this.props.classes.toolbar} />
             <Divider />
             <List>
-              {arr.map(({ day, initial, id }) => (
-                <ListItem button key={day} onClick={this.changeDay(`${day}`,`${id}`)}>
+              {arr.map(({ day, initial, dayid }) => (
+                <ListItem button key={day} onClick={this.changeDay(`${day}`,dayid)}>
                   <ListItemIcon>
                     <Avatar className={this.props.classes.departmentButtons}>
                       {initial}
