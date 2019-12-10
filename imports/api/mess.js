@@ -27,10 +27,11 @@ Meteor.methods({
     check(fooditems, String);
 
     Mess.insert({
-      [day]:day,
+      day,
       dayid,
-      type,
-      fooditems,
+      food: {
+         [type]: fooditems
+      },
     });
   }
 
