@@ -31,7 +31,7 @@ const useStyles = theme => ({
 
 class MessExpansionPanel extends Component {
   render() {
-    const { day } = this.props;
+    const { day,id } = this.props;
     return (
       <div className={this.props.classes.root}>
         <ExpansionPanel>
@@ -47,7 +47,9 @@ class MessExpansionPanel extends Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <MessForm
-              day={day} />
+              day={day}
+              id={id}
+              type="breakfast" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -65,7 +67,9 @@ class MessExpansionPanel extends Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <MessForm
-              day={day} />
+              day={day}
+              id={id}
+              type="lunch" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -83,7 +87,9 @@ class MessExpansionPanel extends Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <MessForm
-              day={day} />
+              day={day}
+              id={id}
+              type="snack" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -99,7 +105,9 @@ class MessExpansionPanel extends Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <MessForm
-              day={day} />
+              day={day}
+              id={id}
+              type="dinner" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>

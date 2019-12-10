@@ -13,32 +13,39 @@ import MessExpansionPanel from './MessExpansionPanel'
 const drawerWidth = 70;
 const arr = [
   {
+    day: "SUNDAY",
+    initial: "Su",
+    id: 0
+  },
+  {
     day: "MONDAY",
-    initial: "Mo"
+    initial: "Mo",
+    id: 1
   },
   {
     day: "TUESDAY",
-    initial: "Tu"
+    initial: "Tu",
+    id: 2
   },
   {
     day: "WEDNESDAY",
-    initial: "We"
+    initial: "We",
+    id: 3
   },
   {
     day: "THURSDAY",
-    initial: "Th"
+    initial: "Th",
+    id: 4
   },
   {
     day: "FRIDAY",
-    initial: "Fr"
+    initial: "Fr",
+    id: 5
   },
   {
     day: "SATURDAY",
-    initial: "Sa"
-  },
-  {
-    day: "SUNDAY",
-    initial: "Su"
+    initial: "Sa",
+    id: 6
   }
 ];
 
@@ -82,17 +89,19 @@ const useStyles = theme => ({
 
 class MessDepartmentDrawer extends Component {
   state = {
-    day: "MONDAY"
+    day: "SUNDAY",
+    id: 0
   };
 
-  changeDay = input => e => {
+  changeDay = (input,id) => e => {
     this.setState({
-      day: `${input}`
+      day: `${input}`,
+      id: `${id}`
     });
   };
 
   render() {
-    const { day } = this.state;
+    const { day,id } = this.state;
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
@@ -105,7 +114,8 @@ class MessDepartmentDrawer extends Component {
             </Typography>
 
             <MessExpansionPanel 
-              day={day}/>
+              day={day}
+              id={id}/>
 
           </main>
 
@@ -120,8 +130,8 @@ class MessDepartmentDrawer extends Component {
             <div className={this.props.classes.toolbar} />
             <Divider />
             <List>
-              {arr.map(({ day, initial }) => (
-                <ListItem button key={day} onClick={this.changeDay(`${day}`)}>
+              {arr.map(({ day, initial, id }) => (
+                <ListItem button key={day} onClick={this.changeDay(`${day}`,`${id}`)}>
                   <ListItemIcon>
                     <Avatar className={this.props.classes.departmentButtons}>
                       {initial}

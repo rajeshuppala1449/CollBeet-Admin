@@ -5,15 +5,13 @@ import IconButton from "@material-ui/core/IconButton";
 import HelpIcon from "@material-ui/icons/Help";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import FormControl from "@material-ui/core/FormControl";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = theme => ({
   root: {
-    flex: 1,
+    flex: 1
   },
   grid: {
     flex: 1,
@@ -41,13 +39,13 @@ const useStyles = theme => ({
 
 class MessForm extends Component {
   render() {
-    const { day } = this.props;
+    const { day, id, type } = this.props;
     return (
       <div className={this.props.classes.root}>
         <Grid container className={this.props.classes.grid}>
           <Grid item>
             <Typography className={this.props.classes.title}>
-              Please Add Food Items Here:{day}
+              Please Add Food Items Here: {day} {id}
             </Typography>
           </Grid>
 
@@ -67,16 +65,14 @@ class MessForm extends Component {
           </Grid>
         </Grid>
 
-        <FormControl
-          fullWidth
+        <TextField
+          id={type}
           className={this.props.classes.form}
+          label="Food Items"
           variant="outlined"
-        >
-          <InputLabel htmlFor="outlined-adornment-amount">
-            Food Items
-          </InputLabel>
-          <OutlinedInput id="outlined-adornment-amount" labelWidth={80} />
-        </FormControl>
+          fullWidth
+          defaultValue={type}
+        />
 
         <Button
           variant="outlined"
