@@ -1,26 +1,24 @@
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
+import { Meteor } from "meteor/meteor";
+import { Mongo } from "meteor/mongo";
+import { check } from "meteor/check";
 
-export const Mess = new Mongo.Collection('mess');
+export const Mess = new Mongo.Collection("mess");
 
 if (Meteor.isServer) {
-    
-    var Api = new Restivus({
-        prettyJson: true
-      });
-    
-      // Generates: GET, POST on /api/items and GET, PUT, PATCH, DELETE on
-      // /api/items/:id for the Items collection
-      Api.addCollection(Mess);
-    
-    
+
+  Meteor.publish('mess', function messPublication() {
+    return Mess.find({});
+  });
+
+  var Api = new Restivus({
+    prettyJson: true
+  });
+
+  Api.addCollection(Mess);
 }
 
 Meteor.methods({
-
-  'mess.insert'(day,dayid,type,fooditems) {
-    
+  "mess.insert"(day, dayid, type, fooditems) {
     check(day, String);
     check(dayid, Number);
     check(type, String);
@@ -29,10 +27,8 @@ Meteor.methods({
     Mess.insert({
       day,
       dayid,
-      food: {
-         [type]: fooditems
-      },
+      type,
+      fooditems
     });
   }
-
 });

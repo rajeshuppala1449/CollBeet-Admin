@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import TextField from "@material-ui/core/TextField";
-import { Meteor } from 'meteor/meteor';
+import { Meteor } from "meteor/meteor";
 
 const useStyles = theme => ({
   root: {
@@ -39,21 +39,20 @@ const useStyles = theme => ({
 });
 
 class MessForm extends Component {
-
   state = {
-    fooditems: ''
+    fooditems: ""
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     const { day, dayid, type } = this.props;
     const fooditems = this.state.fooditems;
 
     console.log(this.props);
-    Meteor.call('mess.insert',day,dayid,type,fooditems);
-  }
+    Meteor.call("mess.insert", day, dayid, type, fooditems);
+  };
 
-  changeFoodItems = (input,day, dayid, type) => e => {
+  changeFoodItems = (input, day, dayid, type) => e => {
     this.setState({
       [input]: e.target.value,
       dayid: dayid,
@@ -61,7 +60,6 @@ class MessForm extends Component {
       type: type
     });
   };
-
 
   render() {
     const { day, dayid, type } = this.props;
@@ -96,17 +94,27 @@ class MessForm extends Component {
           label="Food Items"
           variant="outlined"
           fullWidth
-          defaultValue={type}
-          onChange={this.changeFoodItems('fooditems')}
+          // /defaultValue={type}
+          onChange={this.changeFoodItems("fooditems")}
         />
 
-        <Button
-          variant="outlined"
-          className={this.props.classes.submit}
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </Button>
+        {this.state.fooditems ? (
+          <Button
+            variant="outlined"
+            className={this.props.classes.submit}
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            className={this.props.classes.submit}
+            disabled
+          >
+            Submit
+          </Button>
+        )}
       </div>
     );
   }
