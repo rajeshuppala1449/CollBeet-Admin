@@ -5,10 +5,7 @@ import { check } from "meteor/check";
 export const Mess = new Mongo.Collection("mess");
 
 if (Meteor.isServer) {
-
-  Meteor.publish('mess', function messPublication() {
-    return Mess.find({});
-  });
+  Meteor.publish("mess-list", () => Mess.find());
 
   var Api = new Restivus({
     prettyJson: true

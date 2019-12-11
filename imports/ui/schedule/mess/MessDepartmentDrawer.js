@@ -8,7 +8,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import MessExpansionPanel from './MessExpansionPanel'
+import MessExpansionPanel from "./MessExpansionPanel";
 
 const drawerWidth = 70;
 const arr = [
@@ -51,18 +51,18 @@ const arr = [
 
 const useStyles = theme => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   toolbar: theme.mixins.toolbar,
   content: {
-    flex: 1,
+    flex: 1
   },
   departmentButtons: {
     color: "#212121",
@@ -73,17 +73,17 @@ const useStyles = theme => ({
     padding: theme.spacing(2),
     fontFamily: "Open Sans",
     color: "#e65100",
-    fontSize: 23,
+    fontSize: 23
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
-    color: '#e65100',
+    color: "#e65100",
     fontFamily: "Sniglet",
-    fontSize: 18,
+    fontSize: 18
   },
   expandIcons: {
-    color: "#e65100",
+    color: "#e65100"
   }
 });
 
@@ -93,7 +93,7 @@ class MessDepartmentDrawer extends Component {
     dayid: 0
   };
 
-  changeDay = (input,dayid) => e => {
+  changeDay = (input, dayid) => e => {
     this.setState({
       day: `${input}`,
       dayid
@@ -101,22 +101,18 @@ class MessDepartmentDrawer extends Component {
   };
 
   render() {
-    const { day,dayid } = this.state;
+    const { day, dayid } = this.state;
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-
             <Typography className={this.props.classes.dayTitle}>
               {day.toUpperCase()}
             </Typography>
 
-            <MessExpansionPanel 
-              day={day}
-              dayid={dayid}/>
-
+            <MessExpansionPanel day={day} dayid={dayid} />
           </main>
 
           <Drawer
@@ -131,7 +127,11 @@ class MessDepartmentDrawer extends Component {
             <Divider />
             <List>
               {arr.map(({ day, initial, dayid }) => (
-                <ListItem button key={day} onClick={this.changeDay(`${day}`,dayid)}>
+                <ListItem
+                  button
+                  key={day}
+                  onClick={this.changeDay(`${day}`, dayid)}
+                >
                   <ListItemIcon>
                     <Avatar className={this.props.classes.departmentButtons}>
                       {initial}
@@ -146,6 +146,5 @@ class MessDepartmentDrawer extends Component {
     );
   }
 }
-
 
 export default withStyles(useStyles)(MessDepartmentDrawer);

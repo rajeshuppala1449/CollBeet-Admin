@@ -9,6 +9,11 @@ import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import TextField from "@material-ui/core/TextField";
 import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+
+import { Mess } from "../../../api/mess.js";
+
+var _dayid, _type;
 
 const useStyles = theme => ({
   root: {
@@ -63,6 +68,11 @@ class MessForm extends Component {
 
   render() {
     const { day, dayid, type } = this.props;
+    _dayid = dayid;
+    _type = type;
+
+    //const date = this.renderTasks();
+    console.log(this.props.mess_data);
     return (
       <div className={this.props.classes.root}>
         <Grid container className={this.props.classes.grid}>
@@ -94,7 +104,7 @@ class MessForm extends Component {
           label="Food Items"
           variant="outlined"
           fullWidth
-          // /defaultValue={type}
+          //defaultValue={type}
           onChange={this.changeFoodItems("fooditems")}
         />
 
@@ -120,4 +130,13 @@ class MessForm extends Component {
   }
 }
 
-export default compose(withStyles(useStyles))(MessForm);
+export default compose(
+  withStyles(useStyles),
+  withTracker(() => {
+    Meteor.subscribe("mess-list");
+
+    return {
+      mess_data: Mess.findOne({ dayid: _dayid, type: _type })
+    };
+  })
+)(MessForm);

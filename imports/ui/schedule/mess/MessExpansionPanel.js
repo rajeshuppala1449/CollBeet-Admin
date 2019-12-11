@@ -15,7 +15,7 @@ import MessForm from "./MessForm";
 const useStyles = theme => ({
   root: {
     flex: 1,
-    padding: theme.spacing(1),
+    padding: theme.spacing(1)
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -31,7 +31,7 @@ const useStyles = theme => ({
 
 class MessExpansionPanel extends Component {
   render() {
-    const { day,dayid } = this.props;
+    const { day, dayid } = this.props;
     return (
       <div className={this.props.classes.root}>
         <ExpansionPanel>
@@ -46,10 +46,7 @@ class MessExpansionPanel extends Component {
             <FreeBreakfastIcon className={this.props.classes.expandIcons} />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <MessForm
-              day={day}
-              dayid={dayid}
-              type="breakfast" />
+            <MessForm day={day} dayid={dayid} type="breakfast" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -66,10 +63,7 @@ class MessExpansionPanel extends Component {
             />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <MessForm
-              day={day}
-              dayid={dayid}
-              type="lunch" />
+            <MessForm day={day} dayid={dayid} type="lunch" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -86,10 +80,7 @@ class MessExpansionPanel extends Component {
             />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <MessForm
-              day={day}
-              dayid={dayid}
-              type="snack" />
+            <MessForm day={day} dayid={dayid} type="snack" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -104,10 +95,7 @@ class MessExpansionPanel extends Component {
             <NightsStayIcon className={this.props.classes.expandIcons} />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <MessForm
-              day={day}
-              dayid={dayid}
-              type="dinner" />
+            <MessForm day={day} dayid={dayid} type="dinner" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
