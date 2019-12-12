@@ -13,8 +13,6 @@ import { withTracker } from "meteor/react-meteor-data";
 
 import { Mess } from "../../../api/mess.js";
 
-var _dayid, _type;
-
 const useStyles = theme => ({
   root: {
     flex: 1
@@ -32,6 +30,13 @@ const useStyles = theme => ({
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#000"
+  },
+  _food: {
+    margin: theme.spacing(1),
+    fontFamily: "Open Sans",
+    color: "#e65100",
+    fontSize: 24,
+    alignItems: "right"
   },
   submit: {
     margin: theme.spacing(1),
@@ -52,9 +57,26 @@ class MessForm extends Component {
     event.preventDefault();
     const { day, dayid, type } = this.props;
     const fooditems = this.state.fooditems;
+    Meteor.call("mess.addfood", day, dayid, type, fooditems);
 
-    console.log(this.props);
-    Meteor.call("mess.insert", day, dayid, type, fooditems);
+    this.setState({
+      fooditems: ""
+    });
+  };
+
+  handleDelete = event => {
+    event.preventDefault();
+    const { mess_data, dayid, type } = this.props;
+
+    const taskId = mess_data
+      .filter(function(food) {
+        return food.type === type && food.dayid === dayid;
+      })
+      .map(function(i) {
+        return i._id;
+      })[0];
+
+    Meteor.call("mess.removefood", taskId);
   };
 
   changeFoodItems = (input, day, dayid, type) => e => {
@@ -67,18 +89,27 @@ class MessForm extends Component {
   };
 
   render() {
-    const { day, dayid, type } = this.props;
-    _dayid = dayid;
-    _type = type;
+    const { dayid, type, mess_data } = this.props;
 
-    //const date = this.renderTasks();
-    console.log(this.props.mess_data);
+    const food = mess_data
+      .filter(function(food) {
+        return food.type === type && food.dayid === dayid;
+      })
+      .map(function(i) {
+        return i.fooditems;
+      })[0];
+
     return (
       <div className={this.props.classes.root}>
+        <Typography className={this.props.classes.title}>
+          Current Food Items:
+        </Typography>
+        <Typography className={this.props.classes._food}>{food}</Typography>
+
         <Grid container className={this.props.classes.grid}>
           <Grid item>
             <Typography className={this.props.classes.title}>
-              Please Add Food Items Here: {day} {dayid}
+              Please Add/Change Food Items Here:
             </Typography>
           </Grid>
 
@@ -104,27 +135,51 @@ class MessForm extends Component {
           label="Food Items"
           variant="outlined"
           fullWidth
-          //defaultValue={type}
+          value={this.state.fooditems}
           onChange={this.changeFoodItems("fooditems")}
         />
 
-        {this.state.fooditems ? (
-          <Button
-            variant="outlined"
-            className={this.props.classes.submit}
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </Button>
-        ) : (
-          <Button
-            variant="outlined"
-            className={this.props.classes.submit}
-            disabled
-          >
-            Submit
-          </Button>
-        )}
+        <Grid container className={this.props.classes.grid}>
+          <Grid item>
+            {this.state.fooditems ? (
+              <Button
+                variant="outlined"
+                className={this.props.classes.submit}
+                onClick={this.handleSubmit}
+              >
+                Submit
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                className={this.props.classes.submit}
+                disabled
+              >
+                Submit
+              </Button>
+            )}
+          </Grid>
+
+          <Grid item>
+            {food ? (
+              <Button
+                variant="outlined"
+                className={this.props.classes.submit}
+                onClick={this.handleDelete}
+              >
+                Delete
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                className={this.props.classes.submit}
+                disabled
+              >
+                Delete
+              </Button>
+            )}
+          </Grid>
+        </Grid>
       </div>
     );
   }
@@ -136,7 +191,7 @@ export default compose(
     Meteor.subscribe("mess-list");
 
     return {
-      mess_data: Mess.findOne({ dayid: _dayid, type: _type })
+      mess_data: Mess.find({}).fetch()
     };
   })
 )(MessForm);
