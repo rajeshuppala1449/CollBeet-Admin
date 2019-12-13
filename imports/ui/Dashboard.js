@@ -51,15 +51,15 @@ const useStyles = theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: "black",
+    color: "#242729",
   },
   title: {
     flexGrow: 1,
-    color: "black",
+    color: "#242729",
     fontFamily: "Sniglet"
   },
   userButton: {
-    color: "black"
+    color: "#242729"
   },
   hide: {
     display: "none"

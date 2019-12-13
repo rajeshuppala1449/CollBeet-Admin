@@ -29,7 +29,7 @@ const useStyles = theme => ({
   title: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
-    color: "#000"
+    color: "#242729"
   },
   _food: {
     margin: theme.spacing(1),
