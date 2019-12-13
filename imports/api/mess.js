@@ -31,7 +31,6 @@ Meteor.methods({
       })[0];
 
     if (taskId) {
-      console.log(taskId);
       Mess.update(
         { _id: taskId },
         {$set: {"fooditems":fooditems}}
