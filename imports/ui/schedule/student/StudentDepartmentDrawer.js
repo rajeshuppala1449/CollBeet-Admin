@@ -6,34 +6,34 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from '@material-ui/core/Avatar';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import Avatar from "@material-ui/core/Avatar";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import Tooltip from "@material-ui/core/Tooltip"
 
 const drawerWidth = 70;
 const arr = [
-    {
-        dept: "IT",
-        path: "./it-logo.png"
-    },
-    {
-        dept: "EE",
-        path: "./electrical-logo.png"
-    },
-    {
-        dept: "CS",
-        path: "./cs-logo.png"
-    },
-    {
-        dept: "ME",
-        path: "./mechanical-logo.png"
-    },
-    {
-        dept: "CE",
-        path: "./civil-logo.png"
-    }
-]
-
+  {
+    dept: "Information Technology",
+    path: "./it-logo.png"
+  },
+  {
+    dept: "Electrical Engineering",
+    path: "./electrical-logo.png"
+  },
+  {
+    dept: "Computer Science",
+    path: "./cs-logo.png"
+  },
+  {
+    dept: "Mechnical Engineering",
+    path: "./mechanical-logo.png"
+  },
+  {
+    dept: "Civil Enginnering",
+    path: "./civil-logo.png"
+  }
+];
 
 const useStyles = theme => ({
   root: {
@@ -48,17 +48,17 @@ const useStyles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   content: {
-      flex: 1
+    flex: 1
   },
   departmentButtons: {
-    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
+    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
   },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(10),
     bottom: theme.spacing(2),
     width: 40,
-    height: 40,
+    height: 40
   }
 });
 
@@ -70,7 +70,11 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <Fab color="primary" aria-label="add" className={this.props.classes.fab}>
+            <Fab
+              color="primary"
+              aria-label="add"
+              className={this.props.classes.fab}
+            >
               <AddIcon />
             </Fab>
           </main>
@@ -86,23 +90,46 @@ class StudentDepartmentDrawer extends Component {
             <div className={this.props.classes.toolbar} />
             <Divider />
             <List>
-            <ListItem button key="plus">
-                    <ListItemIcon>
-                      <Avatar src="./plus-logo.png" className={this.props.classes.departmentButtons}>Plus</Avatar>
-                    </ListItemIcon>
-                  </ListItem>
+            <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title="Add Department"
+                  placement="left"
+                >
+              <ListItem button key="plus">
+                <ListItemIcon>
+                  <Avatar
+                    src="./plus-logo.png"
+                    className={this.props.classes.departmentButtons}
+                  >
+                    Plus
+                  </Avatar>
+                </ListItemIcon>
+              </ListItem>
+              </Tooltip>
             </List>
             <Divider />
             <List>
-              {arr.map(
-                ({dept, path}) => (
+              {arr.map(({ dept, path }) => (
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title={dept}
+                  placement="left"
+                  key={dept}
+                >
                   <ListItem button key={dept}>
                     <ListItemIcon>
-                      <Avatar src={path} className={this.props.classes.departmentButtons}>{dept}</Avatar>
+                      <Avatar
+                        src={path}
+                        className={this.props.classes.departmentButtons}
+                      >
+                        {dept}
+                      </Avatar>
                     </ListItemIcon>
                   </ListItem>
-                )
-              )}
+                </Tooltip>
+              ))}
             </List>
           </Drawer>
         </div>
