@@ -7,9 +7,11 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-import Tooltip from "@material-ui/core/Tooltip"
+import Tooltip from "@material-ui/core/Tooltip";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { Typography } from "@material-ui/core";
 
 const drawerWidth = 70;
 const arr = [
@@ -54,15 +56,29 @@ const useStyles = theme => ({
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
   },
   fab: {
-    position: "absolute",
-    right: theme.spacing(10),
-    bottom: theme.spacing(2),
-    width: 40,
-    height: 40
+    // position: "absolute",
+    // bottom: 0,
+    // width: "100%"
+    flexGrow: 1
+  },
+  tab: {
+    backgroundColor: "#ffc107"
   }
 });
 
 class StudentDepartmentDrawer extends Component {
+  
+  state={
+    food: 'jibber jabber',
+    value: 0
+  }
+
+  changeFood = () => {
+    this.setState({
+      food: "hello",
+    })
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -70,13 +86,28 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <Fab
-              color="primary"
-              aria-label="add"
-              className={this.props.classes.fab}
-            >
-              <AddIcon />
-            </Fab>
+            <Paper className={this.props.fab}>
+              <Tabs
+                value={this.state.value}
+                //onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+              >
+                <Tab label="Semester 1" onClick={this.changeFood} />
+                <Tab label="Semester 2" onClick={this.changeFood}/>
+                <Tab label="Semester 3" />
+                <Tab label="Semester 4" />
+                <Tab label="Semester 5" />
+                <Tab label="Semester 6" />
+                <Tab label="Semester 7" />
+                <Tab label="Semester 8" />
+              </Tabs>
+            </Paper>
+
+            <Typography >{this.state.food}</Typography>
           </main>
 
           <Drawer
@@ -90,23 +121,23 @@ class StudentDepartmentDrawer extends Component {
             <div className={this.props.classes.toolbar} />
             <Divider />
             <List>
-            <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  title="Add Department"
-                  placement="left"
-                  arrow
-                >
-              <ListItem button key="plus">
-                <ListItemIcon>
-                  <Avatar
-                    src="./plus-logo.png"
-                    className={this.props.classes.departmentButtons}
-                  >
-                    Plus
-                  </Avatar>
-                </ListItemIcon>
-              </ListItem>
+              <Tooltip
+                disableFocusListener
+                disableTouchListener
+                title="Add Department"
+                placement="left"
+                arrow
+              >
+                <ListItem button key="plus">
+                  <ListItemIcon>
+                    <Avatar
+                      src="./plus-logo.png"
+                      className={this.props.classes.departmentButtons}
+                    >
+                      Plus
+                    </Avatar>
+                  </ListItemIcon>
+                </ListItem>
               </Tooltip>
             </List>
             <Divider />
