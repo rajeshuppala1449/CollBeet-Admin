@@ -6,7 +6,7 @@
 
 # CollBee Admin
 
-Project is in early phase of production but you can still start developing. Here are the instructions:
+Project is in early phase of development but you can still start developing. Here are the instructions:
 
 ## Clone the Repository:
 
