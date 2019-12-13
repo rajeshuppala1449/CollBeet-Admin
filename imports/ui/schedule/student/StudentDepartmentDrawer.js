@@ -10,8 +10,49 @@ import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Typography, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const drawerWidth = 70;
+
+const dayarr = [
+  {
+    day: "sunday",
+    initial: "Su",
+    dayid: 0
+  },
+  {
+    day: "monday",
+    initial: "Mo",
+    dayid: 1
+  },
+  {
+    day: "tuesday",
+    initial: "Tu",
+    dayid: 2
+  },
+  {
+    day: "wednesday",
+    initial: "We",
+    dayid: 3
+  },
+  {
+    day: "thursday",
+    initial: "Th",
+    dayid: 4
+  },
+  {
+    day: "friday",
+    initial: "Fr",
+    dayid: 5
+  },
+  {
+    day: "saturday",
+    initial: "Sa",
+    dayid: 6
+  }
+];
+
 const arr = [
   {
     dept: "Information Technology",
@@ -79,10 +120,32 @@ const useStyles = theme => ({
     fontFamily: "Sniglet",
     color: "#e65100"
   },
+  menu: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  }
 });
 
 class StudentDepartmentDrawer extends Component {
+  state = {
+    anchorEl: null
+  };
+
+  handleClick = event => {
+    this.setState({
+      anchorEl: event.target
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      anchorEl: null
+    });
+  };
+
   render() {
+    const { anchorEl } = this.state;
+    const { handleClick, handleClose } = this;
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
@@ -107,19 +170,61 @@ class StudentDepartmentDrawer extends Component {
                   <Button
                     variant="outlined"
                     className={this.props.classes.button}
-                    // onClick={this.handleSubmit}
+                    onClick={handleClick}
                   >
                     Semester
                   </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                  >
+                    {dayarr.map(({ day }) => (
+                      <MenuItem
+                        key={day}
+                        onClick={handleClose}
+                        className={this.props.classes.menu}
+                      >
+                        {day.charAt(0).toUpperCase() + day.slice(1)}
+                      </MenuItem>
+                    ))}
+                  </Menu>
                 </Grid>
                 <Grid item>
                   <Button
                     variant="outlined"
                     className={this.props.classes.button}
-                    // onClick={this.handleSubmit}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}
                   >
                     Day
                   </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                  >
+                    {dayarr.map(({ day }) => (
+                      <MenuItem
+                        key={day}
+                        onClick={handleClose}
+                        className={this.props.classes.menu}
+                      >
+                        {day.charAt(0).toUpperCase() + day.slice(1)}
+                      </MenuItem>
+                    ))}
+                  </Menu>
                 </Grid>
               </Grid>
               <Divider className={this.props.classes.rootAvatar} />
