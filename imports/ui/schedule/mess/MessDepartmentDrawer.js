@@ -9,7 +9,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import MessExpansionPanel from "./MessExpansionPanel";
-import Tooltip from "@material-ui/core/Tooltip"
+import Tooltip from "@material-ui/core/Tooltip";
+import { Grid } from "@material-ui/core";
 
 const drawerWidth = 70;
 const arr = [
@@ -85,33 +86,74 @@ const useStyles = theme => ({
   },
   expandIcons: {
     color: "#e65100"
+  },
+  rootAvatar: {
+    margin: theme.spacing(2)
+  },
+  bigAvatar: {
+    width: 80,
+    height: 80,
+    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
+    color: "#212121",
+    fontFamily: "Sniglet",
+    fontSize: 32
+  },
+  grid: {
+    flex: 1,
+    alignItems: "center"
+  },
+  dayTitle: {
+    padding: theme.spacing(2),
+    fontFamily: "Open Sans",
+    color: "#e65100",
+    fontSize: 30
+  },
+  separator: {
+    flexGrow: 1
   }
 });
 
 class MessDepartmentDrawer extends Component {
   state = {
     day: "sunday",
-    dayid: 0
+    dayid: 0,
+    initial: "Su"
   };
 
-  changeDay = (input, dayid) => e => {
+  changeDay = (input, dayid, initial) => e => {
     this.setState({
       day: `${input}`,
-      dayid
+      dayid,
+      initial
     });
   };
 
   render() {
-    const { day, dayid } = this.state;
+    const { day, dayid, initial } = this.state;
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <Typography className={this.props.classes.dayTitle}>
+            <div className={this.props.classes.rootAvatar}>
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Avatar className={this.props.classes.bigAvatar}>
+                    {initial}
+                  </Avatar>
+                </Grid>
+                <Grid item className={this.props.classes.separator}>
+                  <Typography className={this.props.classes.dayTitle}>
+                    {day.toUpperCase()}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Divider className={this.props.classes.rootAvatar} />
+            </div>
+            {/* <Typography className={this.props.classes.dayTitle}>
               {day.toUpperCase()}
-            </Typography>
+            </Typography> */}
 
             <MessExpansionPanel day={day} dayid={dayid} />
           </main>
@@ -128,25 +170,25 @@ class MessDepartmentDrawer extends Component {
             <Divider />
             <List>
               {arr.map(({ day, initial, dayid }) => (
-                 <Tooltip
-                 disableFocusListener
-                 disableTouchListener
-                 title={day.charAt(0).toUpperCase() + day.slice(1)} 
-                 placement="left"
-                 arrow
-                 key={day}
-               >
-                <ListItem
-                  button
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title={day.charAt(0).toUpperCase() + day.slice(1)}
+                  placement="left"
+                  arrow
                   key={day}
-                  onClick={this.changeDay(`${day}`, dayid)}
                 >
-                  <ListItemIcon>
-                    <Avatar className={this.props.classes.departmentButtons}>
-                      {initial}
-                    </Avatar>
-                  </ListItemIcon>
-                </ListItem>
+                  <ListItem
+                    button
+                    key={day}
+                    onClick={this.changeDay(`${day}`, dayid, initial)}
+                  >
+                    <ListItemIcon>
+                      <Avatar className={this.props.classes.departmentButtons}>
+                        {initial}
+                      </Avatar>
+                    </ListItemIcon>
+                  </ListItem>
                 </Tooltip>
               ))}
             </List>

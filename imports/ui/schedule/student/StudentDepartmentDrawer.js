@@ -57,28 +57,28 @@ const useStyles = theme => ({
     margin: theme.spacing(2)
   },
   bigAvatar: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
   },
   grid: {
     flex: 1,
     alignItems: "center"
   },
-  dayTitle: {
+  branchTitle: {
     padding: theme.spacing(2),
     fontFamily: "Open Sans",
     color: "#e65100",
-    fontSize: 35
+    fontSize: 30
+  },
+  separator: {
+    flexGrow: 1
   },
   button: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
   },
-  jio: {
-    flexGrow: 1
-  }
 });
 
 class StudentDepartmentDrawer extends Component {
@@ -98,8 +98,8 @@ class StudentDepartmentDrawer extends Component {
                     className={this.props.classes.bigAvatar}
                   />
                 </Grid>
-                <Grid item className={this.props.classes.jio}>
-                  <Typography className={this.props.classes.dayTitle}>
+                <Grid item className={this.props.classes.separator}>
+                  <Typography className={this.props.classes.branchTitle}>
                     Information Technology
                   </Typography>
                 </Grid>
