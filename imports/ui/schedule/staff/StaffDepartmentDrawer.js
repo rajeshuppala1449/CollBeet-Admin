@@ -95,6 +95,7 @@ class StaffDepartmentDrawer extends Component {
                 disableTouchListener
                 title="Add Department"
                 placement="left"
+                arrow
               >
                 <ListItem button key="plus">
                   <ListItemIcon>
@@ -117,6 +118,7 @@ class StaffDepartmentDrawer extends Component {
                   title={dept}
                   placement="left"
                   key={dept}
+                  arrow
                 >
                   <ListItem button key={dept}>
                     <ListItemIcon>

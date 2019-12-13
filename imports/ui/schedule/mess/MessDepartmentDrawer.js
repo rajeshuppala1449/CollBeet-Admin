@@ -9,6 +9,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import MessExpansionPanel from "./MessExpansionPanel";
+import Tooltip from "@material-ui/core/Tooltip"
 
 const drawerWidth = 70;
 const arr = [
@@ -127,6 +128,14 @@ class MessDepartmentDrawer extends Component {
             <Divider />
             <List>
               {arr.map(({ day, initial, dayid }) => (
+                 <Tooltip
+                 disableFocusListener
+                 disableTouchListener
+                 title={day.charAt(0).toUpperCase() + day.slice(1)} 
+                 placement="left"
+                 arrow
+                 key={day}
+               >
                 <ListItem
                   button
                   key={day}
@@ -138,6 +147,7 @@ class MessDepartmentDrawer extends Component {
                     </Avatar>
                   </ListItemIcon>
                 </ListItem>
+                </Tooltip>
               ))}
             </List>
           </Drawer>
