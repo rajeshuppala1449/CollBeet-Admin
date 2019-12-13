@@ -8,10 +8,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
-import Paper from "@material-ui/core/Paper";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 const drawerWidth = 70;
 const arr = [
@@ -55,30 +53,35 @@ const useStyles = theme => ({
   departmentButtons: {
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
   },
-  fab: {
-    // position: "absolute",
-    // bottom: 0,
-    // width: "100%"
-    flexGrow: 1
+  rootAvatar: {
+    margin: theme.spacing(2)
   },
-  tab: {
-    backgroundColor: "#ffc107"
+  bigAvatar: {
+    width: 100,
+    height: 100,
+    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
+  },
+  grid: {
+    flex: 1,
+    alignItems: "center"
+  },
+  dayTitle: {
+    padding: theme.spacing(2),
+    fontFamily: "Open Sans",
+    color: "#e65100",
+    fontSize: 35
+  },
+  button: {
+    margin: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
+  jio: {
+    flexGrow: 1
   }
 });
 
 class StudentDepartmentDrawer extends Component {
-  
-  state={
-    food: 'jibber jabber',
-    value: 0
-  }
-
-  changeFood = () => {
-    this.setState({
-      food: "hello",
-    })
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -86,28 +89,41 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <Paper className={this.props.fab}>
-              <Tabs
-                value={this.state.value}
-                //onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                variant="scrollable"
-                scrollButtons="auto"
-                aria-label="scrollable auto tabs example"
-              >
-                <Tab label="Semester 1" onClick={this.changeFood} />
-                <Tab label="Semester 2" onClick={this.changeFood}/>
-                <Tab label="Semester 3" />
-                <Tab label="Semester 4" />
-                <Tab label="Semester 5" />
-                <Tab label="Semester 6" />
-                <Tab label="Semester 7" />
-                <Tab label="Semester 8" />
-              </Tabs>
-            </Paper>
-
-            <Typography >{this.state.food}</Typography>
+            <div className={this.props.classes.rootAvatar}>
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="./it-logo.png"
+                    className={this.props.classes.bigAvatar}
+                  />
+                </Grid>
+                <Grid item className={this.props.classes.jio}>
+                  <Typography className={this.props.classes.dayTitle}>
+                    Information Technology
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    className={this.props.classes.button}
+                    // onClick={this.handleSubmit}
+                  >
+                    Semester
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    className={this.props.classes.button}
+                    // onClick={this.handleSubmit}
+                  >
+                    Day
+                  </Button>
+                </Grid>
+              </Grid>
+              <Divider className={this.props.classes.rootAvatar} />
+            </div>
           </main>
 
           <Drawer

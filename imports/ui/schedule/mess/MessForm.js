@@ -38,7 +38,7 @@ const useStyles = theme => ({
     fontSize: 24,
     alignItems: "right"
   },
-  submit: {
+  button: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
@@ -152,7 +152,7 @@ class MessForm extends Component {
             {this.state.fooditems ? (
               <Button
                 variant="outlined"
-                className={this.props.classes.submit}
+                className={this.props.classes.button}
                 onClick={this.handleSubmit}
               >
                 Submit
@@ -160,7 +160,7 @@ class MessForm extends Component {
             ) : (
               <Button
                 variant="outlined"
-                className={this.props.classes.submit}
+                className={this.props.classes.button}
                 disabled
               >
                 Submit
@@ -172,7 +172,7 @@ class MessForm extends Component {
             {food ? (
               <Button
                 variant="outlined"
-                className={this.props.classes.submit}
+                className={this.props.classes.button}
                 onClick={this.handleDelete}
               >
                 Delete
@@ -180,7 +180,7 @@ class MessForm extends Component {
             ) : (
               <Button
                 variant="outlined"
-                className={this.props.classes.submit}
+                className={this.props.classes.button}
                 disabled
               >
                 Delete
