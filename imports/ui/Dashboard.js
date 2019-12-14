@@ -16,7 +16,6 @@ import Button from "@material-ui/core/Button";
 import ListItem from "@material-ui/core/ListItem";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import NavigationIcon from "@material-ui/icons/Navigation";
 import SchoolIcon from "@material-ui/icons/School";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -26,7 +25,6 @@ import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import StudentDepartmentDrawer from "./schedule/student/StudentDepartmentDrawer";
-import StaffDepartmentDrawer from "./schedule/staff/StaffDepartmentDrawer";
 import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
 
 const useStyles = theme => ({
@@ -207,12 +205,6 @@ class Dashboard extends Component {
                 </ListItemIcon>
                 <ListItemText primary="Student Schedule" />
               </ListItem>
-              <ListItem button component={Link} to="/staff">
-                <ListItemIcon>
-                  <SupervisorAccountIcon />
-                </ListItemIcon>
-                <ListItemText primary="Staff Schedule" />
-              </ListItem>
               <ListItem button component={Link} to="/mess">
                 <ListItemIcon>
                   <FastfoodIcon />
@@ -243,7 +235,6 @@ class Dashboard extends Component {
             <div className={this.props.classes.toolbar} />
             <Switch>
               <Route path="/" exact component={StudentDepartmentDrawer} />
-              <Route path="/staff" component={StaffDepartmentDrawer} />
               <Route path="/mess" component={MessDepartmentDrawer} />
             </Switch>
           </main>

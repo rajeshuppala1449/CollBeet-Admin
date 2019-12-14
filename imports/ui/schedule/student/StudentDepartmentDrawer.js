@@ -9,6 +9,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
 import StudentContent from "./StudentContent";
+import Typography from "@material-ui/core/Typography";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 const drawerWidth = 70;
 const arr = [
@@ -51,11 +61,61 @@ const useStyles = theme => ({
   },
   departmentButtons: {
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
+  },
+  dialogTitle: {
+    fontFamily: "Sniglet",
+    color: "#242729"
+  },
+  fieldContext: {
+    fontFamily: "Open Sans"
+  },
+  fieldTitle: {
+    fontFamily: "Sniglet",
+    color: "#242729"
+  },
+  fieldButtonGroup: {
+    margin: theme.spacing(1)
+  },
+  fieldButton: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
+  grid: {
+    flex: 1,
+    alignItems: "center"
+  },
+  submitButton: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
   }
 });
 
 class StudentDepartmentDrawer extends Component {
+  state = {
+    open: false
+  };
+
+  anchorRef = React.createRef(null);
+
+  handleClickOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
+
+  myRef = React.createRef();
+
   render() {
+    const { handleClose, handleClickOpen } = this;
+    const { open } = this.state;
+    const { anchorRef } = this;
+
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
@@ -63,6 +123,66 @@ class StudentDepartmentDrawer extends Component {
 
           <main className={this.props.classes.content}>
             <StudentContent />
+
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle
+                id="form-dialog-title"
+                className={this.props.classes.fieldTitle}
+              >
+                Add A Branch:
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText className={this.props.classes.fieldContext}>
+                  Please select the branch you want to add along with current
+                  active semesters:
+                </DialogContentText>
+                <Grid container className={this.props.classes.grid}>
+                  <Grid item>
+                    <Typography className={this.props.classes.fieldTitle}>
+                      Branch:
+                    </Typography>
+                  </Grid>
+                  <Grid>
+                    <ButtonGroup
+                      variant="outlined"
+                      className={this.props.classes.fieldButtonGroup}
+                      ref={anchorRef}
+                      aria-label="split button"
+                    >
+                      <Button className={this.props.classes.fieldButton}>
+                        branch
+                      </Button>
+                      <Button
+                        aria-controls={open ? "split-button-menu" : undefined}
+                        aria-expanded={open ? "true" : undefined}
+                        aria-label="select merge strategy"
+                        aria-haspopup="menu"
+                        className={this.props.classes.fieldButton}
+                        aria-controls="simple-menu"
+                        aria-haspopup="true"
+                        size="small"
+                        // onClick={handleClick}
+                      >
+                        <ArrowDropDownIcon />
+                      </Button>
+                    </ButtonGroup>
+                  </Grid>
+                </Grid>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  variant="outlined"
+                  className={this.props.classes.submitButton}
+                  //onClick={this.handleSubmit}
+                >
+                  Submit
+                </Button>
+              </DialogActions>
+            </Dialog>
           </main>
 
           <Drawer
@@ -83,7 +203,7 @@ class StudentDepartmentDrawer extends Component {
                 placement="left"
                 arrow
               >
-                <ListItem button key="plus">
+                <ListItem button key="plus" onClick={handleClickOpen}>
                   <ListItemIcon>
                     <Avatar
                       src="./plus-logo.png"

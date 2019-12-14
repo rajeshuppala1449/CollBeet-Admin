@@ -6,6 +6,8 @@ import { Typography, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 const dayarr = [
   {
@@ -45,6 +47,33 @@ const dayarr = [
   }
 ];
 
+const semarr = [
+  {
+    semid: 1
+  },
+  {
+    semid: 2
+  },
+  {
+    semid: 3
+  },
+  {
+    semid: 4
+  },
+  {
+    semid: 5
+  },
+  {
+    semid: 6
+  },
+  {
+    semid: 7
+  },
+  {
+    semid: 8
+  },
+];
+
 const useStyles = theme => ({
   root: {
     display: "flex"
@@ -70,6 +99,13 @@ const useStyles = theme => ({
   separator: {
     flexGrow: 1
   },
+  fieldButtonGroup: {
+    margin: theme.spacing(1)
+  },
+  fieldButton: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
   button: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
@@ -83,23 +119,51 @@ const useStyles = theme => ({
 
 class StudentContent extends Component {
   state = {
-    anchorEl: null
+    dayAnchorEl: null,
+    dayValue: "day",
+    semAnchorEl: null,
+    semValue: "1"
   };
 
-  handleClick = event => {
+  anchorRef = React.createRef(null);
+
+  dayHandleClick = event => {
     this.setState({
-      anchorEl: event.target
+      dayAnchorEl: event.target
     });
   };
 
-  handleClose = () => {
+  dayHandleClose = day => event => {
     this.setState({
-      anchorEl: null
+      dayAnchorEl: null,
+      dayValue: day
     });
   };
+
+  semHandleClick = event => {
+    this.setState({
+      semAnchorEl: event.target
+    });
+  };
+
+  semHandleClose = sem => event => {
+    this.setState({
+      semAnchorEl: null,
+      semValue: sem
+    });
+  };
+
   render() {
-    const { anchorEl } = this.state;
-    const { handleClick, handleClose } = this;
+    const { dayAnchorEl, dayValue, semAnchorEl, semValue } = this.state;
+
+    const {
+      dayHandleClick,
+      dayHandleClose,
+      semHandleClick,
+      semHandleClose,
+      anchorRef
+    } = this;
+
     return (
       <div className={this.props.classes.rootAvatar}>
         <Grid container className={this.props.classes.grid}>
@@ -116,50 +180,80 @@ class StudentContent extends Component {
             </Typography>
           </Grid>
           <Grid item>
-            <Button
+            <ButtonGroup
               variant="outlined"
-              className={this.props.classes.button}
-              onClick={handleClick}
+              className={this.props.classes.fieldButtonGroup}
+              ref={anchorRef}
+              aria-label="split button"
             >
-              Semester
-            </Button>
+              <Button className={this.props.classes.fieldButton}>
+                Semester {semValue}
+              </Button>
+              <Button
+                aria-controls={open ? "split-button-menu" : undefined}
+                aria-expanded={open ? "true" : undefined}
+                aria-label="select merge strategy"
+                aria-haspopup="menu"
+                className={this.props.classes.fieldButton}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                size="small"
+                onClick={semHandleClick}
+              >
+                <ArrowDropDownIcon />
+              </Button>
+            </ButtonGroup>
             <Menu
               id="simple-menu"
-              anchorEl={anchorEl}
+              anchorEl={semAnchorEl}
               keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+              open={Boolean(semAnchorEl)}
+              onClose={semHandleClose}
               getContentAnchorEl={null}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
               transformOrigin={{ vertical: "top", horizontal: "center" }}
             >
-              {dayarr.map(({ day }) => (
+              {semarr.map(({ semid }) => (
                 <MenuItem
-                  key={day}
-                  onClick={handleClose}
+                  key={semid}
+                  onClick={semHandleClose(semid)}
                   className={this.props.classes.menu}
                 >
-                  {day.charAt(0).toUpperCase() + day.slice(1)}
+                  {semid}
                 </MenuItem>
               ))}
             </Menu>
           </Grid>
           <Grid item>
-            <Button
+            <ButtonGroup
               variant="outlined"
-              className={this.props.classes.button}
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
+              className={this.props.classes.fieldButtonGroup}
+              ref={anchorRef}
+              aria-label="split button"
             >
-              Day
-            </Button>
+              <Button className={this.props.classes.fieldButton}>
+                {dayValue}
+              </Button>
+              <Button
+                aria-controls={open ? "split-button-menu" : undefined}
+                aria-expanded={open ? "true" : undefined}
+                aria-label="select merge strategy"
+                aria-haspopup="menu"
+                className={this.props.classes.fieldButton}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                size="small"
+                onClick={dayHandleClick}
+              >
+                <ArrowDropDownIcon />
+              </Button>
+            </ButtonGroup>
             <Menu
               id="simple-menu"
-              anchorEl={anchorEl}
+              anchorEl={dayAnchorEl}
               keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+              open={Boolean(dayAnchorEl)}
+              onClose={dayHandleClose}
               getContentAnchorEl={null}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
               transformOrigin={{ vertical: "top", horizontal: "center" }}
@@ -167,7 +261,8 @@ class StudentContent extends Component {
               {dayarr.map(({ day }) => (
                 <MenuItem
                   key={day}
-                  onClick={handleClose}
+                  value={day}
+                  onClick={dayHandleClose(day)}
                   className={this.props.classes.menu}
                 >
                   {day.charAt(0).toUpperCase() + day.slice(1)}
