@@ -21,6 +21,7 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import SchoolIcon from "@material-ui/icons/School";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import WebIcon from '@material-ui/icons/Web';
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -217,6 +218,12 @@ class Dashboard extends Component {
                   <FastfoodIcon />
                 </ListItemIcon>
                 <ListItemText primary="Mess Schedule" />
+              </ListItem>
+              <ListItem button component={Link} to="#">
+                <ListItemIcon>
+                  <WebIcon />
+                </ListItemIcon>
+                <ListItemText primary="News Section" />
               </ListItem>
               <ListItem button component={Link} to="#">
                 <ListItemIcon>
