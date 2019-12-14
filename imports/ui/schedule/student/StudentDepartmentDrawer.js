@@ -195,104 +195,99 @@ class StudentDepartmentDrawer extends Component {
                 </Grid>
                 <Grid container className={this.props.classes.gridCheckList}>
                   <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Active Semesters:
-                </Typography>
-                </Grid>
-                <Grid item>
-                <FormControl component="fieldset" className={this.props.classes.semChecklist}>
-                  <FormGroup row>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={true}
-                          color="secondary"
-                          //onChange={handleChange("gilad")}
-                          value="gilad"
+                    <Typography className={this.props.classes.fieldTitle}>
+                      Active Semesters:
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <FormControl
+                      component="fieldset"
+                      className={this.props.classes.semChecklist}
+                    >
+                      <FormGroup row>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("gilad")}
+                              value={1}
+                            />
+                          }
+                          label="Semester 1"
                         />
-                      }
-                      label="Semester 1"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={false}
-                          color="secondary"
-                          //onChange={handleChange("jason")}
-                          value="jason"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("jason")}
+                              value={2}
+                            />
+                          }
+                          label="Semester 2"
                         />
-                      }
-                      label="Semester 2"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={false}
-                          color="secondary"
-                          //onChange={handleChange("antoine")}
-                          value="antoine"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("antoine")}
+                              value={3}
+                            />
+                          }
+                          label="Semester 3"
                         />
-                      }
-                      label="Semester 3"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={true}
-                          color="secondary"
-                          //onChange={handleChange("gilad")}
-                          value="gilad"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("gilad")}
+                              value={4}
+                            />
+                          }
+                          label="Semester 4"
                         />
-                      }
-                      label="Semester 4"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={true}
-                          color="secondary"
-                          //onChange={handleChange("gilad")}
-                          value="gilad"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("gilad")}
+                              value={5}
+                            />
+                          }
+                          label="Semester 5"
                         />
-                      }
-                      label="Semester 5"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={true}
-                          color="secondary"
-                          //onChange={handleChange("gilad")}
-                          value="gilad"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("gilad")}
+                              value={6}
+                            />
+                          }
+                          label="Semester 6"
                         />
-                      }
-                      label="Semester 6"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={true}
-                          color="secondary"
-                          //onChange={handleChange("gilad")}
-                          value="gilad"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("gilad")}
+                              value={7}
+                            />
+                          }
+                          label="Semester 7"
                         />
-                      }
-                      label="Semester 7"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={true}
-                          color="secondary"
-                          //onChange={handleChange("gilad")}
-                          value="gilad"
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="secondary"
+                              //onChange={handleChange("gilad")}
+                              value={8}
+                            />
+                          }
+                          label="Semester 8"
                         />
-                      }
-                      label="Semester 8"
-                    />
-                  </FormGroup>
-                </FormControl>
-                </Grid>
+                      </FormGroup>
+                    </FormControl>
+                  </Grid>
                 </Grid>
               </DialogContent>
               <DialogActions>
