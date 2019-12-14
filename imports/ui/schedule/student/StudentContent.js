@@ -209,7 +209,6 @@ class StudentContent extends Component {
               anchorEl={semAnchorEl}
               keepMounted
               open={Boolean(semAnchorEl)}
-              onClose={semHandleClose}
               getContentAnchorEl={null}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
               transformOrigin={{ vertical: "top", horizontal: "center" }}

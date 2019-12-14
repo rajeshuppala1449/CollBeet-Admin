@@ -23,6 +23,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { array } from "./StudentDeptArray";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const drawerWidth = 70;
 const arr = [
@@ -39,7 +42,7 @@ const arr = [
     path: "./studentDrawerIcons/cs-logo.png"
   },
   {
-    dept: "Mechnical Engineering",
+    dept: "Mechanical Engineering",
     path: "./studentDrawerIcons/mechanical-logo.png"
   },
   {
@@ -99,14 +102,20 @@ const useStyles = theme => ({
   semChecklist: {
     color: "#e65100",
     padding: theme.spacing(1)
+  },
+  menu: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
   }
 });
 
 class StudentDepartmentDrawer extends Component {
   state = {
+    deptAnchorEl: null,
     open: false,
     dept: "Information Technology",
-    path: "./studentDrawerIcons/it-logo.png"
+    path: "./studentDrawerIcons/it-logo.png",
+    menuDept: "branch"
   };
 
   anchorRef = React.createRef(null);
@@ -126,16 +135,33 @@ class StudentDepartmentDrawer extends Component {
   changeDepartment = (dept, path) => e => {
     this.setState({
       dept: dept,
-      path: path
+      path: path,
     });
   };
 
-  myRef = React.createRef();
+  deptHandleClick = event => {
+    this.setState({
+      deptAnchorEl: event.target
+    });
+  };
+
+  deptHandleClose = (dept) => e => {
+    this.setState({
+      deptAnchorEl: null,
+      menuDept: dept
+    });
+  };
 
   render() {
-    const { handleClose, handleClickOpen, changeDepartment } = this;
-    const { open, dept, path } = this.state;
-    const { anchorRef } = this;
+    const {
+      handleClose,
+      handleClickOpen,
+      changeDepartment,
+      deptHandleClick,
+      deptHandleClose,
+      anchorRef
+    } = this;
+    const { open, dept, path, deptAnchorEl, menuDept } = this.state;
 
     return (
       <React.Fragment>
@@ -175,7 +201,7 @@ class StudentDepartmentDrawer extends Component {
                       aria-label="split button"
                     >
                       <Button className={this.props.classes.fieldButton}>
-                        branch
+                        {menuDept}
                       </Button>
                       <Button
                         aria-controls={open ? "split-button-menu" : undefined}
@@ -186,11 +212,36 @@ class StudentDepartmentDrawer extends Component {
                         aria-controls="simple-menu"
                         aria-haspopup="true"
                         size="small"
-                        // onClick={handleClick}
+                        onClick={deptHandleClick}
                       >
                         <ArrowDropDownIcon />
                       </Button>
                     </ButtonGroup>
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={deptAnchorEl}
+                      keepMounted
+                      open={Boolean(deptAnchorEl)}
+                      getContentAnchorEl={null}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center"
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "center"
+                      }}
+                    >
+                      {array.map(({ dept,deptCode }) => (
+                        <MenuItem
+                          key={deptCode}
+                          onClick={deptHandleClose(dept)}
+                          className={this.props.classes.menu}
+                        >
+                          {dept}
+                        </MenuItem>
+                      ))}
+                    </Menu>
                   </Grid>
                 </Grid>
                 <Grid container className={this.props.classes.gridCheckList}>
