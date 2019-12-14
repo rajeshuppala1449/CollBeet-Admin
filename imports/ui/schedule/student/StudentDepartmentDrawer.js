@@ -19,6 +19,10 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const drawerWidth = 70;
 const arr = [
@@ -84,9 +88,17 @@ const useStyles = theme => ({
     flex: 1,
     alignItems: "center"
   },
+  gridCheckList: {
+    flex: 1,
+    alignItems: "center"
+  },
   submitButton: {
     fontFamily: "Sniglet",
     color: "#e65100"
+  },
+  semChecklist: {
+    color: "#e65100",
+    padding: theme.spacing(1)
   }
 });
 
@@ -111,18 +123,18 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  changeDepartment = (dept,path) => e => {
+  changeDepartment = (dept, path) => e => {
     this.setState({
       dept: dept,
       path: path
-    })
-  }
+    });
+  };
 
   myRef = React.createRef();
 
   render() {
     const { handleClose, handleClickOpen, changeDepartment } = this;
-    const { open,dept,path } = this.state;
+    const { open, dept, path } = this.state;
     const { anchorRef } = this;
 
     return (
@@ -131,9 +143,7 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <StudentContent
-            dept={dept}
-            path={path} />
+            <StudentContent dept={dept} path={path} />
 
             <Dialog
               open={open}
@@ -157,7 +167,7 @@ class StudentDepartmentDrawer extends Component {
                       Branch:
                     </Typography>
                   </Grid>
-                  <Grid>
+                  <Grid item>
                     <ButtonGroup
                       variant="outlined"
                       className={this.props.classes.fieldButtonGroup}
@@ -182,6 +192,107 @@ class StudentDepartmentDrawer extends Component {
                       </Button>
                     </ButtonGroup>
                   </Grid>
+                </Grid>
+                <Grid container className={this.props.classes.gridCheckList}>
+                  <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Active Semesters:
+                </Typography>
+                </Grid>
+                <Grid item>
+                <FormControl component="fieldset" className={this.props.classes.semChecklist}>
+                  <FormGroup row>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          color="secondary"
+                          //onChange={handleChange("gilad")}
+                          value="gilad"
+                        />
+                      }
+                      label="Semester 1"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={false}
+                          color="secondary"
+                          //onChange={handleChange("jason")}
+                          value="jason"
+                        />
+                      }
+                      label="Semester 2"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={false}
+                          color="secondary"
+                          //onChange={handleChange("antoine")}
+                          value="antoine"
+                        />
+                      }
+                      label="Semester 3"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          color="secondary"
+                          //onChange={handleChange("gilad")}
+                          value="gilad"
+                        />
+                      }
+                      label="Semester 4"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          color="secondary"
+                          //onChange={handleChange("gilad")}
+                          value="gilad"
+                        />
+                      }
+                      label="Semester 5"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          color="secondary"
+                          //onChange={handleChange("gilad")}
+                          value="gilad"
+                        />
+                      }
+                      label="Semester 6"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          color="secondary"
+                          //onChange={handleChange("gilad")}
+                          value="gilad"
+                        />
+                      }
+                      label="Semester 7"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          color="secondary"
+                          //onChange={handleChange("gilad")}
+                          value="gilad"
+                        />
+                      }
+                      label="Semester 8"
+                    />
+                  </FormGroup>
+                </FormControl>
+                </Grid>
                 </Grid>
               </DialogContent>
               <DialogActions>
@@ -237,7 +348,11 @@ class StudentDepartmentDrawer extends Component {
                   key={dept}
                   arrow
                 >
-                  <ListItem button key={dept} onClick={changeDepartment(dept,path)}>
+                  <ListItem
+                    button
+                    key={dept}
+                    onClick={changeDepartment(dept, path)}
+                  >
                     <ListItemIcon>
                       <Avatar
                         src={path}
