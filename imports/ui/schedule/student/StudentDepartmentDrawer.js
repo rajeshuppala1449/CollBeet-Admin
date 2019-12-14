@@ -92,7 +92,9 @@ const useStyles = theme => ({
 
 class StudentDepartmentDrawer extends Component {
   state = {
-    open: false
+    open: false,
+    dept: "Information Technology",
+    path: "./studentDrawerIcons/it-logo.png"
   };
 
   anchorRef = React.createRef(null);
@@ -109,11 +111,18 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
+  changeDepartment = (dept,path) => e => {
+    this.setState({
+      dept: dept,
+      path: path
+    })
+  }
+
   myRef = React.createRef();
 
   render() {
-    const { handleClose, handleClickOpen } = this;
-    const { open } = this.state;
+    const { handleClose, handleClickOpen, changeDepartment } = this;
+    const { open,dept,path } = this.state;
     const { anchorRef } = this;
 
     return (
@@ -122,7 +131,9 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <StudentContent />
+            <StudentContent
+            dept={dept}
+            path={path} />
 
             <Dialog
               open={open}
@@ -226,7 +237,7 @@ class StudentDepartmentDrawer extends Component {
                   key={dept}
                   arrow
                 >
-                  <ListItem button key={dept}>
+                  <ListItem button key={dept} onClick={changeDepartment(dept,path)}>
                     <ListItemIcon>
                       <Avatar
                         src={path}

@@ -155,6 +155,7 @@ class StudentContent extends Component {
 
   render() {
     const { dayAnchorEl, dayValue, semAnchorEl, semValue } = this.state;
+    const { dept,path } = this.props;
 
     const {
       dayHandleClick,
@@ -170,13 +171,13 @@ class StudentContent extends Component {
           <Grid item>
             <Avatar
               alt="Remy Sharp"
-              src="./studentDrawerIcons/it-logo.png"
+              src={path}
               className={this.props.classes.bigAvatar}
             />
           </Grid>
           <Grid item className={this.props.classes.separator}>
             <Typography className={this.props.classes.branchTitle}>
-              Information Technology
+              {dept}
             </Typography>
           </Grid>
           <Grid item>
