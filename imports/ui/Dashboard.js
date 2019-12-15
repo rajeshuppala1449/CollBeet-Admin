@@ -20,7 +20,7 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import SchoolIcon from "@material-ui/icons/School";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import WebIcon from '@material-ui/icons/Web';
+import WebIcon from "@material-ui/icons/Web";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -29,7 +29,7 @@ import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
 
 const useStyles = theme => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -38,7 +38,7 @@ const useStyles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    position: 'fixed',
+    position: "fixed"
   },
   appBarShift: {
     marginLeft: 240,
@@ -50,7 +50,7 @@ const useStyles = theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: "#242729",
+    color: "#242729"
   },
   title: {
     flexGrow: 1,
@@ -93,14 +93,14 @@ const useStyles = theme => ({
     alignItems: "center",
     justifyContent: "flex-start",
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(0),
+    padding: theme.spacing(0)
   },
   listitem: {
-    fontFamily: "Sniglet",
+    fontFamily: "Sniglet"
   }
 });
 

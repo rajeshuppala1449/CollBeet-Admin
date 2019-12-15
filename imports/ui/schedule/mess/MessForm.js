@@ -101,12 +101,18 @@ class MessForm extends Component {
 
     return (
       <div className={this.props.classes.root}>
-        {food ?
-        <Typography className={this.props.classes.title}>
-          Current Food Items:
-        </Typography> : '' }
-        {food ?
-        <Typography className={this.props.classes._food}>{food}</Typography> : ''}
+        {food ? (
+          <Typography className={this.props.classes.title}>
+            Current Food Items:
+          </Typography>
+        ) : (
+          ""
+        )}
+        {food ? (
+          <Typography className={this.props.classes._food}>{food}</Typography>
+        ) : (
+          ""
+        )}
 
         <Grid container className={this.props.classes.grid}>
           <Grid item>

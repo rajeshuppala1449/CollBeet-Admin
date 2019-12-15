@@ -71,7 +71,7 @@ const semarr = [
   },
   {
     semid: 8
-  },
+  }
 ];
 
 const useStyles = theme => ({
@@ -155,7 +155,7 @@ class StudentContent extends Component {
 
   render() {
     const { dayAnchorEl, dayValue, semAnchorEl, semValue } = this.state;
-    const { dept,path } = this.props;
+    const { dept, path } = this.props;
 
     const {
       dayHandleClick,

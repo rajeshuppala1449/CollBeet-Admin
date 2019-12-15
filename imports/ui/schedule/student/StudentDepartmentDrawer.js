@@ -135,7 +135,7 @@ class StudentDepartmentDrawer extends Component {
   changeDepartment = (dept, path) => e => {
     this.setState({
       dept: dept,
-      path: path,
+      path: path
     });
   };
 
@@ -145,7 +145,7 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  deptHandleClose = (dept) => e => {
+  deptHandleClose = dept => e => {
     this.setState({
       deptAnchorEl: null,
       menuDept: dept
@@ -232,7 +232,7 @@ class StudentDepartmentDrawer extends Component {
                         horizontal: "center"
                       }}
                     >
-                      {array.map(({ dept,deptCode }) => (
+                      {array.map(({ dept, deptCode }) => (
                         <MenuItem
                           key={deptCode}
                           onClick={deptHandleClose(dept)}
