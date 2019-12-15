@@ -4,17 +4,17 @@
 
 </p>
 
-# CollBee Admin
+# CollBeet Admin
 
 Project is in early phase of development but you can still start developing. Here are the instructions:
 
 ## Clone the Repository:
 
-  `git clone https://github.com/kalol-institute-of-technology/CollBee-Admin`
+  `git clone https://github.com/kalol-institute-of-technology/CollBeet-Admin`
   
 ## Change Directory:
 
-  `cd CollBee-Admin`
+  `cd CollBeet-Admin`
   
 ## Install Meteor Dependencies:
 
