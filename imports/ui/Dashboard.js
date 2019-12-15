@@ -160,7 +160,7 @@ class Dashboard extends Component {
                 noWrap
                 className={this.props.classes.title}
               >
-                CollBee
+                CollBeet
               </Typography>
               <Button color="inherit" className={this.props.classes.userButton}>
                 Login
