@@ -136,7 +136,10 @@ class StudentDepartmentDrawer extends Component {
 
   handleClose = () => {
     this.setState({
-      open: false
+      open: false,
+      menuDept: "",
+      semesters: [],
+      disable: true,
     });
   };
 
@@ -183,7 +186,8 @@ class StudentDepartmentDrawer extends Component {
       deptHandleClick,
       deptHandleClose,
       anchorRef,
-      handleSubmit
+      handleSubmit,
+      semesters
     } = this;
     const {
       open,
