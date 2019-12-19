@@ -27,6 +27,12 @@ import { array } from "./StudentDeptArray";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
+import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+import compose from "recompose/compose";
+
+import { Student } from "../../../api/student.js";
+
 const drawerWidth = 70;
 const arr = [
   {
@@ -115,7 +121,10 @@ class StudentDepartmentDrawer extends Component {
     open: false,
     dept: "Information Technology",
     path: "./studentDrawerIcons/it-logo.png",
-    menuDept: "branch"
+    menuDept: "",
+    semesters: [],
+    menuPath: "",
+    menuDeptCode: ""
   };
 
   anchorRef = React.createRef(null);
@@ -124,6 +133,24 @@ class StudentDepartmentDrawer extends Component {
     this.setState({
       open: true
     });
+  };
+
+  addSem = i => e => {
+    const arr = this.state.semesters;
+
+    if (arr.includes(i)) {
+      var filteredAry = arr.filter(e => e !== i);
+
+      this.setState({
+        semesters: filteredAry
+      });
+    } else {
+      var addedAry = arr.concat(i);
+
+      this.setState({
+        semesters: addedAry
+      });
+    }
   };
 
   handleClose = () => {
@@ -145,10 +172,23 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  deptHandleClose = dept => e => {
+  deptHandleClose = (dept, path, deptCode) => e => {
     this.setState({
       deptAnchorEl: null,
-      menuDept: dept
+      menuDept: dept,
+      menuPath: path,
+      menuDeptCode: deptCode
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { menuDept, menuPath, menuDeptCode, semesters } = this.state;
+    Meteor.call("student.addDept", menuDept, menuPath, menuDeptCode, semesters);
+
+    this.setState({
+      open: false,
+      menuDept: "",
     });
   };
 
@@ -159,9 +199,11 @@ class StudentDepartmentDrawer extends Component {
       changeDepartment,
       deptHandleClick,
       deptHandleClose,
-      anchorRef
+      anchorRef,
+      handleSubmit
     } = this;
     const { open, dept, path, deptAnchorEl, menuDept } = this.state;
+    const { student_schedule } = this.props;
 
     return (
       <React.Fragment>
@@ -232,10 +274,10 @@ class StudentDepartmentDrawer extends Component {
                         horizontal: "center"
                       }}
                     >
-                      {array.map(({ dept, deptCode }) => (
+                      {array.map(({ dept, path, deptCode }) => (
                         <MenuItem
                           key={deptCode}
-                          onClick={deptHandleClose(dept)}
+                          onClick={deptHandleClose(dept, path, deptCode)}
                           className={this.props.classes.menu}
                         >
                           {dept}
@@ -260,7 +302,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("gilad")}
+                              onChange={this.addSem(1)}
                               value={1}
                             />
                           }
@@ -270,7 +312,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("jason")}
+                              onChange={this.addSem(2)}
                               value={2}
                             />
                           }
@@ -280,7 +322,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("antoine")}
+                              onChange={this.addSem(3)}
                               value={3}
                             />
                           }
@@ -290,7 +332,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("gilad")}
+                              onChange={this.addSem(4)}
                               value={4}
                             />
                           }
@@ -300,7 +342,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("gilad")}
+                              onChange={this.addSem(5)}
                               value={5}
                             />
                           }
@@ -310,7 +352,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("gilad")}
+                              onChange={this.addSem(6)}
                               value={6}
                             />
                           }
@@ -320,7 +362,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("gilad")}
+                              onChange={this.addSem(7)}
                               value={7}
                             />
                           }
@@ -330,7 +372,7 @@ class StudentDepartmentDrawer extends Component {
                           control={
                             <Checkbox
                               color="secondary"
-                              //onChange={handleChange("gilad")}
+                              onChange={this.addSem(8)}
                               value={8}
                             />
                           }
@@ -345,7 +387,7 @@ class StudentDepartmentDrawer extends Component {
                 <Button
                   variant="outlined"
                   className={this.props.classes.submitButton}
-                  //onClick={this.handleSubmit}
+                  onClick={handleSubmit}
                 >
                   Submit
                 </Button>
@@ -385,7 +427,7 @@ class StudentDepartmentDrawer extends Component {
             </List>
             <Divider />
             <List>
-              {arr.map(({ dept, path }) => (
+              {student_schedule.map(({ dept, avpath }) => (
                 <Tooltip
                   disableFocusListener
                   disableTouchListener
@@ -397,11 +439,11 @@ class StudentDepartmentDrawer extends Component {
                   <ListItem
                     button
                     key={dept}
-                    onClick={changeDepartment(dept, path)}
+                    onClick={changeDepartment(dept, avpath)}
                   >
                     <ListItemIcon>
                       <Avatar
-                        src={path}
+                        src={avpath}
                         className={this.props.classes.departmentButtons}
                       >
                         {dept}
@@ -418,4 +460,13 @@ class StudentDepartmentDrawer extends Component {
   }
 }
 
-export default withStyles(useStyles)(StudentDepartmentDrawer);
+export default compose(
+  withStyles(useStyles),
+  withTracker(() => {
+    Meteor.subscribe("student-schedule");
+
+    return {
+      student_schedule: Student.find({}).fetch()
+    };
+  })
+)(StudentDepartmentDrawer);
