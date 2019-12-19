@@ -20,28 +20,14 @@ Meteor.methods({
     check(menuPath, String);
     check(menuDeptCode, String);
 
-    const semArr = semesters.map(i => {
-      return { semId: i };
+    const semArr = semesters.sort().map(i => {
+      return { semid: i };
     });
-
-    var taskId = Student.find({})
-      .fetch()
-      .filter(function(d) {
-        return d.dept === menuDept && d.deptcode === menuDeptCode;
-      })
-      .map(function(i) {
-        return i._id;
-      })[0];
-
-    if (taskId) {
-      throw new Meteor.Error("dept already exists");
-    } else {
-      Student.insert({
-        dept: menuDept,
-        avpath: menuPath,
-        deptcode: menuDeptCode,
-        activesemesters: semArr
-      });
-    }
+    Student.insert({
+      dept: menuDept,
+      avpath: menuPath,
+      deptcode: menuDeptCode,
+      activesem: semArr
+    });
   }
 });

@@ -34,28 +34,6 @@ import compose from "recompose/compose";
 import { Student } from "../../../api/student.js";
 
 const drawerWidth = 70;
-const arr = [
-  {
-    dept: "Information Technology",
-    path: "./studentDrawerIcons/it-logo.png"
-  },
-  {
-    dept: "Electrical Engineering",
-    path: "./studentDrawerIcons/electrical-logo.png"
-  },
-  {
-    dept: "Computer Science",
-    path: "./studentDrawerIcons/cs-logo.png"
-  },
-  {
-    dept: "Mechanical Engineering",
-    path: "./studentDrawerIcons/mechanical-logo.png"
-  },
-  {
-    dept: "Civil Enginnering",
-    path: "./studentDrawerIcons/civil-logo.png"
-  }
-];
 
 const useStyles = theme => ({
   root: {
@@ -119,8 +97,8 @@ class StudentDepartmentDrawer extends Component {
   state = {
     deptAnchorEl: null,
     open: false,
-    dept: "Information Technology",
-    path: "./studentDrawerIcons/it-logo.png",
+    dept: "Electrical Engineering",
+    path: "./studentDrawerIcons/electrical-logo.png",
     menuDept: "",
     semesters: [],
     menuPath: "",
@@ -189,6 +167,7 @@ class StudentDepartmentDrawer extends Component {
     this.setState({
       open: false,
       menuDept: "",
+      semesters: []
     });
   };
 
@@ -202,8 +181,23 @@ class StudentDepartmentDrawer extends Component {
       anchorRef,
       handleSubmit
     } = this;
-    const { open, dept, path, deptAnchorEl, menuDept } = this.state;
+    const {
+      open,
+      dept,
+      path,
+      deptAnchorEl,
+      menuDept,
+      menuDeptCode
+    } = this.state;
     const { student_schedule } = this.props;
+
+    const taskId = student_schedule
+      .filter(function(d) {
+        return d.dept === menuDept && d.deptcode === menuDeptCode;
+      })
+      .map(function(i) {
+        return i._id;
+      })[0];
 
     return (
       <React.Fragment>
@@ -384,13 +378,23 @@ class StudentDepartmentDrawer extends Component {
                 </Grid>
               </DialogContent>
               <DialogActions>
-                <Button
-                  variant="outlined"
-                  className={this.props.classes.submitButton}
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
+                {!taskId ? (
+                  <Button
+                    variant="outlined"
+                    className={this.props.classes.submitButton}
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    className={this.props.classes.submitButton}
+                    disabled
+                  >
+                    Department Already Exists
+                  </Button>
+                )}
               </DialogActions>
             </Dialog>
           </main>
