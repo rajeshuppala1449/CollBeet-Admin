@@ -97,6 +97,7 @@ class StudentDepartmentDrawer extends Component {
   state = {
     deptAnchorEl: null,
     open: false,
+    disable: true,
     dept: "Electrical Engineering",
     path: "./studentDrawerIcons/electrical-logo.png",
     menuDept: "",
@@ -120,13 +121,15 @@ class StudentDepartmentDrawer extends Component {
       var filteredAry = arr.filter(e => e !== i);
 
       this.setState({
-        semesters: filteredAry
+        semesters: filteredAry,
+        disable: false
       });
     } else {
       var addedAry = arr.concat(i);
 
       this.setState({
-        semesters: addedAry
+        semesters: addedAry,
+        disable: false
       });
     }
   };
@@ -146,7 +149,7 @@ class StudentDepartmentDrawer extends Component {
 
   deptHandleClick = event => {
     this.setState({
-      deptAnchorEl: event.target
+      deptAnchorEl: event.target,
     });
   };
 
@@ -167,7 +170,8 @@ class StudentDepartmentDrawer extends Component {
     this.setState({
       open: false,
       menuDept: "",
-      semesters: []
+      semesters: [],
+      disable: true,
     });
   };
 
@@ -187,7 +191,8 @@ class StudentDepartmentDrawer extends Component {
       path,
       deptAnchorEl,
       menuDept,
-      menuDeptCode
+      menuDeptCode,
+      disable
     } = this.state;
     const { student_schedule } = this.props;
 
@@ -383,6 +388,7 @@ class StudentDepartmentDrawer extends Component {
                     variant="outlined"
                     className={this.props.classes.submitButton}
                     onClick={handleSubmit}
+                    disabled={disable}
                   >
                     Submit
                   </Button>
@@ -394,7 +400,7 @@ class StudentDepartmentDrawer extends Component {
                   >
                     Department Already Exists
                   </Button>
-                )}
+                )} 
               </DialogActions>
             </Dialog>
           </main>
