@@ -88,9 +88,9 @@ const useStyles = theme => ({
 class StudentContent extends Component {
   state = {
     dayAnchorEl: null,
-    dayValue: "day",
+    dayValue: "",
     semAnchorEl: null,
-    semValue: "1"
+    semValue: ""
   };
 
   anchorRef = React.createRef(null);
@@ -200,7 +200,7 @@ class StudentContent extends Component {
               aria-label="split button"
             >
               <Button className={this.props.classes.fieldButton}>
-                {dayValue}
+                {dayValue ? dayValue : "day"}
               </Button>
               <Button
                 aria-controls={open ? "split-button-menu" : undefined}

@@ -263,7 +263,7 @@ class StudentDepartmentDrawer extends Component {
                       aria-label="split button"
                     >
                       <Button className={this.props.classes.fieldButton}>
-                        {menuDept}
+                        {menuDept ? menuDept : 'Select A Department'}
                       </Button>
                       <Button
                         aria-controls={open ? "split-button-menu" : undefined}
