@@ -411,7 +411,7 @@ class StudentDepartmentDrawer extends Component {
                     onClick={handleSubmit}
                     disabled={disable}
                   >
-                    Submit
+                    Add
                   </Button>
                 ) : (
                   <Button

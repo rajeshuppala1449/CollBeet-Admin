@@ -161,7 +161,7 @@ class MessForm extends Component {
                 className={this.props.classes.button}
                 onClick={this.handleSubmit}
               >
-                Submit
+                Add
               </Button>
             ) : (
               <Button
@@ -169,7 +169,7 @@ class MessForm extends Component {
                 className={this.props.classes.button}
                 disabled
               >
-                Submit
+                Add
               </Button>
             )}
           </Grid>
