@@ -140,7 +140,7 @@ class StudentDepartmentDrawer extends Component {
       open: false,
       menuDept: "",
       semesters: [],
-      disable: true,
+      disable: true
     });
   };
 
@@ -154,7 +154,7 @@ class StudentDepartmentDrawer extends Component {
 
   deptHandleClick = event => {
     this.setState({
-      deptAnchorEl: event.target,
+      deptAnchorEl: event.target
     });
   };
 
@@ -176,7 +176,7 @@ class StudentDepartmentDrawer extends Component {
       open: false,
       menuDept: "",
       semesters: [],
-      disable: true,
+      disable: true
     });
   };
 
@@ -188,7 +188,7 @@ class StudentDepartmentDrawer extends Component {
       deptHandleClick,
       deptHandleClose,
       anchorRef,
-      handleSubmit,
+      handleSubmit
     } = this;
     const {
       open,
@@ -210,13 +210,13 @@ class StudentDepartmentDrawer extends Component {
         return i._id;
       })[0];
 
-      const active_sem_array = student_schedule
+    const active_sem_array = student_schedule
       .filter(function(d) {
         return d.dept === dept && d.deptcode === deptcode;
       })
       .map(function(i) {
         return i.activesem;
-      })[0]; 
+      })[0];
 
     return (
       <React.Fragment>
@@ -224,7 +224,15 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            {dept && path ? <StudentContent dept={dept} path={path} activesem={active_sem_array} /> : 'Please Select or Create A Department'}
+            {dept && path ? (
+              <StudentContent
+                dept={dept}
+                path={path}
+                activesem={active_sem_array}
+              />
+            ) : (
+              "Please Select or Create A Department"
+            )}
             <Dialog
               open={open}
               onClose={handleClose}
@@ -413,7 +421,7 @@ class StudentDepartmentDrawer extends Component {
                   >
                     Department Already Exists
                   </Button>
-                )} 
+                )}
               </DialogActions>
             </Dialog>
           </main>
