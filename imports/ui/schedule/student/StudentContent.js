@@ -11,11 +11,6 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 const dayarr = [
   {
-    day: "sunday",
-    initial: "Su",
-    dayid: 0
-  },
-  {
     day: "monday",
     initial: "Mo",
     dayid: 1
@@ -44,33 +39,6 @@ const dayarr = [
     day: "saturday",
     initial: "Sa",
     dayid: 6
-  }
-];
-
-const semarr = [
-  {
-    semid: 1
-  },
-  {
-    semid: 2
-  },
-  {
-    semid: 3
-  },
-  {
-    semid: 4
-  },
-  {
-    semid: 5
-  },
-  {
-    semid: 6
-  },
-  {
-    semid: 7
-  },
-  {
-    semid: 8
   }
 ];
 
@@ -155,7 +123,7 @@ class StudentContent extends Component {
 
   render() {
     const { dayAnchorEl, dayValue, semAnchorEl, semValue } = this.state;
-    const { dept, path } = this.props;
+    const { dept, path, activesem } = this.props;
 
     const {
       dayHandleClick,
@@ -213,7 +181,7 @@ class StudentContent extends Component {
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
               transformOrigin={{ vertical: "top", horizontal: "center" }}
             >
-              {semarr.map(({ semid }) => (
+              {activesem.map(({ semid }) => (
                 <MenuItem
                   key={semid}
                   onClick={semHandleClose(semid)}

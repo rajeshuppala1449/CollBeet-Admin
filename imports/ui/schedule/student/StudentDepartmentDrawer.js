@@ -98,8 +98,9 @@ class StudentDepartmentDrawer extends Component {
     deptAnchorEl: null,
     open: false,
     disable: true,
-    dept: "Electrical Engineering",
-    path: "./studentDrawerIcons/electrical-logo.png",
+    dept: "",
+    path: "",
+    deptcode: "",
     menuDept: "",
     semesters: [],
     menuPath: "",
@@ -143,10 +144,11 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  changeDepartment = (dept, path) => e => {
+  changeDepartment = (dept, avpath, deptcode) => e => {
     this.setState({
       dept: dept,
-      path: path
+      path: avpath,
+      deptcode: deptcode
     });
   };
 
@@ -187,12 +189,12 @@ class StudentDepartmentDrawer extends Component {
       deptHandleClose,
       anchorRef,
       handleSubmit,
-      semesters
     } = this;
     const {
       open,
       dept,
       path,
+      deptcode,
       deptAnchorEl,
       menuDept,
       menuDeptCode,
@@ -200,7 +202,7 @@ class StudentDepartmentDrawer extends Component {
     } = this.state;
     const { student_schedule } = this.props;
 
-    const taskId = student_schedule
+    const menu_deptId = student_schedule
       .filter(function(d) {
         return d.dept === menuDept && d.deptcode === menuDeptCode;
       })
@@ -208,14 +210,21 @@ class StudentDepartmentDrawer extends Component {
         return i._id;
       })[0];
 
+      const active_sem_array = student_schedule
+      .filter(function(d) {
+        return d.dept === dept && d.deptcode === deptcode;
+      })
+      .map(function(i) {
+        return i.activesem;
+      })[0]; 
+
     return (
       <React.Fragment>
         <div className={this.props.classes.root}>
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <StudentContent dept={dept} path={path} />
-
+            {dept && path ? <StudentContent dept={dept} path={path} activesem={active_sem_array} /> : 'Please Select or Create A Department'}
             <Dialog
               open={open}
               onClose={handleClose}
@@ -387,7 +396,7 @@ class StudentDepartmentDrawer extends Component {
                 </Grid>
               </DialogContent>
               <DialogActions>
-                {!taskId ? (
+                {!menu_deptId ? (
                   <Button
                     variant="outlined"
                     className={this.props.classes.submitButton}
@@ -441,7 +450,7 @@ class StudentDepartmentDrawer extends Component {
             </List>
             <Divider />
             <List>
-              {student_schedule.map(({ dept, avpath }) => (
+              {student_schedule.map(({ dept, avpath, deptcode }) => (
                 <Tooltip
                   disableFocusListener
                   disableTouchListener
@@ -453,7 +462,7 @@ class StudentDepartmentDrawer extends Component {
                   <ListItem
                     button
                     key={dept}
-                    onClick={changeDepartment(dept, avpath)}
+                    onClick={changeDepartment(dept, avpath, deptcode)}
                   >
                     <ListItemIcon>
                       <Avatar
