@@ -8,6 +8,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 const dayarr = [
   {
@@ -82,6 +84,18 @@ const useStyles = theme => ({
   menu: {
     fontFamily: "Sniglet",
     color: "#e65100"
+  },
+  fab: {
+    position: "absolute",
+    right: theme.spacing(10),
+    bottom: theme.spacing(2),
+    // width: 40,
+    // height: 40,
+    background: "#ffc107",
+    color: "#000"
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
   }
 });
 
@@ -240,6 +254,14 @@ class StudentContent extends Component {
           </Grid>
         </Grid>
         <Divider className={this.props.classes.rootAvatar} />
+        <Fab
+          variant="extended"
+          className={this.props.classes.fab}
+          aria-label="add"
+        >
+          <AddIcon className={this.props.classes.extendedIcon} />
+          Add A Lecture
+        </Fab>
       </div>
     );
   }
