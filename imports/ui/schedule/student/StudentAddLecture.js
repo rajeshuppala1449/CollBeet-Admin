@@ -75,6 +75,9 @@ const useStyles = theme => ({
     flex: 1,
     alignItems: "center"
   },
+  griditem: {
+    flex: 1
+  },
   textfield: {
     margin: theme.spacing(1)
   },
@@ -210,41 +213,6 @@ class AddLectureDialog extends Component {
             <Grid container className={this.props.classes.grid}>
               <Grid item>
                 <Typography className={this.props.classes.fieldTitle}>
-                  Subject Name:
-                </Typography>
-              </Grid>
-              <Grid item>
-                <TextField
-                  id="lecture-textfield"
-                  //   label="Subject Name"
-                  className={this.props.classes.textfield}
-                  variant="standard"
-                  value={this.state.lectureName}
-                  onChange={this.changeTexfieldData("lectureName")}
-                />
-              </Grid>
-            </Grid>
-
-            <Grid container className={this.props.classes.grid}>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Teacher Name:
-                </Typography>
-              </Grid>
-              <Grid item>
-                <TextField
-                  id="teacher-textfield"
-                  variant="standard"
-                  className={this.props.classes.textfield}
-                  value={this.state.teacherName}
-                  onChange={this.changeTexfieldData("teacherName")}
-                />
-              </Grid>
-            </Grid>
-
-            <Grid container className={this.props.classes.grid}>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
                   Day:
                 </Typography>
               </Grid>
@@ -346,6 +314,43 @@ class AddLectureDialog extends Component {
                     </MenuItem>
                   ))}
                 </Menu>
+              </Grid>
+            </Grid>
+
+            <Grid container className={this.props.classes.grid}>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Subject Name:
+                </Typography>
+              </Grid>
+              <Grid item className={this.props.classes.griditem}>
+                <TextField
+                  id="lecture-textfield"
+                  //   label="Subject Name"
+                  fullWidth
+                  className={this.props.classes.textfield}
+                  variant="standard"
+                  value={this.state.lectureName}
+                  onChange={this.changeTexfieldData("lectureName")}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container className={this.props.classes.grid}>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Teacher Name:
+                </Typography>
+              </Grid>
+              <Grid item className={this.props.classes.griditem}>
+                <TextField
+                  id="teacher-textfield"
+                  variant="standard"
+                  fullWidth
+                  className={this.props.classes.textfield}
+                  value={this.state.teacherName}
+                  onChange={this.changeTexfieldData("teacherName")}
+                />
               </Grid>
             </Grid>
 
