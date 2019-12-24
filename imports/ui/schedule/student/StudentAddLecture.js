@@ -13,6 +13,10 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
+import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
+import moment from "moment";
+
 const dayarr = [
   {
     day: "monday",
@@ -172,21 +176,36 @@ class AddLectureDialog extends Component {
                 </Typography>
               </Grid>
             </Grid>
+
             <Grid container className={this.props.classes.grid}>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Subject Name:
+                </Typography>
+              </Grid>
               <Grid item>
                 <TextField
                   id="lecture-textfield"
-                  label="Subject Name"
-                  variant="outlined"
+                  //   label="Subject Name"
+                  className={this.props.classes.textfield}
+                  variant="standard"
                   value={this.state.lectureName}
                   onChange={this.changeTexfieldData("lectureName")}
                 />
               </Grid>
+            </Grid>
+
+            <Grid container className={this.props.classes.grid}>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Teacher Name:
+                </Typography>
+              </Grid>
               <Grid item>
                 <TextField
                   id="teacher-textfield"
-                  label="Teacher Name"
-                  variant="outlined"
+                  //   label="Teacher Name"
+                  variant="standard"
                   className={this.props.classes.textfield}
                   value={this.state.teacherName}
                   onChange={this.changeTexfieldData("teacherName")}
@@ -196,114 +215,138 @@ class AddLectureDialog extends Component {
 
             <Grid container className={this.props.classes.grid}>
               <Grid item>
-                <Grid container className={this.props.classes.grid}>
-                  <Grid item>
-                    <Typography className={this.props.classes.fieldTitle}>
-                      Day:
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <ButtonGroup
-                      variant="outlined"
-                      className={this.props.classes.fieldButtonGroup}
-                      ref={anchorRef}
-                      aria-label="split button"
-                    >
-                      <Button className={this.props.classes.fieldButton}>
-                        {day ? day : "Select A Day"}
-                      </Button>
-                      <Button
-                        aria-controls={open ? "split-button-menu" : undefined}
-                        aria-expanded={open ? "true" : undefined}
-                        aria-label="select merge strategy"
-                        aria-haspopup="menu"
-                        className={this.props.classes.fieldButton}
-                        aria-controls="simple-menu"
-                        aria-haspopup="true"
-                        size="small"
-                        onClick={dayHandleClick}
-                      >
-                        <ArrowDropDownIcon />
-                      </Button>
-                    </ButtonGroup>
-                    <Menu
-                      id="simple-menu"
-                      anchorEl={dayAnchorEl}
-                      keepMounted
-                      open={Boolean(dayAnchorEl)}
-                      getContentAnchorEl={null}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "center"
-                      }}
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "center"
-                      }}
-                    >
-                      {dayarr.map(({ day, dayid }) => (
-                        <MenuItem
-                          key={dayid}
-                          onClick={dayHandleClose(dayid, day)}
-                          className={this.props.classes.menu}
-                        >
-                          {day.charAt(0).toUpperCase() + day.slice(1)}
-                        </MenuItem>
-                      ))}
-                    </Menu>
-                  </Grid>
-                </Grid>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Day:
+                </Typography>
               </Grid>
-              <Grid container className={this.props.classes.grid}>
-                <Grid item>
-                  <Typography className={this.props.classes.fieldTitle}>
-                    Semester:
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <ButtonGroup
-                    variant="outlined"
-                    className={this.props.classes.fieldButtonGroup}
-                    ref={anchorRef}
-                    aria-label="split button"
+              <Grid item>
+                <ButtonGroup
+                  variant="outlined"
+                  className={this.props.classes.fieldButtonGroup}
+                  ref={anchorRef}
+                  aria-label="split button"
+                >
+                  <Button className={this.props.classes.fieldButton}>
+                    {day ? day : "Select A Day"}
+                  </Button>
+                  <Button
+                    aria-controls={open ? "split-button-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu"
+                    className={this.props.classes.fieldButton}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    onClick={dayHandleClick}
                   >
-                    <Button className={this.props.classes.fieldButton}>
-                      {semValue ? semValue : "Select A Semester"}
-                    </Button>
-                    <Button
-                      aria-controls={open ? "split-button-menu" : undefined}
-                      aria-expanded={open ? "true" : undefined}
-                      aria-label="select merge strategy"
-                      aria-haspopup="menu"
-                      className={this.props.classes.fieldButton}
-                      aria-controls="simple-menu"
-                      aria-haspopup="true"
-                      size="small"
-                      onClick={semHandleClick}
+                    <ArrowDropDownIcon />
+                  </Button>
+                </ButtonGroup>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={dayAnchorEl}
+                  keepMounted
+                  open={Boolean(dayAnchorEl)}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center"
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center"
+                  }}
+                >
+                  {dayarr.map(({ day, dayid }) => (
+                    <MenuItem
+                      key={dayid}
+                      onClick={dayHandleClose(dayid, day)}
+                      className={this.props.classes.menu}
                     >
-                      <ArrowDropDownIcon />
-                    </Button>
-                  </ButtonGroup>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={semAnchorEl}
-                    keepMounted
-                    open={Boolean(semAnchorEl)}
-                    getContentAnchorEl={null}
-                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                      {day.charAt(0).toUpperCase() + day.slice(1)}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Grid>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Semester:
+                </Typography>
+              </Grid>
+              <Grid item>
+                <ButtonGroup
+                  variant="outlined"
+                  className={this.props.classes.fieldButtonGroup}
+                  ref={anchorRef}
+                  aria-label="split button"
+                >
+                  <Button className={this.props.classes.fieldButton}>
+                    {semValue ? semValue : "Select A Semester"}
+                  </Button>
+                  <Button
+                    aria-controls={open ? "split-button-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu"
+                    className={this.props.classes.fieldButton}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    onClick={semHandleClick}
                   >
-                    {activesem.map(({ semid }) => (
-                      <MenuItem
-                        key={semid}
-                        onClick={semHandleClose(semid)}
-                        className={this.props.classes.menu}
-                      >
-                        {semid}
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                </Grid>
+                    <ArrowDropDownIcon />
+                  </Button>
+                </ButtonGroup>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={semAnchorEl}
+                  keepMounted
+                  open={Boolean(semAnchorEl)}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  transformOrigin={{ vertical: "top", horizontal: "center" }}
+                >
+                  {activesem.map(({ semid }) => (
+                    <MenuItem
+                      key={semid}
+                      onClick={semHandleClose(semid)}
+                      className={this.props.classes.menu}
+                    >
+                      {semid}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Grid>
+            </Grid>
+
+            <Grid container className={this.props.classes.grid}>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  Start Time:
+                </Typography>
+              </Grid>
+              <Grid item>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
+                  <TimePicker
+                    className={this.props.classes.textfield}
+                    value={moment()}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid item>
+                <Typography className={this.props.classes.fieldTitle}>
+                  End Time:
+                </Typography>
+              </Grid>
+              <Grid item>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
+                  <TimePicker
+                    className={this.props.classes.textfield}
+                    value={moment()}
+                    minutesStep={5}
+                  />
+                </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
           </DialogContent>
