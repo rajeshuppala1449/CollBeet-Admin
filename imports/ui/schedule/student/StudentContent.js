@@ -11,6 +11,8 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
+import AddLectureDialog from "./StudentAddLecture"
+
 const dayarr = [
   {
     day: "monday",
@@ -89,8 +91,6 @@ const useStyles = theme => ({
     position: "absolute",
     right: theme.spacing(10),
     bottom: theme.spacing(2),
-    // width: 40,
-    // height: 40,
     background: "#ffc107",
     color: "#000"
   },
@@ -104,7 +104,8 @@ class StudentContent extends Component {
     dayAnchorEl: null,
     dayValue: "",
     semAnchorEl: null,
-    semValue: ""
+    semValue: "",
+    dialogOpen: false
   };
 
   anchorRef = React.createRef(null);
@@ -135,8 +136,20 @@ class StudentContent extends Component {
     });
   };
 
+  dialogHandleOpen = () => {
+    this.setState({
+      dialogOpen: true
+    });
+  };
+
+  dialogHandleClose = () => {
+    this.setState({
+      dialogOpen: false
+    });
+  };
+
   render() {
-    const { dayAnchorEl, dayValue, semAnchorEl, semValue } = this.state;
+    const { dayAnchorEl, dayValue, semAnchorEl, semValue, dialogOpen } = this.state;
     const { dept, path, activesem } = this.props;
 
     const {
@@ -144,7 +157,9 @@ class StudentContent extends Component {
       dayHandleClose,
       semHandleClick,
       semHandleClose,
-      anchorRef
+      anchorRef,
+      dialogHandleOpen,
+      dialogHandleClose
     } = this;
 
     return (
@@ -258,10 +273,12 @@ class StudentContent extends Component {
           variant="extended"
           className={this.props.classes.fab}
           aria-label="add"
+          onClick={dialogHandleOpen}
         >
           <AddIcon className={this.props.classes.extendedIcon} />
           Add A Lecture
         </Fab>
+        <AddLectureDialog open={dialogOpen} handleClose={dialogHandleClose} dept={dept} activesem={activesem} />
       </div>
     );
   }

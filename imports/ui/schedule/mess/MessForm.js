@@ -21,7 +21,7 @@ const useStyles = theme => ({
     flex: 1,
     alignItems: "center"
   },
-  form: {
+  textfield: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
@@ -145,7 +145,7 @@ class MessForm extends Component {
 
         <TextField
           id={type}
-          className={this.props.classes.form}
+          className={this.props.classes.textfield}
           label="Food Items"
           variant="outlined"
           fullWidth

@@ -60,9 +60,14 @@ const useStyles = theme => ({
   fieldContext: {
     fontFamily: "Open Sans"
   },
+  dialogTitle: {
+    fontFamily: "Open Sans",
+    color: "#242729",
+    fontSize: 25
+  },
   fieldTitle: {
-    fontFamily: "Sniglet",
-    color: "#242729"
+    fontFamily: "Open Sans",
+    color: "#242729",
   },
   fieldButtonGroup: {
     margin: theme.spacing(1)
@@ -240,9 +245,8 @@ class StudentDepartmentDrawer extends Component {
             >
               <DialogTitle
                 id="form-dialog-title"
-                className={this.props.classes.fieldTitle}
               >
-                Add A Branch:
+                <Typography className={this.props.classes.dialogTitle} >Add A Branch </Typography>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText className={this.props.classes.fieldContext}>
