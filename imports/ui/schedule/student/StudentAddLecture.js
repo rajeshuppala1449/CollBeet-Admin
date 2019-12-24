@@ -88,6 +88,9 @@ const useStyles = theme => ({
   menu: {
     fontFamily: "Sniglet",
     color: "#e65100"
+  },
+  timepicker: {
+    margin: theme.spacing(1)
   }
 });
 
@@ -204,7 +207,6 @@ class AddLectureDialog extends Component {
               <Grid item>
                 <TextField
                   id="teacher-textfield"
-                  //   label="Teacher Name"
                   variant="standard"
                   className={this.props.classes.textfield}
                   value={this.state.teacherName}
@@ -329,8 +331,9 @@ class AddLectureDialog extends Component {
               <Grid item>
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                   <TimePicker
-                    className={this.props.classes.textfield}
+                    className={this.props.classes.timepicker}
                     value={moment()}
+                    minutesStep={5}
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
@@ -342,9 +345,10 @@ class AddLectureDialog extends Component {
               <Grid item>
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                   <TimePicker
-                    className={this.props.classes.textfield}
-                    value={moment()}
+                    className={this.props.classes.timepicker}
+                    value={moment().format()}
                     minutesStep={5}
+                    onChange={console.log(moment().format())}
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
