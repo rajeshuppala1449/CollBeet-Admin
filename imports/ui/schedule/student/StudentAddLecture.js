@@ -72,9 +72,7 @@ const useStyles = theme => ({
     alignItems: "center"
   },
   textfield: {
-    margin: theme.spacing(1),
-    fontFamily: "Sniglet",
-    color: "#e65100"
+    margin: theme.spacing(1)
   },
   fieldButtonGroup: {
     margin: theme.spacing(1)
@@ -176,33 +174,20 @@ class AddLectureDialog extends Component {
             </Grid>
             <Grid container className={this.props.classes.grid}>
               <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Subject Name:
-                </Typography>
-              </Grid>
-              <Grid item>
                 <TextField
                   id="lecture-textfield"
-                  className={this.props.classes.textfield}
-                  variant="standard"
-                  fullWidth
+                  label="Subject Name"
+                  variant="outlined"
                   value={this.state.lectureName}
                   onChange={this.changeTexfieldData("lectureName")}
                 />
               </Grid>
-            </Grid>
-            <Grid container className={this.props.classes.grid}>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Teacher Name:
-                </Typography>
-              </Grid>
               <Grid item>
                 <TextField
                   id="teacher-textfield"
+                  label="Teacher Name"
+                  variant="outlined"
                   className={this.props.classes.textfield}
-                  variant="standard"
-                  fullWidth
                   value={this.state.teacherName}
                   onChange={this.changeTexfieldData("teacherName")}
                 />
