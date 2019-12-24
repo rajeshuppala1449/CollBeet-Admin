@@ -12,10 +12,10 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import DialogActions from "@material-ui/core/DialogActions";
 
 import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
-import moment from "moment";
 
 const dayarr = [
   {
@@ -91,6 +91,10 @@ const useStyles = theme => ({
   },
   timepicker: {
     margin: theme.spacing(1)
+  },
+  submitButton: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
   }
 });
 
@@ -144,8 +148,7 @@ class AddLectureDialog extends Component {
 
   changeStartTime = time => {
     this.setState({
-      startTime: time.format(),
-      endTime: time.add(60, "minutes").format()
+      startTime: time.format()
     });
   };
 
@@ -379,6 +382,26 @@ class AddLectureDialog extends Component {
               </Grid>
             </Grid>
           </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              className={this.props.classes.submitButton}
+            >
+              Add
+            </Button>
+            <Button
+              variant="outlined"
+              className={this.props.classes.submitButton}
+            >
+              Clear
+            </Button>
+            <Button
+              variant="outlined"
+              className={this.props.classes.submitButton}
+            >
+              Cancel
+            </Button>
+          </DialogActions>
         </Dialog>
       </React.Fragment>
     );
