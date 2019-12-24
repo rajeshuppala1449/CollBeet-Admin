@@ -392,19 +392,13 @@ class AddLectureDialog extends Component {
               variant="outlined"
               className={this.props.classes.submitButton}
             >
-              Add
-            </Button>
-            <Button
-              variant="outlined"
-              className={this.props.classes.submitButton}
-            >
               Clear
             </Button>
             <Button
               variant="outlined"
               className={this.props.classes.submitButton}
             >
-              Cancel
+              Add
             </Button>
           </DialogActions>
         </Dialog>
