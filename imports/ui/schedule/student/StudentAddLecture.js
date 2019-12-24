@@ -102,7 +102,9 @@ class AddLectureDialog extends Component {
     dayid: null,
     day: "",
     semAnchorEl: null,
-    semValue: ""
+    semValue: "",
+    startTime: null,
+    endTime: null
   };
 
   changeTexfieldData = input => e => {
@@ -140,15 +142,37 @@ class AddLectureDialog extends Component {
     });
   };
 
+  changeStartTime = time => {
+    this.setState({
+      startTime: time.format(),
+      endTime: time.add(60, "minutes").format()
+    });
+  };
+
+  changeEndTime = time => {
+    this.setState({
+      endTime: time.format()
+    });
+  };
+
   render() {
     const { open, handleClose, dept, activesem } = this.props;
-    const { dayAnchorEl, day, semAnchorEl, semValue } = this.state;
+    const {
+      dayAnchorEl,
+      day,
+      semAnchorEl,
+      semValue,
+      startTime,
+      endTime
+    } = this.state;
     const {
       anchorRef,
       dayHandleClick,
       dayHandleClose,
       semHandleClick,
-      semHandleClose
+      semHandleClose,
+      changeStartTime,
+      changeEndTime
     } = this;
 
     return (
@@ -332,8 +356,9 @@ class AddLectureDialog extends Component {
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                   <TimePicker
                     className={this.props.classes.timepicker}
-                    value={moment()}
+                    value={startTime}
                     minutesStep={5}
+                    onChange={changeStartTime}
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
@@ -346,9 +371,9 @@ class AddLectureDialog extends Component {
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                   <TimePicker
                     className={this.props.classes.timepicker}
-                    value={moment().format()}
+                    value={endTime}
                     minutesStep={5}
-                    onChange={console.log(moment().format())}
+                    onChange={changeEndTime}
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
