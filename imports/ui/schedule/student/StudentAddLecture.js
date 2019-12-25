@@ -13,6 +13,7 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import DialogActions from "@material-ui/core/DialogActions";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
@@ -98,7 +99,14 @@ const useStyles = theme => ({
   submitButton: {
     fontFamily: "Sniglet",
     color: "#e65100"
-  }
+  },
+  checkbox: {
+    color: "#e65100",
+    "&$checked": {
+      color: "#e65100"
+    }
+  },
+  checked: {}
 });
 
 class AddLectureDialog extends Component {
@@ -111,7 +119,8 @@ class AddLectureDialog extends Component {
     semAnchorEl: null,
     semValue: "",
     startTime: null,
-    endTime: null
+    endTime: null,
+    breakValue: false
   };
 
   changeTexfieldData = input => e => {
@@ -161,6 +170,18 @@ class AddLectureDialog extends Component {
     });
   };
 
+  changeBreakValueTrue = () => {
+    this.setState({
+      breakValue: true
+    });
+  };
+
+  changeBreakValueFalse = () => {
+    this.setState({
+      breakValue: false
+    });
+  };
+
   render() {
     const { open, handleClose, dept, activesem } = this.props;
     const {
@@ -169,7 +190,8 @@ class AddLectureDialog extends Component {
       semAnchorEl,
       semValue,
       startTime,
-      endTime
+      endTime,
+      breakValue
     } = this.state;
     const {
       anchorRef,
@@ -178,7 +200,9 @@ class AddLectureDialog extends Component {
       semHandleClick,
       semHandleClose,
       changeStartTime,
-      changeEndTime
+      changeEndTime,
+      changeBreakValueTrue,
+      changeBreakValueFalse
     } = this;
 
     return (
@@ -320,39 +344,71 @@ class AddLectureDialog extends Component {
             <Grid container className={this.props.classes.grid}>
               <Grid item>
                 <Typography className={this.props.classes.fieldTitle}>
-                  Subject Name:
+                  Break:
                 </Typography>
               </Grid>
-              <Grid item className={this.props.classes.griditem}>
-                <TextField
-                  id="lecture-textfield"
-                  //   label="Subject Name"
-                  fullWidth
-                  className={this.props.classes.textfield}
-                  variant="standard"
-                  value={this.state.lectureName}
-                  onChange={this.changeTexfieldData("lectureName")}
-                />
+              <Grid item>
+                {breakValue === false ? (
+                  <Checkbox
+                    color="default"
+                    checked={breakValue}
+                    onChange={changeBreakValueTrue}
+                    className={this.props.classes.checkbox}
+                  />
+                ) : (
+                  <Checkbox
+                    color="default"
+                    checked={breakValue}
+                    onChange={changeBreakValueFalse}
+                    className={this.props.classes.checkbox}
+                  />
+                )}
               </Grid>
             </Grid>
 
-            <Grid container className={this.props.classes.grid}>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Teacher Name:
-                </Typography>
+            {breakValue === false ? (
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.fieldTitle}>
+                    Subject Name:
+                  </Typography>
+                </Grid>
+                <Grid item className={this.props.classes.griditem}>
+                  <TextField
+                    id="lecture-textfield"
+                    fullWidth
+                    className={this.props.classes.textfield}
+                    variant="standard"
+                    value={this.state.lectureName}
+                    onChange={this.changeTexfieldData("lectureName")}
+                  />
+                </Grid>
               </Grid>
-              <Grid item className={this.props.classes.griditem}>
-                <TextField
-                  id="teacher-textfield"
-                  variant="standard"
-                  fullWidth
-                  className={this.props.classes.textfield}
-                  value={this.state.teacherName}
-                  onChange={this.changeTexfieldData("teacherName")}
-                />
+            ) : (
+              ""
+            )}
+
+            {breakValue === false ? (
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.fieldTitle}>
+                    Teacher Name:
+                  </Typography>
+                </Grid>
+                <Grid item className={this.props.classes.griditem}>
+                  <TextField
+                    id="teacher-textfield"
+                    variant="standard"
+                    fullWidth
+                    className={this.props.classes.textfield}
+                    value={this.state.teacherName}
+                    onChange={this.changeTexfieldData("teacherName")}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
+            ) : (
+              ""
+            )}
 
             <Grid container className={this.props.classes.grid}>
               <Grid item>
