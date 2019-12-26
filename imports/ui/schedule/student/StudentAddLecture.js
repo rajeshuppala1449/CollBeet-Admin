@@ -17,7 +17,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
-import moment from "moment";
 
 const dayarr = [
   {
