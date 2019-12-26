@@ -67,7 +67,7 @@ const useStyles = theme => ({
   },
   fieldTitle: {
     fontFamily: "Open Sans",
-    color: "#242729",
+    color: "#242729"
   },
   fieldButtonGroup: {
     margin: theme.spacing(1)
@@ -92,6 +92,13 @@ const useStyles = theme => ({
     color: "#e65100",
     padding: theme.spacing(1)
   },
+  semCheckbox: {
+    color: "#e65100",
+    "&$checked": {
+      color: "#e65100"
+    }
+  },
+  checked: {},
   menu: {
     fontFamily: "Sniglet",
     color: "#e65100"
@@ -243,10 +250,10 @@ class StudentDepartmentDrawer extends Component {
               onClose={handleClose}
               aria-labelledby="form-dialog-title"
             >
-              <DialogTitle
-                id="form-dialog-title"
-              >
-                <Typography className={this.props.classes.dialogTitle} >Add A Branch </Typography>
+              <DialogTitle id="form-dialog-title">
+                <Typography className={this.props.classes.dialogTitle}>
+                  Add A Branch{" "}
+                </Typography>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText className={this.props.classes.fieldContext}>
@@ -267,7 +274,7 @@ class StudentDepartmentDrawer extends Component {
                       aria-label="split button"
                     >
                       <Button className={this.props.classes.fieldButton}>
-                        {menuDept ? menuDept : 'Select A Department'}
+                        {menuDept ? menuDept : "Select A Department"}
                       </Button>
                       <Button
                         aria-controls={open ? "split-button-menu" : undefined}
@@ -325,8 +332,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(1)}
+                              className={this.props.classes.semCheckbox}
                               value={1}
                             />
                           }
@@ -335,8 +343,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(2)}
+                              className={this.props.classes.semCheckbox}
                               value={2}
                             />
                           }
@@ -345,8 +354,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(3)}
+                              className={this.props.classes.semCheckbox}
                               value={3}
                             />
                           }
@@ -355,8 +365,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(4)}
+                              className={this.props.classes.semCheckbox}
                               value={4}
                             />
                           }
@@ -365,8 +376,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(5)}
+                              className={this.props.classes.semCheckbox}
                               value={5}
                             />
                           }
@@ -375,8 +387,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(6)}
+                              className={this.props.classes.semCheckbox}
                               value={6}
                             />
                           }
@@ -385,8 +398,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(7)}
+                              className={this.props.classes.semCheckbox}
                               value={7}
                             />
                           }
@@ -395,8 +409,9 @@ class StudentDepartmentDrawer extends Component {
                         <FormControlLabel
                           control={
                             <Checkbox
-                              color="secondary"
+                              color="default"
                               onChange={this.addSem(8)}
+                              className={this.props.classes.semCheckbox}
                               value={8}
                             />
                           }

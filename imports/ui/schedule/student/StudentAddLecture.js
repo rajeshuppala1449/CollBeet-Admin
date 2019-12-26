@@ -17,6 +17,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
+import moment from "moment";
 
 const dayarr = [
   {
@@ -447,12 +448,14 @@ class AddLectureDialog extends Component {
             <Button
               variant="outlined"
               className={this.props.classes.submitButton}
+              onClick={console.log("hello")}
             >
               Clear
             </Button>
             <Button
               variant="outlined"
               className={this.props.classes.submitButton}
+              onClick={console.log("hello")}
             >
               Add
             </Button>

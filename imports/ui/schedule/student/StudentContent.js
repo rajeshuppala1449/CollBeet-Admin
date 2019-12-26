@@ -278,7 +278,7 @@ class StudentContent extends Component {
           <AddIcon className={this.props.classes.extendedIcon} />
           Add A Lecture
         </Fab>
-        <AddLectureDialog open={dialogOpen} handleClose={dialogHandleClose} dept={dept} activesem={activesem} />
+         <AddLectureDialog open={dialogOpen} handleClose={dialogHandleClose} dept={dept} activesem={activesem} />
       </div>
     );
   }
