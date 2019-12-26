@@ -20,14 +20,64 @@ Meteor.methods({
     check(menuPath, String);
     check(menuDeptCode, String);
 
-    const semArr = semesters.sort().map(i => {
-      return { semid: i };
+    const dayArr = [1, 2, 3, 4, 5, 6].map(i => {
+      return { dayid: i };
     });
+
+    const semArr = semesters.sort().map(i => {
+      return { semid: i, schedule: dayArr };
+    });
+
     Student.insert({
       dept: menuDept,
       avpath: menuPath,
       deptcode: menuDeptCode,
       activesem: semArr
     });
+  },
+
+  "student.addLecture"(
+    lectureName,
+    teacherName,
+    dayid,
+    semValue,
+    startTime,
+    endTime,
+    breakValue,
+    deptCode
+  ) {
+    check(lectureName, String);
+    check(teacherName, String);
+    check(dayid, Number);
+    check(semValue, Number);
+    check(startTime, String);
+    check(endTime, String);
+    check(deptCode, String);
+
+    Student.rawCollection().update(
+      {
+        deptcode: deptCode,
+        activesem: {
+          $elemMatch: {
+            semid: semValue,
+            "schedule.dayid": dayid
+          }
+        }
+      },
+      {
+        $push: {
+          "activesem.$[outer].schedule.$[inner].lecture": {
+            lectureName: lectureName,
+            teacherName: teacherName,
+            startTime: startTime,
+            endTime: endTime,
+            breakValue: breakValue
+          }
+        }
+      },
+      {
+        arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
+      }
+    );
   }
 });

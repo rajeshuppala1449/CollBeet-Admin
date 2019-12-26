@@ -240,6 +240,7 @@ class StudentDepartmentDrawer extends Component {
               <StudentContent
                 dept={dept}
                 path={path}
+                deptCode={deptcode}
                 activesem={active_sem_array}
               />
             ) : (

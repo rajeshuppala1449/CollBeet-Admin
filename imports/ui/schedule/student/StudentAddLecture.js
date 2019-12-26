@@ -117,7 +117,7 @@ class AddLectureDialog extends Component {
     dayid: null,
     day: "",
     semAnchorEl: null,
-    semValue: "",
+    semValue: null,
     startTime: null,
     endTime: null,
     breakValue: false
@@ -182,6 +182,35 @@ class AddLectureDialog extends Component {
     });
   };
 
+  clearValues = event => {
+    event.preventDefault();
+
+    this.setState({
+      lectureName: "",
+      teacherName: "",
+      dayid: null,
+      day: "",
+      semValue: null,
+      startTime: null,
+      endTime: null,
+      breakValue: false
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { lectureName, teacherName, dayid, semValue, startTime, endTime, breakValue } = this.state;
+    const { deptCode } = this.props;
+    Meteor.call("student.addLecture", lectureName, teacherName, dayid, semValue, startTime, endTime, breakValue, deptCode);
+
+    // this.setState({
+    //   open: false,
+    //   menuDept: "",
+    //   semesters: [],
+    //   disable: true
+    // });
+  };
+
   render() {
     const { open, handleClose, dept, activesem } = this.props;
     const {
@@ -202,7 +231,9 @@ class AddLectureDialog extends Component {
       changeStartTime,
       changeEndTime,
       changeBreakValueTrue,
-      changeBreakValueFalse
+      changeBreakValueFalse,
+      clearValues,
+      handleSubmit
     } = this;
 
     return (
@@ -447,14 +478,14 @@ class AddLectureDialog extends Component {
             <Button
               variant="outlined"
               className={this.props.classes.submitButton}
-              onClick={console.log("hello")}
+              onClick={clearValues}
             >
-              Clear
+              Reset
             </Button>
             <Button
               variant="outlined"
               className={this.props.classes.submitButton}
-              onClick={console.log("hello")}
+              onClick={handleSubmit}
             >
               Add
             </Button>

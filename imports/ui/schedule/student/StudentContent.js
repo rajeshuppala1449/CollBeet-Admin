@@ -150,7 +150,7 @@ class StudentContent extends Component {
 
   render() {
     const { dayAnchorEl, dayValue, semAnchorEl, semValue, dialogOpen } = this.state;
-    const { dept, path, activesem } = this.props;
+    const { dept, path, activesem, deptCode } = this.props;
 
     const {
       dayHandleClick,
@@ -278,7 +278,7 @@ class StudentContent extends Component {
           <AddIcon className={this.props.classes.extendedIcon} />
           Add A Lecture
         </Fab>
-         <AddLectureDialog open={dialogOpen} handleClose={dialogHandleClose} dept={dept} activesem={activesem} />
+         <AddLectureDialog open={dialogOpen} handleClose={dialogHandleClose} dept={dept} deptCode={deptCode} activesem={activesem} />
       </div>
     );
   }
