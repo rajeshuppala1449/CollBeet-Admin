@@ -173,18 +173,18 @@ class StudentContent extends Component {
         })[0];
 
       if (lecture_array) {
-        return lecture_array.map(({ breakValue, endTime }) => (
+        return lecture_array.map(({ endTime }) => (
           <Typography key={Math.random()}>
             {" "}
-            Break:{breakValue} Time:{endTime}{" "}
+             Time:{endTime}{" "}
           </Typography>
         ));
       }
 
-      return "";
+      return (<Typography>No Data Exist</Typography>)
     }
 
-    return "";
+    return (<Typography>No Data Exist</Typography>)
   }
 
   render() {
