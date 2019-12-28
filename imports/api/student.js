@@ -46,38 +46,70 @@ Meteor.methods({
     breakValue,
     deptCode
   ) {
-    check(lectureName, String);
-    check(teacherName, String);
-    check(dayid, Number);
-    check(semValue, Number);
-    check(startTime, String);
-    check(endTime, String);
-    check(deptCode, String);
+    if (breakValue === false) {
+      check(lectureName, String);
+      check(teacherName, String);
+      check(dayid, Number);
+      check(semValue, Number);
+      check(startTime, String);
+      check(endTime, String);
+      check(deptCode, String);
 
-    Student.rawCollection().update(
-      {
-        deptcode: deptCode,
-        activesem: {
-          $elemMatch: {
-            semid: semValue,
-            "schedule.dayid": dayid
+      Student.rawCollection().update(
+        {
+          deptcode: deptCode,
+          activesem: {
+            $elemMatch: {
+              semid: semValue,
+              "schedule.dayid": dayid
+            }
           }
-        }
-      },
-      {
-        $push: {
-          "activesem.$[outer].schedule.$[inner].lecture": {
-            lectureName: lectureName,
-            teacherName: teacherName,
-            startTime: startTime,
-            endTime: endTime,
-            breakValue: breakValue
+        },
+        {
+          $push: {
+            "activesem.$[outer].schedule.$[inner].lecture": {
+              lectureName: lectureName,
+              teacherName: teacherName,
+              startTime: startTime,
+              endTime: endTime,
+              breakValue: breakValue
+            }
           }
+        },
+        {
+          arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
         }
-      },
-      {
-        arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
-      }
-    );
+      );
+    } else {
+      check(dayid, Number);
+      check(semValue, Number);
+      check(startTime, String);
+      check(endTime, String);
+      check(deptCode, String);
+
+      Student.rawCollection().update(
+        {
+          deptcode: deptCode,
+          activesem: {
+            $elemMatch: {
+              semid: semValue,
+              "schedule.dayid": dayid
+            }
+          }
+        },
+        {
+          $push: {
+            "activesem.$[outer].schedule.$[inner].lecture": {
+              startTime: startTime,
+              endTime: endTime,
+              breakValue: breakValue
+            }
+          }
+        },
+        {
+          arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
+        }
+      );
+    }
   }
 });

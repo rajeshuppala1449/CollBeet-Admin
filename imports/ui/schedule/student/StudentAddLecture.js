@@ -96,6 +96,10 @@ const useStyles = theme => ({
   timepicker: {
     margin: theme.spacing(1)
   },
+  resetButton: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
   submitButton: {
     fontFamily: "Sniglet",
     color: "#e65100"
@@ -199,17 +203,137 @@ class AddLectureDialog extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { lectureName, teacherName, dayid, semValue, startTime, endTime, breakValue } = this.state;
+    const {
+      lectureName,
+      teacherName,
+      dayid,
+      semValue,
+      startTime,
+      endTime,
+      breakValue
+    } = this.state;
     const { deptCode } = this.props;
-    Meteor.call("student.addLecture", lectureName, teacherName, dayid, semValue, startTime, endTime, breakValue, deptCode);
-
-    // this.setState({
-    //   open: false,
-    //   menuDept: "",
-    //   semesters: [],
-    //   disable: true
-    // });
+    Meteor.call(
+      "student.addLecture",
+      lectureName,
+      teacherName,
+      dayid,
+      semValue,
+      startTime,
+      endTime,
+      breakValue,
+      deptCode
+    );
   };
+
+  addButton() {
+    const {
+      lectureName,
+      teacherName,
+      dayid,
+      semValue,
+      startTime,
+      endTime,
+      breakValue
+    } = this.state;
+
+    if (breakValue === true) {
+      if (!semValue || !dayid || !startTime || !endTime) {
+        return (
+          <Button
+            variant="outlined"
+            className={this.props.classes.submitButton}
+            disabled={true}
+          >
+            {" "}
+            Add{" "}
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            variant="outlined"
+            className={this.props.classes.submitButton}
+            onClick={this.handleSubmit}
+          >
+            Add
+          </Button>
+        );
+      }
+    } else {
+      if (
+        !semValue ||
+        !dayid ||
+        !teacherName ||
+        !lectureName ||
+        !startTime ||
+        !endTime
+      ) {
+        return (
+          <Button
+            variant="outlined"
+            className={this.props.classes.submitButton}
+            disabled={true}
+          >
+            {" "}
+            Add{" "}
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            variant="outlined"
+            className={this.props.classes.submitButton}
+            onClick={this.handleSubmit}
+          >
+            Add
+          </Button>
+        );
+      }
+    }
+  }
+
+  resetButton() {
+    const {
+      lectureName,
+      teacherName,
+      dayid,
+      semValue,
+      startTime,
+      endTime,
+      breakValue
+    } = this.state;
+
+    if (
+      semValue ||
+      dayid ||
+      teacherName ||
+      lectureName ||
+      startTime ||
+      endTime ||
+      breakValue === true
+    ) {
+      return (
+        <Button
+          variant="outlined"
+          className={this.props.classes.resetButton}
+          onClick={this.clearValues}
+        >
+          Reset
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          variant="outlined"
+          className={this.props.classes.resetButton}
+          disabled={true}
+        >
+          Reset
+        </Button>
+      );
+    }
+  }
 
   render() {
     const { open, handleClose, dept, activesem } = this.props;
@@ -232,8 +356,7 @@ class AddLectureDialog extends Component {
       changeEndTime,
       changeBreakValueTrue,
       changeBreakValueFalse,
-      clearValues,
-      handleSubmit
+      clearValues
     } = this;
 
     return (
@@ -475,20 +598,8 @@ class AddLectureDialog extends Component {
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
-              className={this.props.classes.submitButton}
-              onClick={clearValues}
-            >
-              Reset
-            </Button>
-            <Button
-              variant="outlined"
-              className={this.props.classes.submitButton}
-              onClick={handleSubmit}
-            >
-              Add
-            </Button>
+            {this.resetButton()}
+            {this.addButton()}
           </DialogActions>
         </Dialog>
       </React.Fragment>

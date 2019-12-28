@@ -11,7 +11,8 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
-import AddLectureDialog from "./StudentAddLecture"
+import AddLectureDialog from "./StudentAddLecture";
+import compose from "recompose/compose";
 
 const dayarr = [
   {
@@ -103,8 +104,9 @@ class StudentContent extends Component {
   state = {
     dayAnchorEl: null,
     dayValue: "",
+    dayId: null,
     semAnchorEl: null,
-    semValue: "",
+    semId: null,
     dialogOpen: false
   };
 
@@ -116,9 +118,10 @@ class StudentContent extends Component {
     });
   };
 
-  dayHandleClose = day => event => {
+  dayHandleClose = (dayid, day) => e => {
     this.setState({
       dayAnchorEl: null,
+      dayId: dayid,
       dayValue: day
     });
   };
@@ -132,7 +135,7 @@ class StudentContent extends Component {
   semHandleClose = sem => event => {
     this.setState({
       semAnchorEl: null,
-      semValue: sem
+      semId: sem
     });
   };
 
@@ -149,7 +152,14 @@ class StudentContent extends Component {
   };
 
   render() {
-    const { dayAnchorEl, dayValue, semAnchorEl, semValue, dialogOpen } = this.state;
+    const {
+      dayAnchorEl,
+      dayValue,
+      semAnchorEl,
+      semId,
+      dialogOpen,
+      dayId
+    } = this.state;
     const { dept, path, activesem, deptCode } = this.props;
 
     const {
@@ -161,6 +171,22 @@ class StudentContent extends Component {
       dialogHandleOpen,
       dialogHandleClose
     } = this;
+
+    const lecture_array = activesem
+      .filter(function(d) {
+        return d.semid === 3;
+      })
+      .map(function(d) {
+        return d.schedule;
+      })[0]
+      .filter(function(d) {
+        return d.dayid === 1;
+      })
+      .map(function(d) {
+        return d.lecture;
+      })[0];
+
+      console.log(dayValue, semId);
 
     return (
       <div className={this.props.classes.rootAvatar}>
@@ -185,7 +211,7 @@ class StudentContent extends Component {
               aria-label="split button"
             >
               <Button className={this.props.classes.fieldButton}>
-                Semester {semValue}
+                Semester {semId}
               </Button>
               <Button
                 aria-controls={open ? "split-button-menu" : undefined}
@@ -255,11 +281,11 @@ class StudentContent extends Component {
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
               transformOrigin={{ vertical: "top", horizontal: "center" }}
             >
-              {dayarr.map(({ day }) => (
+              {dayarr.map(({ day,dayid }) => (
                 <MenuItem
                   key={day}
                   value={day}
-                  onClick={dayHandleClose(day)}
+                  onClick={dayHandleClose(dayid, day)}
                   className={this.props.classes.menu}
                 >
                   {day.charAt(0).toUpperCase() + day.slice(1)}
@@ -278,10 +304,19 @@ class StudentContent extends Component {
           <AddIcon className={this.props.classes.extendedIcon} />
           Add A Lecture
         </Fab>
-         <AddLectureDialog open={dialogOpen} handleClose={dialogHandleClose} dept={dept} deptCode={deptCode} activesem={activesem} />
+        <AddLectureDialog
+          open={dialogOpen}
+          handleClose={dialogHandleClose}
+          dept={dept}
+          deptCode={deptCode}
+          activesem={activesem}
+        />
+        {lecture_array.map(({ lectureName,teacherName,startTime,endTime,breakValue }) => (
+          <Typography key={lectureName}>{lectureName},{teacherName},{startTime},{endTime},{breakValue}</Typography>
+        ))}
       </div>
     );
   }
 }
 
-export default withStyles(useStyles)(StudentContent);
+export default compose(withStyles(useStyles))(StudentContent);
