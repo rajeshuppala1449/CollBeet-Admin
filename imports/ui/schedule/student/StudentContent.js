@@ -104,9 +104,9 @@ class StudentContent extends Component {
   state = {
     dayAnchorEl: null,
     dayValue: "",
-    dayId: null,
+    dayId: "",
     semAnchorEl: null,
-    semId: null,
+    semId: "",
     dialogOpen: false
   };
 
@@ -151,6 +151,42 @@ class StudentContent extends Component {
     });
   };
 
+  content() {
+    const { activesem } = this.props;
+    const { semId, dayId } = this.state;
+
+    const schedule_array = activesem
+      .filter(function(d) {
+        return d.semid === semId;
+      })
+      .map(function(d) {
+        return d.schedule;
+      })[0];
+
+    if (schedule_array && dayId) {
+      const lecture_array = schedule_array
+        .filter(function(d) {
+          return d.dayid === dayId;
+        })
+        .map(function(d) {
+          return d.lecture;
+        })[0];
+
+      if (lecture_array) {
+        return lecture_array.map(({ breakValue, endTime }) => (
+          <Typography key={Math.random()}>
+            {" "}
+            Break:{breakValue} Time:{endTime}{" "}
+          </Typography>
+        ));
+      }
+
+      return "";
+    }
+
+    return "";
+  }
+
   render() {
     const {
       dayAnchorEl,
@@ -171,22 +207,6 @@ class StudentContent extends Component {
       dialogHandleOpen,
       dialogHandleClose
     } = this;
-
-    const lecture_array = activesem
-      .filter(function(d) {
-        return d.semid === 3;
-      })
-      .map(function(d) {
-        return d.schedule;
-      })[0]
-      .filter(function(d) {
-        return d.dayid === 1;
-      })
-      .map(function(d) {
-        return d.lecture;
-      })[0];
-
-      console.log(dayValue, semId);
 
     return (
       <div className={this.props.classes.rootAvatar}>
@@ -281,7 +301,7 @@ class StudentContent extends Component {
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
               transformOrigin={{ vertical: "top", horizontal: "center" }}
             >
-              {dayarr.map(({ day,dayid }) => (
+              {dayarr.map(({ day, dayid }) => (
                 <MenuItem
                   key={day}
                   value={day}
@@ -311,9 +331,7 @@ class StudentContent extends Component {
           deptCode={deptCode}
           activesem={activesem}
         />
-        {lecture_array.map(({ lectureName,teacherName,startTime,endTime,breakValue }) => (
-          <Typography key={lectureName}>{lectureName},{teacherName},{startTime},{endTime},{breakValue}</Typography>
-        ))}
+        {this.content()}
       </div>
     );
   }
