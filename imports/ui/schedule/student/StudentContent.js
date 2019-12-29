@@ -173,18 +173,28 @@ class StudentContent extends Component {
         })[0];
 
       if (lecture_array) {
-        return lecture_array.map(({ endTime }) => (
-          <Typography key={Math.random()}>
-            {" "}
-             Time:{endTime}{" "}
-          </Typography>
-        ));
+        return lecture_array.map(
+          ({ endTime, breakValue, lectureName, teacherName, startTime }) => (
+            <React.Fragment key={Math.random()}>
+              {breakValue === true ? (
+                <Typography key={Math.random()}>
+                  VALUE IS TRUE : Time:{endTime}
+                </Typography>
+              ) : (
+                <Typography key={Math.random()}>
+                  VALUE IS FALSE : Time:{endTime} {lectureName}, {teacherName},{" "}
+                  {startTime}
+                </Typography>
+              )}
+            </React.Fragment>
+          )
+        );
       }
 
-      return (<Typography>No Data Exist</Typography>)
+      return <Typography>No Data Exist</Typography>;
     }
 
-    return (<Typography>No Data Exist</Typography>)
+    return <Typography>No Data Exist</Typography>;
   }
 
   render() {
