@@ -197,6 +197,17 @@ class StudentContent extends Component {
     });
   };
 
+  handleLectDelete = lectureId => e => {
+    e.preventDefault();
+
+    const { semId, dayId } = this.state;
+    const { deptCode } = this.props;
+    const semValue = semId;
+    const dayid = dayId;
+
+    Meteor.call("student.removeLecture", deptCode, semValue, dayid, lectureId);
+  };
+
   content() {
     const { activesem } = this.props;
     const { semId, dayId } = this.state;
@@ -219,6 +230,10 @@ class StudentContent extends Component {
         })[0];
 
       if (lecture_array) {
+        if (lecture_array.length === 0) {
+          return <Typography>Please Add Lectures</Typography>;
+        }
+
         return lecture_array.map(
           (
             {
@@ -231,7 +246,7 @@ class StudentContent extends Component {
             },
             index
           ) => (
-            <React.Fragment>
+            <React.Fragment key={lectureId}>
               {breakValue === true ? (
                 <Card
                   key={lectureId}
@@ -288,6 +303,7 @@ class StudentContent extends Component {
                     <Button
                       variant="outlined"
                       className={this.props.classes.addLectureButton}
+                      onClick={this.handleLectDelete(lectureId)}
                     >
                       Delete
                     </Button>
@@ -315,7 +331,7 @@ class StudentContent extends Component {
                     <Grid container className={this.props.classes.grid}>
                       <Grid item>
                         <Typography className={this.props.classes.fieldTitle}>
-                          Lecture Name:
+                          Lecture:
                         </Typography>
                       </Grid>
                       <Grid item>
@@ -327,7 +343,7 @@ class StudentContent extends Component {
                     <Grid container className={this.props.classes.grid}>
                       <Grid item>
                         <Typography className={this.props.classes.fieldTitle}>
-                          Teacher Name:
+                          Teacher:
                         </Typography>
                       </Grid>
                       <Grid item>
@@ -369,6 +385,7 @@ class StudentContent extends Component {
                     <Button
                       variant="outlined"
                       className={this.props.classes.addLectureButton}
+                      onClick={this.handleLectDelete(lectureId)}
                     >
                       Delete
                     </Button>
@@ -379,11 +396,10 @@ class StudentContent extends Component {
           )
         );
       }
-
-      return <Typography>No Data Exist</Typography>;
+      return <Typography>Please Add Lectures</Typography>;
     }
 
-    return <Typography>No Data Exist</Typography>;
+    return <Typography>Please Select Semester and Day</Typography>;
   }
 
   render() {

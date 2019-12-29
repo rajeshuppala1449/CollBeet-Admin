@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import { check } from "meteor/check";
-import { Random } from 'meteor/random'
+import { Random } from "meteor/random";
 
 export const Student = new Mongo.Collection("student");
 
@@ -38,14 +38,14 @@ Meteor.methods({
   },
 
   "student.addLecture"(
+    deptCode,
+    semValue,
+    dayid,
     lectureName,
     teacherName,
-    dayid,
-    semValue,
     startTime,
     endTime,
-    breakValue,
-    deptCode
+    breakValue
   ) {
     if (breakValue === false) {
       check(lectureName, String);
@@ -114,5 +114,33 @@ Meteor.methods({
         }
       );
     }
+  },
+  "student.removeLecture"(deptCode, semValue, dayid, lectureId) {
+    check(deptCode, String);
+    check(dayid, Number);
+    check(semValue, Number);
+    check(lectureId, String);
+
+    Student.rawCollection().update(
+      {
+        deptcode: deptCode,
+        activesem: {
+          $elemMatch: {
+            semid: semValue,
+            "schedule.dayid": dayid
+          }
+        }
+      },
+      {
+        $pull: {
+          "activesem.$[outer].schedule.$[inner].lecture": {
+            lectureId: lectureId
+          }
+        }
+      },
+      {
+        arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
+      }
+    );
   }
 });

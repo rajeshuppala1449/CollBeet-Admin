@@ -151,10 +151,6 @@ class MessDepartmentDrawer extends Component {
               </Grid>
               <Divider className={this.props.classes.rootAvatar} />
             </div>
-            {/* <Typography className={this.props.classes.dayTitle}>
-              {day.toUpperCase()}
-            </Typography> */}
-
             <MessExpansionPanel day={day} dayid={dayid} />
           </main>
 

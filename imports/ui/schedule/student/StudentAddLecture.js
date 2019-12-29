@@ -67,6 +67,11 @@ const useStyles = theme => ({
     fontFamily: "Open Sans",
     color: "#242729"
   },
+  dayTitle: {
+    fontFamily: "Open Sans",
+    color: "#242729",
+    marginLeft: theme.spacing(2)
+  },
   fieldText: {
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
@@ -203,26 +208,26 @@ class AddLectureDialog extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { deptCode } = this.props;
     const {
+      semValue,
+      dayid,
       lectureName,
       teacherName,
-      dayid,
-      semValue,
       startTime,
       endTime,
       breakValue
     } = this.state;
-    const { deptCode } = this.props;
     Meteor.call(
       "student.addLecture",
+      deptCode,
+      semValue,
+      dayid,
       lectureName,
       teacherName,
-      dayid,
-      semValue,
       startTime,
       endTime,
-      breakValue,
-      deptCode
+      breakValue
     );
   };
 
@@ -391,6 +396,55 @@ class AddLectureDialog extends Component {
             <Grid container className={this.props.classes.grid}>
               <Grid item>
                 <Typography className={this.props.classes.fieldTitle}>
+                  Semester:
+                </Typography>
+              </Grid>
+              <Grid item>
+                <ButtonGroup
+                  variant="outlined"
+                  className={this.props.classes.fieldButtonGroup}
+                  ref={anchorRef}
+                  aria-label="split button"
+                >
+                  <Button className={this.props.classes.fieldButton}>
+                    {semValue ? semValue : "Select A Semester"}
+                  </Button>
+                  <Button
+                    aria-controls={open ? "split-button-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu"
+                    className={this.props.classes.fieldButton}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    onClick={semHandleClick}
+                  >
+                    <ArrowDropDownIcon />
+                  </Button>
+                </ButtonGroup>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={semAnchorEl}
+                  keepMounted
+                  open={Boolean(semAnchorEl)}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  transformOrigin={{ vertical: "top", horizontal: "center" }}
+                >
+                  {activesem.map(({ semid }) => (
+                    <MenuItem
+                      key={semid}
+                      onClick={semHandleClose(semid)}
+                      className={this.props.classes.menu}
+                    >
+                      {semid}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Grid>
+              <Grid item>
+                <Typography className={this.props.classes.dayTitle}>
                   Day:
                 </Typography>
               </Grid>
@@ -440,55 +494,6 @@ class AddLectureDialog extends Component {
                       className={this.props.classes.menu}
                     >
                       {day.charAt(0).toUpperCase() + day.slice(1)}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Grid>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Semester:
-                </Typography>
-              </Grid>
-              <Grid item>
-                <ButtonGroup
-                  variant="outlined"
-                  className={this.props.classes.fieldButtonGroup}
-                  ref={anchorRef}
-                  aria-label="split button"
-                >
-                  <Button className={this.props.classes.fieldButton}>
-                    {semValue ? semValue : "Select A Semester"}
-                  </Button>
-                  <Button
-                    aria-controls={open ? "split-button-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-label="select merge strategy"
-                    aria-haspopup="menu"
-                    className={this.props.classes.fieldButton}
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    size="small"
-                    onClick={semHandleClick}
-                  >
-                    <ArrowDropDownIcon />
-                  </Button>
-                </ButtonGroup>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={semAnchorEl}
-                  keepMounted
-                  open={Boolean(semAnchorEl)}
-                  getContentAnchorEl={null}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                  transformOrigin={{ vertical: "top", horizontal: "center" }}
-                >
-                  {activesem.map(({ semid }) => (
-                    <MenuItem
-                      key={semid}
-                      onClick={semHandleClose(semid)}
-                      className={this.props.classes.menu}
-                    >
-                      {semid}
                     </MenuItem>
                   ))}
                 </Menu>
