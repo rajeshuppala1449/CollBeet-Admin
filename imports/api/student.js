@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import { check } from "meteor/check";
+import { Random } from 'meteor/random'
 
 export const Student = new Mongo.Collection("student");
 
@@ -68,6 +69,7 @@ Meteor.methods({
         {
           $push: {
             "activesem.$[outer].schedule.$[inner].lecture": {
+              lectureId: Random.id(),
               lectureName: lectureName,
               teacherName: teacherName,
               startTime: startTime,
@@ -100,6 +102,7 @@ Meteor.methods({
         {
           $push: {
             "activesem.$[outer].schedule.$[inner].lecture": {
+              lectureId: Random.id(),
               startTime: startTime,
               endTime: endTime,
               breakValue: breakValue
