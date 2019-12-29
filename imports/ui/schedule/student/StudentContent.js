@@ -8,14 +8,14 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Box from "@material-ui/core/Box";
 
 import AddLectureDialog from "./StudentAddLecture";
 import compose from "recompose/compose";
+import moment from "moment";
 
 const dayarr = [
   {
@@ -75,6 +75,11 @@ const useStyles = theme => ({
   separator: {
     flexGrow: 1
   },
+  addLectureButton: {
+    margin: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
   fieldButtonGroup: {
     margin: theme.spacing(1)
   },
@@ -102,9 +107,29 @@ const useStyles = theme => ({
     marginRight: theme.spacing(1)
   },
   card: {
+    margin: theme.spacing(1),
     minWidth: 275,
-    display: 'inline-block'
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
+  fieldTitle: {
+    fontFamily: "Open Sans",
+    color: "#242729"
+  },
+  fieldText: {
+    margin: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
+  grid: {
+    flex: 1,
+    alignItems: "center"
+  },
+  breakbox: {
+    flex: 1,
+    background: "#242729"
+  }
 });
 
 class StudentContent extends Component {
@@ -180,27 +205,137 @@ class StudentContent extends Component {
         })[0];
 
       if (lecture_array) {
-        return lecture_array.map(({ lectureId, endTime, breakValue, lectureName, teacherName, startTime }) => (
-          <React.Fragment key={lectureId}>
-            {breakValue === true ? (
-              <Card key={lectureId} className={this.props.classes.card} variant="outlined">
-              <CardContent>
-              <Typography key={lectureId}>
-                Break: True
-              </Typography>
-              <Typography key={lectureId+"startTime"}>
-                Start Time: {startTime}
-              </Typography>
-              <Typography key={lectureId+"endTime"}>
-                End Time: {endTime}
-              </Typography>
-              </CardContent>
-              </Card>
-            ) : (
-            <Typography key={lectureId}>VALUE IS FALSE : Time:{endTime} {lectureName}, {teacherName}, {startTime}</Typography>
-            )}
-          </React.Fragment>
-        ));
+        return lecture_array.map(
+          (
+            {
+              lectureId,
+              endTime,
+              breakValue,
+              lectureName,
+              teacherName,
+              startTime
+            },
+            index
+          ) => (
+            <Box key={lectureId} component="span">
+              {breakValue === true ? (
+                <Card
+                  key={lectureId}
+                  className={this.props.classes.card}
+                  variant="outlined"
+                >
+                  <CardContent>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Lecture No:
+                        </Typography>
+                      </Grid>
+                      
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {index + 1}
+                        </Typography>
+                      </Grid>
+
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Start Time:
+                        </Typography>
+                      </Grid>
+
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(startTime).format("hh:mm A")}
+                        </Typography>
+                      </Grid>
+
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          End Time:
+                        </Typography>
+                      </Grid>
+
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(endTime).format("hh:mm A")}
+                        </Typography>
+                      </Grid>
+
+                    </Grid>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card
+                  key={lectureId}
+                  className={this.props.classes.card}
+                  variant="outlined"
+                >
+                  <CardContent>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Lecture No:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {index + 1}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Lecture Name:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {lectureName}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Teacher Name:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {teacherName}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Start Time:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(startTime).format("hh:mm A")}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          End Time:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(endTime).format("hh:mm A")}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                </Card>
+              )}
+            </Box>
+          )
+        );
       }
 
       return <Typography>No Data Exist</Typography>;
@@ -215,7 +350,7 @@ class StudentContent extends Component {
       dayValue,
       semAnchorEl,
       semId,
-      dialogOpen,
+      dialogOpen
     } = this.state;
     const { dept, path, activesem, deptCode } = this.props;
 
@@ -243,6 +378,15 @@ class StudentContent extends Component {
             <Typography className={this.props.classes.branchTitle}>
               {dept}
             </Typography>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="outlined"
+              className={this.props.classes.addLectureButton}
+              onClick={dialogHandleOpen}
+            >
+              + Add A Lecture
+            </Button>
           </Grid>
           <Grid item>
             <ButtonGroup
@@ -336,15 +480,6 @@ class StudentContent extends Component {
           </Grid>
         </Grid>
         <Divider className={this.props.classes.rootAvatar} />
-        <Fab
-          variant="extended"
-          className={this.props.classes.fab}
-          aria-label="add"
-          onClick={dialogHandleOpen}
-        >
-          <AddIcon className={this.props.classes.extendedIcon} />
-          Add A Lecture
-        </Fab>
         <AddLectureDialog
           open={dialogOpen}
           handleClose={dialogHandleClose}
