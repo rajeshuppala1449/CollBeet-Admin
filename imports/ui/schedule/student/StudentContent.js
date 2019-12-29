@@ -107,10 +107,22 @@ const useStyles = theme => ({
     marginRight: theme.spacing(1)
   },
   card: {
-    margin: 16,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
+    margin: theme.spacing(1),
+    minWidth: 275,
+    display: "inline-block",
+    background: "linear-gradient(0deg, #fff 95%, #ffca28 10%)"
+  },
+  cardBreak: {
+    margin: theme.spacing(1),
+    minWidth: 275,
+    display: "inline-block",
+    background: "linear-gradient(0deg, #fff 95%, #d84315 70%)"
+  },
+  breakTitle: {
+    fontFamily: "Sniglet",
+    color: "#d84315",
+    fontSize: 53,
+    align: "center"
   },
   fieldTitle: {
     fontFamily: "Open Sans",
@@ -124,6 +136,13 @@ const useStyles = theme => ({
   grid: {
     flex: 1,
     alignItems: "center"
+  },
+  box: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: theme.spacing(9),
+    marginRight: theme.spacing(5)
   }
 });
 
@@ -212,144 +231,151 @@ class StudentContent extends Component {
             },
             index
           ) => (
-              <Grid container key={lectureId}>
-                {breakValue === true ? (
-                  <Grid
-                    item
-                    xs
-                    component={Card}
-                    className={this.props.classes.card}
-                  >
-                    <CardContent>
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Break:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            True
-                          </Typography>
-                        </Grid>
+            <React.Fragment>
+              {breakValue === true ? (
+                <Card
+                  key={lectureId}
+                  className={this.props.classes.cardBreak}
+                  variant="outlined"
+                >
+                  <CardContent>
+                    <Typography className={this.props.classes.breakTitle}>
+                      BREAK
+                    </Typography>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Lecture No:
+                        </Typography>
                       </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {index + 1}
+                        </Typography>
+                      </Grid>
+                    </Grid>
 
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Lecture No:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {index + 1}
-                          </Typography>
-                        </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Start Time:
+                        </Typography>
                       </Grid>
-
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Start Time:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {moment(startTime).format("hh:mm A")}
-                          </Typography>
-                        </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(startTime).format("hh:mm A")}
+                        </Typography>
                       </Grid>
-
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            End Time:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {moment(endTime).format("hh:mm A")}
-                          </Typography>
-                        </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          End Time:
+                        </Typography>
                       </Grid>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Grid>
-                ) : (
-                  <Grid
-                    item
-                    xs
-                    component={Card}
-                    className={this.props.classes.card}
-                  >
-                    <CardContent>
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Lecture No:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {index + 1}
-                          </Typography>
-                        </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(endTime).format("hh:mm A")}
+                        </Typography>
                       </Grid>
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Lecture Name:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {lectureName}
-                          </Typography>
-                        </Grid>
+                    </Grid>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      variant="outlined"
+                      className={this.props.classes.addLectureButton}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      className={this.props.classes.addLectureButton}
+                    >
+                      Delete
+                    </Button>
+                  </CardActions>
+                </Card>
+              ) : (
+                <Card
+                  key={lectureId}
+                  className={this.props.classes.card}
+                  variant="outlined"
+                >
+                  <CardContent>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Lecture No:
+                        </Typography>
                       </Grid>
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Teacher Name:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {teacherName}
-                          </Typography>
-                        </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {index + 1}
+                        </Typography>
                       </Grid>
-                      <Grid container className={this.props.classes.grid}>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            Start Time:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {moment(startTime).format("hh:mm A")}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldTitle}>
-                            End Time:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography className={this.props.classes.fieldText}>
-                            {moment(endTime).format("hh:mm A")}
-                          </Typography>
-                        </Grid>
+                    </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Lecture Name:
+                        </Typography>
                       </Grid>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Grid>
-                )}
-              </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {lectureName}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Teacher Name:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {teacherName}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid container className={this.props.classes.grid}>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          Start Time:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(startTime).format("hh:mm A")}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldTitle}>
+                          End Time:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className={this.props.classes.fieldText}>
+                          {moment(endTime).format("hh:mm A")}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      variant="outlined"
+                      className={this.props.classes.addLectureButton}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      className={this.props.classes.addLectureButton}
+                    >
+                      Delete
+                    </Button>
+                  </CardActions>
+                </Card>
+              )}
+            </React.Fragment>
           )
         );
       }
@@ -503,7 +529,7 @@ class StudentContent extends Component {
           deptCode={deptCode}
           activesem={activesem}
         />
-        {this.content()}
+        <Box className={this.props.classes.box}>{this.content()}</Box>
       </div>
     );
   }
