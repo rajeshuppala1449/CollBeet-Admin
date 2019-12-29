@@ -10,6 +10,9 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 import AddLectureDialog from "./StudentAddLecture";
 import compose from "recompose/compose";
@@ -97,7 +100,11 @@ const useStyles = theme => ({
   },
   extendedIcon: {
     marginRight: theme.spacing(1)
-  }
+  },
+  card: {
+    minWidth: 275,
+    display: 'inline-block'
+  },
 });
 
 class StudentContent extends Component {
@@ -176,9 +183,19 @@ class StudentContent extends Component {
         return lecture_array.map(({ lectureId, endTime, breakValue, lectureName, teacherName, startTime }) => (
           <React.Fragment key={lectureId}>
             {breakValue === true ? (
+              <Card key={lectureId} className={this.props.classes.card} variant="outlined">
+              <CardContent>
               <Typography key={lectureId}>
-                VALUE IS TRUE : Time:{endTime}
+                Break: True
               </Typography>
+              <Typography key={lectureId+"startTime"}>
+                Start Time: {startTime}
+              </Typography>
+              <Typography key={lectureId+"endTime"}>
+                End Time: {endTime}
+              </Typography>
+              </CardContent>
+              </Card>
             ) : (
             <Typography key={lectureId}>VALUE IS FALSE : Time:{endTime} {lectureName}, {teacherName}, {startTime}</Typography>
             )}
@@ -199,7 +216,6 @@ class StudentContent extends Component {
       semAnchorEl,
       semId,
       dialogOpen,
-      dayId
     } = this.state;
     const { dept, path, activesem, deptCode } = this.props;
 
