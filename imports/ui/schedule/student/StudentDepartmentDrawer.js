@@ -244,7 +244,20 @@ class StudentDepartmentDrawer extends Component {
                 activesem={active_sem_array}
               />
             ) : (
-              "Please Select or Create A Department"
+              <div id="notfound">
+                <div className="notfound">
+                  <div class="notfound-404">
+                    <div></div>
+                    <h1>&#10137;</h1>
+                  </div>
+
+                  <h2>Department</h2>
+                  <p>
+                    Please Select a Department or Add a Department from right
+                    drawer.
+                  </p>
+                </div>
+              </div>
             )}
             <Dialog
               open={open}

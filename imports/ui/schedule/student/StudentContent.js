@@ -96,16 +96,6 @@ const useStyles = theme => ({
     fontFamily: "Sniglet",
     color: "#e65100"
   },
-  fab: {
-    position: "absolute",
-    right: theme.spacing(10),
-    bottom: theme.spacing(2),
-    background: "#ffc107",
-    color: "#000"
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1)
-  },
   card: {
     margin: theme.spacing(1),
     minWidth: 275,
@@ -132,10 +122,6 @@ const useStyles = theme => ({
     margin: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
-  },
-  grid: {
-    flex: 1,
-    alignItems: "center"
   },
   box: {
     flex: 1,
@@ -231,7 +217,19 @@ class StudentContent extends Component {
 
       if (lecture_array) {
         if (lecture_array.length === 0) {
-          return <Typography>Please Add Lectures</Typography>;
+          return (
+            <div id="notfound2">
+              <div className="notfound2">
+                <div class="notfound2-exc">
+                  <div></div>
+                  <h1>भाषण</h1>
+                </div>
+
+                <h2>Lectures</h2>
+                <p>Please Add Lectures.</p>
+              </div>
+            </div>
+          );
         }
 
         return lecture_array.map(
@@ -396,10 +394,34 @@ class StudentContent extends Component {
           )
         );
       }
-      return <Typography>Please Add Lectures</Typography>;
+      return (
+        <div id="notfound2">
+          <div className="notfound2">
+            <div class="notfound2-exc">
+              <div></div>
+              <h1>भाषण</h1>
+            </div>
+
+            <h2>Lectures</h2>
+            <p>Please Add Lectures.</p>
+          </div>
+        </div>
+      );
     }
 
-    return <Typography>Please Select Semester and Day</Typography>;
+    return (
+      <div id="notfound2">
+        <div className="notfound2">
+          <div class="notfound2-404">
+            <div></div>
+            <h1>&#x279A;</h1>
+          </div>
+
+          <h2>Schedule</h2>
+          <p>Please Select a Semester and Day.</p>
+        </div>
+      </div>
+    );
   }
 
   render() {
