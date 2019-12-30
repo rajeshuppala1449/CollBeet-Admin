@@ -115,9 +115,9 @@ const useStyles = theme => ({
 
 class MessDepartmentDrawer extends Component {
   state = {
-    day: "sunday",
-    dayid: 0,
-    initial: "Su"
+    day: "",
+    dayid: null,
+    initial: ""
   };
 
   changeDay = (input, dayid, initial) => e => {
@@ -136,22 +136,37 @@ class MessDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            <div className={this.props.classes.rootAvatar}>
-              <Grid container className={this.props.classes.grid}>
-                <Grid item>
-                  <Avatar className={this.props.classes.bigAvatar}>
-                    {initial}
-                  </Avatar>
-                </Grid>
-                <Grid item className={this.props.classes.separator}>
-                  <Typography className={this.props.classes.dayTitle}>
-                    {day.toUpperCase()}
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Divider className={this.props.classes.rootAvatar} />
-            </div>
-            <MessExpansionPanel day={day} dayid={dayid} />
+            {day && dayid && initial ? (
+              <div>
+                <div className={this.props.classes.rootAvatar}>
+                  <Grid container className={this.props.classes.grid}>
+                    <Grid item>
+                      <Avatar className={this.props.classes.bigAvatar}>
+                        {initial}
+                      </Avatar>
+                    </Grid>
+                    <Grid item className={this.props.classes.separator}>
+                      <Typography className={this.props.classes.dayTitle}>
+                        {day.toUpperCase()}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Divider className={this.props.classes.rootAvatar} />
+                </div>
+                <MessExpansionPanel day={day} dayid={dayid} />{" "}
+              </div>
+            ) : (
+              <div id="notfound">
+                <div className="notfound">
+                  <div className="notfound-404">
+                    <div></div>
+                    <h1>&#10137;</h1>
+                  </div>
+                  <h2>Day</h2>
+                  <p>Please Select a Day from the right drawer</p>
+                </div>
+              </div>
+            )}
           </main>
 
           <Drawer

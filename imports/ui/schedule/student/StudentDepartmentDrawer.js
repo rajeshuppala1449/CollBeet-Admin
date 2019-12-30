@@ -250,11 +250,10 @@ class StudentDepartmentDrawer extends Component {
                     <div></div>
                     <h1>&#10137;</h1>
                   </div>
-
                   <h2>Department</h2>
                   <p>
-                    Please Select a Department or Add a Department from right
-                    drawer.
+                    Please Select a Department or Add a Department from the
+                    right drawer.
                   </p>
                 </div>
               </div>

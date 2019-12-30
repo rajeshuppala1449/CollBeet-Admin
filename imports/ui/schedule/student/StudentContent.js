@@ -224,7 +224,6 @@ class StudentContent extends Component {
                   <div></div>
                   <h1>भाषण</h1>
                 </div>
-
                 <h2>Lectures</h2>
                 <p>Please Add Lectures.</p>
               </div>
@@ -401,7 +400,6 @@ class StudentContent extends Component {
               <div></div>
               <h1>भाषण</h1>
             </div>
-
             <h2>Lectures</h2>
             <p>Please Add Lectures.</p>
           </div>
@@ -416,7 +414,6 @@ class StudentContent extends Component {
             <div></div>
             <h1>&#x279A;</h1>
           </div>
-
           <h2>Schedule</h2>
           <p>Please Select a Semester and Day.</p>
         </div>
