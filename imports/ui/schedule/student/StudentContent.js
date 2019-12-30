@@ -220,7 +220,7 @@ class StudentContent extends Component {
           return (
             <div id="notfound2">
               <div className="notfound2">
-                <div class="notfound2-exc">
+                <div className="notfound2-exc">
                   <div></div>
                   <h1>भाषण</h1>
                 </div>
@@ -397,7 +397,7 @@ class StudentContent extends Component {
       return (
         <div id="notfound2">
           <div className="notfound2">
-            <div class="notfound2-exc">
+            <div className="notfound2-exc">
               <div></div>
               <h1>भाषण</h1>
             </div>
@@ -412,7 +412,7 @@ class StudentContent extends Component {
     return (
       <div id="notfound2">
         <div className="notfound2">
-          <div class="notfound2-404">
+          <div className="notfound2-404">
             <div></div>
             <h1>&#x279A;</h1>
           </div>

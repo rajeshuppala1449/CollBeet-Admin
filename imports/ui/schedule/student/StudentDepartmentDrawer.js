@@ -246,7 +246,7 @@ class StudentDepartmentDrawer extends Component {
             ) : (
               <div id="notfound">
                 <div className="notfound">
-                  <div class="notfound-404">
+                  <div className="notfound-404">
                     <div></div>
                     <h1>&#10137;</h1>
                   </div>
