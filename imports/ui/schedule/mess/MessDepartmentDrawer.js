@@ -158,9 +158,13 @@ class MessDepartmentDrawer extends Component {
             ) : (
               <div id="notfound">
                 <div className="notfound">
-                  <div className="notfound-404">
-                    <div></div>
-                    <h1>&#10137;</h1>
+                <div className="bee">
+                    <div className="bee__wing bee__wing--left"></div>
+                    <div className="bee__wing bee__wing--right"></div>
+                    <div className="bee__oval bee__oval--top"></div>
+                    <div className="bee__rect"></div>
+                    <div className="bee__rect"> </div>
+                    <div className="bee__oval bee__oval--bottom"></div>
                   </div>
                   <h2>Day</h2>
                   <p>Please Select a Day from the right drawer</p>

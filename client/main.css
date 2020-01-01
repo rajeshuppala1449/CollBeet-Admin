@@ -16,57 +16,7 @@
   max-width: 460px;
   width: 100%;
   text-align: center;
-  line-height: 1.4;
-}
-
-.notfound .notfound-404 {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  margin: 0px auto 50px;
-}
-
-.notfound .notfound-404 > div:first-child {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: #ffa200;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  border: 5px dashed #bf360c;
-  border-radius: 5px;
-}
-
-.notfound .notfound-404 > div:first-child:before {
-  content: "";
-  position: absolute;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  top: -5px;
-  -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
-  border-radius: 5px;
-}
-
-.notfound .notfound-404 h1 {
-  font-family: "Cabin", sans-serif;
-  color: #000;
-  font-weight: 700;
-  margin: 0;
-  font-size: 150px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  left: 50%;
-  text-align: center;
-  height: 40px;
-  line-height: 40px;
+  line-height: 1;
 }
 
 .notfound h2 {
@@ -85,181 +35,147 @@
   font-weight: 400;
 }
 
-.notfound a {
-  font-family: "Cabin", sans-serif;
-  display: inline-block;
-  padding: 10px 25px;
-  background-color: #8f8f8f;
-  border: none;
-  border-radius: 40px;
-  color: #fff;
-  font-size: 14px;
+#notfound2 {
+  position: relative;
+  height: 70vh;
+}
+
+#notfound2 .notfound2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound2 {
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  line-height: 1;
+}
+
+.notfound2 h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 33px;
   font-weight: 700;
   text-transform: uppercase;
-  text-decoration: none;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
+  letter-spacing: 7px;
+  color: #e65100;
 }
 
-.notfound a:hover {
-  background-color: #2c2c2c;
+.notfound2 p {
+  font-family: "Sniglet";
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
 }
 
+.bee {
+  width: 5vh;
+  height: 7.5vh;
+  margin: 0 auto;
+  position: relative;
+}
+.bee__rect {
+  margin: 0 auto;
+  width: 70%;
+  height: 20%;
+  background: #4d4d4d;
+  margin-top: 20%;
+}
+.bee__oval {
+  width: 70%;
+  height: 20%;
+  background: #4d4d4d;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  margin: 0 auto;
+}
+.bee__oval--top:after, .bee__oval--top:before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 2.5217391304vh;
+  height: 2.5217391304vh;
+  border: 0.6vh solid transparent;
+  border-top-color: #474e56;
+  border-radius: 50%;
+}
+.bee__oval--top:after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  right: -15%;
+}
+.bee__oval--top:before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  left: -15%;
+}
+.bee__oval--bottom {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  margin-top: 20%;
+  position: relative;
+}
+.bee__oval--bottom:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 1.5vh solid transparent;
+  border-right: 1.5vh solid transparent;
+  border-bottom: 2.2857142857vh solid #4d4d4d;
+}
+.bee__wing {
+  position: absolute;
+  top: 25%;
+  width: 60%;
+  height: 70%;
+  background-color: #ffcb05;
+  border-radius: 50%  50%  50%  50%  / 65%   65%   35%  35%;
+}
+.bee__wing--left {
+  left: -25%;
+  -webkit-transform: rotate(35deg) rotateX(0);
+          transform: rotate(35deg) rotateX(0);
+  -webkit-animation: fly-l .5s infinite alternate;
+          animation: fly-l .5s infinite alternate;
+}
+.bee__wing--right {
+  right: -25%;
+  -webkit-transform: rotate(-35deg);
+          transform: rotate(-35deg);
+  -webkit-animation: fly-r .5s infinite alternate;
+          animation: fly-r .5s infinite alternate;
+}
 
-#notfound2 {
-    position: relative;
-    height: 70vh;
+@keyframes fly-l {
+  100% {
+    -webkit-transform: rotate(30deg) rotateX(15deg);
+            transform: rotate(30deg) rotateX(15deg);
   }
-  
-  #notfound2 .notfound2 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-  
-  .notfound2 {
-    max-width: 460px;
-    width: 100%;
-    text-align: center;
-    line-height: 1.4;
-  }
-  
-  .notfound2 .notfound2-404 {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    margin: 0px auto 50px;
-  }
-  
-  .notfound2 .notfound2-404 > div:first-child {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: #ffa200;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    border: 5px dashed #bf360c;
-    border-radius: 5px;
-  }
-  
-  .notfound2 .notfound2-404 > div:first-child:before {
-    content: "";
-    position: absolute;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    top: -5px;
-    -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
-    border-radius: 5px;
-  }
-  
-  .notfound2 .notfound2-404 h1 {
-    font-family: "Cabin", sans-serif;
-    color: #000;
-    font-weight: 700;
-    margin: 0;
-    font-size: 150px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    left: 50%;
-    text-align: center;
-    height: 40px;
-    line-height: 40px;
-  }
+}
 
-  .notfound2 .notfound2-exc {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    margin: 0px auto 50px;
+@keyframes fly-l {
+  100% {
+    -webkit-transform: rotate(30deg) rotateX(15deg);
+            transform: rotate(30deg) rotateX(15deg);
   }
-  
-  .notfound2 .notfound2-exc > div:first-child {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: #ffa200;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    border: 5px dashed #bf360c;
-    border-radius: 5px;
+}
+@-webkit-keyframes fly-r {
+  100% {
+    -webkit-transform: rotate(-30deg) rotateX(-15deg);
+            transform: rotate(-30deg) rotateX(-15deg);
   }
-  
-  .notfound2 .notfound2-exc > div:first-child:before {
-    content: "";
-    position: absolute;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    top: -5px;
-    -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
-    border-radius: 5px;
+}
+@keyframes fly-r {
+  100% {
+    -webkit-transform: rotate(-30deg) rotateX(-15deg);
+            transform: rotate(-30deg) rotateX(-15deg);
   }
-  
-  .notfound2 .notfound2-exc h1 {
-    font-family: "Cabin", sans-serif;
-    color: #000;
-    font-weight: 700;
-    margin: 0;
-    font-size: 40px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    left: 50%;
-    text-align: center;
-    height: 40px;
-    line-height: 40px;
-  }
-  
-  .notfound2 h2 {
-    font-family: "Open Sans", sans-serif;
-    font-size: 33px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 7px;
-    color: #e65100;
-  }
-  
-  .notfound2 p {
-    font-family: "Sniglet";
-    font-size: 16px;
-    color: #000;
-    font-weight: 400;
-  }
-  
-  .notfound2 a {
-    font-family: "Cabin", sans-serif;
-    display: inline-block;
-    padding: 10px 25px;
-    background-color: #8f8f8f;
-    border: none;
-    border-radius: 40px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-decoration: none;
-    -webkit-transition: 0.2s all;
-    transition: 0.2s all;
-  }
-  
-  .notfound2 a:hover {
-    background-color: #2c2c2c;
-  }
-  
+}

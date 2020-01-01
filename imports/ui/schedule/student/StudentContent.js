@@ -220,9 +220,13 @@ class StudentContent extends Component {
           return (
             <div id="notfound2">
               <div className="notfound2">
-                <div className="notfound2-exc">
-                  <div></div>
-                  <h1>भाषण</h1>
+                <div className="bee">
+                  <div className="bee__wing bee__wing--left"></div>
+                  <div className="bee__wing bee__wing--right"></div>
+                  <div className="bee__oval bee__oval--top"></div>
+                  <div className="bee__rect"></div>
+                  <div className="bee__rect"> </div>
+                  <div className="bee__oval bee__oval--bottom"></div>
                 </div>
                 <h2>Lectures</h2>
                 <p>Please Add Lectures.</p>
@@ -396,9 +400,13 @@ class StudentContent extends Component {
       return (
         <div id="notfound2">
           <div className="notfound2">
-            <div className="notfound2-exc">
-              <div></div>
-              <h1>भाषण</h1>
+            <div className="bee">
+              <div className="bee__wing bee__wing--left"></div>
+              <div className="bee__wing bee__wing--right"></div>
+              <div className="bee__oval bee__oval--top"></div>
+              <div className="bee__rect"></div>
+              <div className="bee__rect"> </div>
+              <div className="bee__oval bee__oval--bottom"></div>
             </div>
             <h2>Lectures</h2>
             <p>Please Add Lectures.</p>
@@ -410,9 +418,13 @@ class StudentContent extends Component {
     return (
       <div id="notfound2">
         <div className="notfound2">
-          <div className="notfound2-404">
-            <div></div>
-            <h1>&#x279A;</h1>
+          <div className="bee">
+            <div className="bee__wing bee__wing--left"></div>
+            <div className="bee__wing bee__wing--right"></div>
+            <div className="bee__oval bee__oval--top"></div>
+            <div className="bee__rect"></div>
+            <div className="bee__rect"> </div>
+            <div className="bee__oval bee__oval--bottom"></div>
           </div>
           <h2>Schedule</h2>
           <p>Please Select a Semester and Day.</p>
