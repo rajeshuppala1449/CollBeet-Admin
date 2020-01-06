@@ -120,12 +120,14 @@ class MessDepartmentDrawer extends Component {
     initial: ""
   };
 
-  changeDay = (input, dayid, initial) => e => {
+  changeDay = (day, dayid, initial) => e => {
     this.setState({
-      day: `${input}`,
+      day,
       dayid,
       initial
     });
+
+    console.log(this.state.day, this.state.dayid, this.state.initial)
   };
 
   render() {
@@ -136,7 +138,7 @@ class MessDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            {day && dayid && initial ? (
+            {day && initial ? (
               <div>
                 <div className={this.props.classes.rootAvatar}>
                   <Grid container className={this.props.classes.grid}>
@@ -196,7 +198,7 @@ class MessDepartmentDrawer extends Component {
                   <ListItem
                     button
                     key={day}
-                    onClick={this.changeDay(`${day}`, dayid, initial)}
+                    onClick={this.changeDay(day, dayid, initial)}
                   >
                     <ListItemIcon>
                       <Avatar className={this.props.classes.departmentButtons}>
