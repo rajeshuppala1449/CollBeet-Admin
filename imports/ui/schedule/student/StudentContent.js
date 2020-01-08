@@ -205,13 +205,13 @@ class StudentContent extends Component {
       var filteredAry = arr.filter(e => e !== i);
 
       this.setState({
-        removeSemestersArr: filteredAry,
+        removeSemestersArr: filteredAry
       });
     } else {
       var addedAry = arr.concat(i);
 
       this.setState({
-        removeSemestersArr: addedAry,
+        removeSemestersArr: addedAry
       });
     }
   };
@@ -223,13 +223,13 @@ class StudentContent extends Component {
       var filteredAry = arr.filter(e => e !== i);
 
       this.setState({
-        addSemestersArr: filteredAry,
+        addSemestersArr: filteredAry
       });
     } else {
       var addedAry = arr.concat(i);
 
       this.setState({
-        addSemestersArr: addedAry,
+        addSemestersArr: addedAry
       });
     }
   };
@@ -238,7 +238,7 @@ class StudentContent extends Component {
     event.preventDefault();
     const { addSemestersArr } = this.state;
     const { deptCode } = this.props;
-    Meteor.call("student.addDeptSemesters", addSemestersArr,deptCode);
+    Meteor.call("student.addDeptSemesters", addSemestersArr, deptCode);
 
     this.setState({
       addSemestersArr: []
@@ -254,8 +254,6 @@ class StudentContent extends Component {
     this.setState({
       removeSemestersArr: []
     });
-
-    console.log("is it working? yes")
   };
 
   modifyDeptClose = () => {
@@ -516,7 +514,7 @@ class StudentContent extends Component {
       dialogOpen,
       modifyDeptDialogOpen,
       addSemestersArr,
-      removeSemestersArr,
+      removeSemestersArr
     } = this.state;
     const { dept, path, activesem, deptCode } = this.props;
 

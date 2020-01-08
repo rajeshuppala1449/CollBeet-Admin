@@ -13,8 +13,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import compose from "recompose/compose";
 import { Button } from "@material-ui/core";
 
-import { Meteor } from "meteor/meteor";
-
 const useStyles = theme => ({
   dialogTitle: {
     fontFamily: "Sniglet",
@@ -55,6 +53,61 @@ const useStyles = theme => ({
 });
 
 class ModifyDepartmentDialog extends Component {
+  removeSemButton() {
+    const { removeSemestersArr, handleDeptRemoveSemestersSubmit } = this.props;
+
+    if (removeSemestersArr.length === 0) {
+      return (
+        <Button
+          key="remove-button-disabled-md"
+          variant="outlined"
+          disabled={true}
+          className={this.props.classes.button}
+        >
+          Select Semester to Remove
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          key="remove-button-md"
+          variant="outlined"
+          className={this.props.classes.button}
+          onClick={handleDeptRemoveSemestersSubmit}
+        >
+          Remove
+        </Button>
+      );
+    }
+  }
+
+  addSemButton() {
+    const { addSemestersArr, handleDeptAddSemestersSubmit } = this.props;
+
+    if (addSemestersArr.length === 0) {
+      return (
+        <Button
+          key="remove-button-disabled-md"
+          variant="outlined"
+          disabled={true}
+          className={this.props.classes.button}
+        >
+          Select Semester to Add
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          key="add-button-md"
+          variant="outlined"
+          className={this.props.classes.button}
+          onClick={handleDeptAddSemestersSubmit}
+        >
+          Add
+        </Button>
+      );
+    }
+  }
 
   render() {
     const {
@@ -62,9 +115,7 @@ class ModifyDepartmentDialog extends Component {
       modifyDeptHandleClose,
       activesem,
       addSem,
-      removeSem,
-      handleDeptAddSemestersSubmit,
-      handleDeptRemoveSemestersSubmit
+      removeSem
     } = this.props;
 
     const allSemarray = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -89,103 +140,105 @@ class ModifyDepartmentDialog extends Component {
             <DialogContentText className={this.props.classes.fieldContext}>
               Add or remove semesters or delete department.
             </DialogContentText>
-            <Grid container className={this.props.classes.gridCheckList}>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Remove Semesters:
-                </Typography>
-              </Grid>
-              <Grid item>
-                <FormControl
-                  component="fieldset"
-                  className={this.props.classes.semChecklist}
-                  key="removesemformcontrol"
-                >
-                  <FormGroup key="sem-fg-sm" row>
-                    {activesem.map(({ semid }) => (
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            color="default"
-                            onChange={removeSem(semid)}
-                            className={this.props.classes.semCheckbox}
-                            value={semid}
-                            key={semid}
-                          />
-                        }
-                        key={semid}
-                        label={`Semester ${semid}`}
-                      />
-                    ))}
-                  </FormGroup>
-                </FormControl>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              alignitems="flex-start"
-              justify="flex-end"
-              direction="row"
-            >
-              <Button
-                key="remove-button-md"
-                variant="outlined"
-                key="removebutton"
-                className={this.props.classes.button}
-                onClick={handleDeptRemoveSemestersSubmit}
-              >
-                Remove
-              </Button>
-            </Grid>
 
-            <Grid container className={this.props.classes.gridCheckList}>
-              <Grid item>
-                <Typography className={this.props.classes.fieldTitle}>
-                  Add Semesters:
-                </Typography>
+            {activesem.length != 0 ? (
+              <Grid container className={this.props.classes.gridCheckList}>
+                <Grid item>
+                  <Typography className={this.props.classes.fieldTitle}>
+                    Remove Semesters:
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <FormControl
+                    component="fieldset"
+                    className={this.props.classes.semChecklist}
+                    key="removesemformcontrol"
+                  >
+                    <FormGroup key="sem-fg-sm" row>
+                      {activesem.map(({ semid }) => (
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="default"
+                              onChange={removeSem(semid)}
+                              className={this.props.classes.semCheckbox}
+                              value={semid}
+                              key={semid}
+                            />
+                          }
+                          key={semid}
+                          label={`Semester ${semid}`}
+                        />
+                      ))}
+                    </FormGroup>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item>
-                <FormControl
-                  component="fieldset"
-                  className={this.props.classes.semChecklist}
-                  key="addsemformcontrol"
-                >
-                  <FormGroup key="asem-fg-sm" row>
-                    {remainingSemArray.map(e => (
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            color="default"
-                            onChange={addSem(e)}
-                            className={this.props.classes.semCheckbox}
-                            value={e}
-                            key={e}
-                          />
-                        }
-                        key={e}
-                        label={`Semester ${e}`}
-                      />
-                    ))}
-                  </FormGroup>
-                </FormControl>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              alignitems="flex-start"
-              justify="flex-end"
-              direction="row"
-            >
-              <Button
-                key="add-button-md"
-                variant="outlined"
-                key="addbutton"
-                className={this.props.classes.button}
-                onClick={handleDeptAddSemestersSubmit}
+            ) : (
+              ""
+            )}
+
+            {activesem.length != 0 ? (
+              <Grid
+                container
+                alignitems="flex-start"
+                justify="flex-end"
+                direction="row"
               >
-                Add
-              </Button>
-            </Grid>
+                {this.removeSemButton()}
+              </Grid>
+            ) : (
+              ""
+            )}
+
+            {remainingSemArray.length != 0 ? (
+              <Grid container className={this.props.classes.gridCheckList}>
+                <Grid item>
+                  <Typography className={this.props.classes.fieldTitle}>
+                    Add Semesters:
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <FormControl
+                    component="fieldset"
+                    className={this.props.classes.semChecklist}
+                    key="addsemformcontrol"
+                  >
+                    <FormGroup key="asem-fg-sm" row>
+                      {remainingSemArray.map(e => (
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              color="default"
+                              onChange={addSem(e)}
+                              className={this.props.classes.semCheckbox}
+                              value={e}
+                              key={e}
+                            />
+                          }
+                          key={e}
+                          label={`Semester ${e}`}
+                        />
+                      ))}
+                    </FormGroup>
+                  </FormControl>
+                </Grid>
+              </Grid>
+            ) : (
+              ""
+            )}
+            {remainingSemArray.length != 0 ? (
+              <Grid
+                container
+                alignitems="flex-start"
+                justify="flex-end"
+                direction="row"
+              >
+                {this.addSemButton()}
+              </Grid>
+            ) : (
+              ""
+            )}
           </DialogContent>
         </Dialog>
       </React.Fragment>
