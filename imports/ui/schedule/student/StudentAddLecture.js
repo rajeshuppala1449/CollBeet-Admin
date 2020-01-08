@@ -361,7 +361,6 @@ class AddLectureDialog extends Component {
       changeEndTime,
       changeBreakValueTrue,
       changeBreakValueFalse,
-      clearValues
     } = this;
 
     return (

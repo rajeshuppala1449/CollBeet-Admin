@@ -14,6 +14,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
 
 import AddLectureDialog from "./StudentAddLecture";
+import ModifyDepartmentDialog from "./StudentModifyDepartment";
 import compose from "recompose/compose";
 import moment from "moment";
 
@@ -67,13 +68,18 @@ const useStyles = theme => ({
     alignItems: "center"
   },
   branchTitle: {
-    padding: theme.spacing(2),
+    marginLeft: theme.spacing(1),
     fontFamily: "Open Sans",
     color: "#e65100",
     fontSize: 30
   },
   separator: {
     flexGrow: 1
+  },
+  settingsLectureButton: {
+    marginLeft: theme.spacing(1),
+    fontFamily: "Sniglet",
+    color: "#e65100"
   },
   addLectureButton: {
     margin: theme.spacing(1),
@@ -139,7 +145,8 @@ class StudentContent extends Component {
     dayId: "",
     semAnchorEl: null,
     semId: "",
-    dialogOpen: false
+    dialogOpen: false,
+    modifyDeptDialogOpen: false
   };
 
   anchorRef = React.createRef(null);
@@ -181,6 +188,19 @@ class StudentContent extends Component {
     this.setState({
       dialogOpen: false
     });
+  };
+
+  modifyDeptOpen = () => {
+    this.setState({
+      modifyDeptDialogOpen: true
+    });
+  };
+
+  modifyDeptClose = () => {
+    this.setState({
+      modifyDeptDialogOpen: false
+    });
+    location.reload();
   };
 
   handleLectDelete = lectureId => e => {
@@ -270,7 +290,6 @@ class StudentContent extends Component {
                         </Typography>
                       </Grid>
                     </Grid>
-
                     <Grid container className={this.props.classes.grid}>
                       <Grid item>
                         <Typography className={this.props.classes.fieldTitle}>
@@ -278,7 +297,10 @@ class StudentContent extends Component {
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <Typography className={this.props.classes.fieldText}>
+                        <Typography
+                          className={this.props.classes.fieldText}
+                          key={lectureId}
+                        >
                           {moment(startTime).format("hh:mm A")}
                         </Typography>
                       </Grid>
@@ -295,12 +317,6 @@ class StudentContent extends Component {
                     </Grid>
                   </CardContent>
                   <CardActions>
-                    <Button
-                      variant="outlined"
-                      className={this.props.classes.addLectureButton}
-                    >
-                      Edit
-                    </Button>
                     <Button
                       variant="outlined"
                       className={this.props.classes.addLectureButton}
@@ -335,6 +351,7 @@ class StudentContent extends Component {
                           Lecture:
                         </Typography>
                       </Grid>
+
                       <Grid item>
                         <Typography className={this.props.classes.fieldText}>
                           {lectureName}
@@ -377,12 +394,6 @@ class StudentContent extends Component {
                     </Grid>
                   </CardContent>
                   <CardActions>
-                    <Button
-                      variant="outlined"
-                      className={this.props.classes.addLectureButton}
-                    >
-                      Edit
-                    </Button>
                     <Button
                       variant="outlined"
                       className={this.props.classes.addLectureButton}
@@ -439,7 +450,8 @@ class StudentContent extends Component {
       dayValue,
       semAnchorEl,
       semId,
-      dialogOpen
+      dialogOpen,
+      modifyDeptDialogOpen
     } = this.state;
     const { dept, path, activesem, deptCode } = this.props;
 
@@ -450,7 +462,9 @@ class StudentContent extends Component {
       semHandleClose,
       anchorRef,
       dialogHandleOpen,
-      dialogHandleClose
+      dialogHandleClose,
+      modifyDeptOpen,
+      modifyDeptClose
     } = this;
 
     return (
@@ -467,6 +481,14 @@ class StudentContent extends Component {
             <Typography className={this.props.classes.branchTitle}>
               {dept}
             </Typography>
+            <Button
+              variant="outlined"
+              size="small"
+              className={this.props.classes.settingsLectureButton}
+              onClick={modifyDeptOpen}
+            >
+              Modify
+            </Button>
           </Grid>
           <Grid item>
             <Button
@@ -574,6 +596,11 @@ class StudentContent extends Component {
           handleClose={dialogHandleClose}
           dept={dept}
           deptCode={deptCode}
+          activesem={activesem}
+        />
+        <ModifyDepartmentDialog
+          modifyDeptOpen={modifyDeptDialogOpen}
+          modifyDeptHandleClose={modifyDeptClose}
           activesem={activesem}
         />
         <Box className={this.props.classes.box}>{this.content()}</Box>

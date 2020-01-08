@@ -269,18 +269,18 @@ class StudentDepartmentDrawer extends Component {
             >
               <DialogTitle id="form-dialog-title">
                 <Typography className={this.props.classes.dialogTitle}>
-                  Add A Branch{" "}
+                  Add A Department{" "}
                 </Typography>
               </DialogTitle>
               <DialogContent>
                 <DialogContentText className={this.props.classes.fieldContext}>
-                  Please select the branch you want to add along with current
-                  active semesters:
+                  Please select the department you want to add along with
+                  current active semesters:
                 </DialogContentText>
                 <Grid container className={this.props.classes.grid}>
                   <Grid item>
                     <Typography className={this.props.classes.fieldTitle}>
-                      Branch:
+                      Department:
                     </Typography>
                   </Grid>
                   <Grid item>
