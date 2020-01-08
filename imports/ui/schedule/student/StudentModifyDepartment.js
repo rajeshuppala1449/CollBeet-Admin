@@ -53,62 +53,22 @@ const useStyles = theme => ({
 });
 
 class ModifyDepartmentDialog extends Component {
-  state = {
-    disable: true,
-    removeSemesters: [],
-    addSemesters: []
-  };
-
-  removeSem = i => e => {
-    const arr = this.state.removeSemesters;
-
-    if (arr.includes(i)) {
-      var filteredAry = arr.filter(e => e !== i);
-
-      this.setState({
-        removeSemesters: filteredAry,
-        disable: false
-      });
-    } else {
-      var addedAry = arr.concat(i);
-
-      this.setState({
-        removeSemesters: addedAry,
-        disable: false
-      });
-    }
-  };
-
-  addSem = i => e => {
-    const arr = this.state.addSemesters;
-
-    if (arr.includes(i)) {
-      var filteredAry = arr.filter(e => e !== i);
-
-      this.setState({
-        addSemesters: filteredAry,
-        disable: false
-      });
-    } else {
-      var addedAry = arr.concat(i);
-
-      this.setState({
-        addSemesters: addedAry,
-        disable: false
-      });
-    }
-  };
-
+  
   render() {
-    const { modifyDeptOpen, modifyDeptHandleClose, activesem } = this.props;
+    
+    const {
+      modifyDeptOpen,
+      modifyDeptHandleClose,
+      activesem,
+      addSem,
+      removeSem
+    } = this.props;
 
     const allSemarray = [1, 2, 3, 4, 5, 6, 7, 8];
     const currentSemArray = activesem.map(el => el.semid);
     const remainingSemArray = allSemarray.filter(
       el => !currentSemArray.includes(el)
     );
-
-    console.log(this.state.addSemesters, this.state.removeSemesters);
 
     return (
       <React.Fragment>
@@ -124,7 +84,8 @@ class ModifyDepartmentDialog extends Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText className={this.props.classes.fieldContext}>
-              Add or remove semesters or delete department. Note: Page is set to refresh on closing of this Dialog.
+              Add or remove semesters or delete department.{""} &#9888;Page is
+              set to refresh on closing of this Dialog.
             </DialogContentText>
             <Grid container className={this.props.classes.gridCheckList}>
               <Grid item>
@@ -143,7 +104,7 @@ class ModifyDepartmentDialog extends Component {
                         control={
                           <Checkbox
                             color="default"
-                            onChange={this.removeSem(semid)}
+                            onChange={removeSem(semid)}
                             className={this.props.classes.semCheckbox}
                             value={semid}
                             key={semid}
@@ -163,10 +124,7 @@ class ModifyDepartmentDialog extends Component {
               justify="flex-end"
               direction="row"
             >
-              <Button
-                variant="outlined"
-                className={this.props.classes.button}
-              >
+              <Button variant="outlined" className={this.props.classes.button}>
                 Remove
               </Button>
             </Grid>
@@ -188,7 +146,7 @@ class ModifyDepartmentDialog extends Component {
                         control={
                           <Checkbox
                             color="default"
-                            onChange={this.addSem(e)}
+                            onChange={addSem(e)}
                             className={this.props.classes.semCheckbox}
                             value={e}
                             key={e}
@@ -208,10 +166,7 @@ class ModifyDepartmentDialog extends Component {
               justify="flex-end"
               direction="row"
             >
-              <Button
-                variant="outlined"
-                className={this.props.classes.button}
-              >
+              <Button variant="outlined" className={this.props.classes.button}>
                 Add
               </Button>
             </Grid>

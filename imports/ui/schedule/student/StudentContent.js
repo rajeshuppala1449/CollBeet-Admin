@@ -146,7 +146,10 @@ class StudentContent extends Component {
     semAnchorEl: null,
     semId: "",
     dialogOpen: false,
-    modifyDeptDialogOpen: false
+    modifyDeptDialogOpen: false,
+    disable: true,
+    removeSemesters: [],
+    addSemesters: []
   };
 
   anchorRef = React.createRef(null);
@@ -196,11 +199,53 @@ class StudentContent extends Component {
     });
   };
 
+  removeSem = i => e => {
+    const arr = this.state.removeSemesters;
+
+    if (arr.includes(i)) {
+      var filteredAry = arr.filter(e => e !== i);
+
+      this.setState({
+        removeSemesters: filteredAry,
+        disable: false
+      });
+    } else {
+      var addedAry = arr.concat(i);
+
+      this.setState({
+        removeSemesters: addedAry,
+        disable: false
+      });
+    }
+  };
+
+  addSem = i => e => {
+    const arr = this.state.addSemesters;
+
+    if (arr.includes(i)) {
+      var filteredAry = arr.filter(e => e !== i);
+
+      this.setState({
+        addSemesters: filteredAry,
+        disable: false
+      });
+    } else {
+      var addedAry = arr.concat(i);
+
+      this.setState({
+        addSemesters: addedAry,
+        disable: false
+      });
+    }
+  };
+
   modifyDeptClose = () => {
     this.setState({
-      modifyDeptDialogOpen: false
+      modifyDeptDialogOpen: false,
+      disable: true,
+      removeSemesters: [],
+      addSemesters: []
     });
-    location.reload();
   };
 
   handleLectDelete = lectureId => e => {
@@ -464,7 +509,9 @@ class StudentContent extends Component {
       dialogHandleOpen,
       dialogHandleClose,
       modifyDeptOpen,
-      modifyDeptClose
+      modifyDeptClose,
+      addSem,
+      removeSem
     } = this;
 
     return (
@@ -602,6 +649,8 @@ class StudentContent extends Component {
           modifyDeptOpen={modifyDeptDialogOpen}
           modifyDeptHandleClose={modifyDeptClose}
           activesem={activesem}
+          addSem={addSem}
+          removeSem={removeSem}
         />
         <Box className={this.props.classes.box}>{this.content()}</Box>
       </div>
