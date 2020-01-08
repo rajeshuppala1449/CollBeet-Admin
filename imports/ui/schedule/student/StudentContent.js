@@ -147,9 +147,8 @@ class StudentContent extends Component {
     semId: "",
     dialogOpen: false,
     modifyDeptDialogOpen: false,
-    disable: true,
-    removeSemesters: [],
-    addSemesters: []
+    removeSemestersArr: [],
+    addSemestersArr: []
   };
 
   anchorRef = React.createRef(null);
@@ -200,51 +199,70 @@ class StudentContent extends Component {
   };
 
   removeSem = i => e => {
-    const arr = this.state.removeSemesters;
+    const arr = this.state.removeSemestersArr;
 
     if (arr.includes(i)) {
       var filteredAry = arr.filter(e => e !== i);
 
       this.setState({
-        removeSemesters: filteredAry,
-        disable: false
+        removeSemestersArr: filteredAry,
       });
     } else {
       var addedAry = arr.concat(i);
 
       this.setState({
-        removeSemesters: addedAry,
-        disable: false
+        removeSemestersArr: addedAry,
       });
     }
   };
 
   addSem = i => e => {
-    const arr = this.state.addSemesters;
+    const arr = this.state.addSemestersArr;
 
     if (arr.includes(i)) {
       var filteredAry = arr.filter(e => e !== i);
 
       this.setState({
-        addSemesters: filteredAry,
-        disable: false
+        addSemestersArr: filteredAry,
       });
     } else {
       var addedAry = arr.concat(i);
 
       this.setState({
-        addSemesters: addedAry,
-        disable: false
+        addSemestersArr: addedAry,
       });
     }
+  };
+
+  handleDeptAddSemestersSubmit = event => {
+    event.preventDefault();
+    const { addSemestersArr } = this.state;
+    const { deptCode } = this.props;
+    Meteor.call("student.addDeptSemesters", addSemestersArr,deptCode);
+
+    this.setState({
+      addSemestersArr: []
+    });
+  };
+
+  handleDeptRemoveSemestersSubmit = event => {
+    event.preventDefault();
+    const { removeSemestersArr } = this.state;
+    const { deptCode } = this.props;
+    Meteor.call("student.removeDeptSemesters", deptCode, removeSemestersArr);
+
+    this.setState({
+      removeSemestersArr: []
+    });
+
+    console.log("is it working? yes")
   };
 
   modifyDeptClose = () => {
     this.setState({
       modifyDeptDialogOpen: false,
-      disable: true,
-      removeSemesters: [],
-      addSemesters: []
+      removeSemestersArr: [],
+      addSemestersArr: []
     });
   };
 
@@ -496,7 +514,9 @@ class StudentContent extends Component {
       semAnchorEl,
       semId,
       dialogOpen,
-      modifyDeptDialogOpen
+      modifyDeptDialogOpen,
+      addSemestersArr,
+      removeSemestersArr,
     } = this.state;
     const { dept, path, activesem, deptCode } = this.props;
 
@@ -511,7 +531,9 @@ class StudentContent extends Component {
       modifyDeptOpen,
       modifyDeptClose,
       addSem,
-      removeSem
+      removeSem,
+      handleDeptAddSemestersSubmit,
+      handleDeptRemoveSemestersSubmit
     } = this;
 
     return (
@@ -571,6 +593,7 @@ class StudentContent extends Component {
               </Button>
             </ButtonGroup>
             <Menu
+              key="semester-menu-sc"
               id="simple-menu"
               anchorEl={semAnchorEl}
               keepMounted
@@ -615,6 +638,7 @@ class StudentContent extends Component {
               </Button>
             </ButtonGroup>
             <Menu
+              key="day-menu-sc"
               id="simple-menu"
               anchorEl={dayAnchorEl}
               keepMounted
@@ -651,6 +675,10 @@ class StudentContent extends Component {
           activesem={activesem}
           addSem={addSem}
           removeSem={removeSem}
+          addSemestersArr={addSemestersArr}
+          removeSemestersArr={removeSemestersArr}
+          handleDeptAddSemestersSubmit={handleDeptAddSemestersSubmit}
+          handleDeptRemoveSemestersSubmit={handleDeptRemoveSemestersSubmit}
         />
         <Box className={this.props.classes.box}>{this.content()}</Box>
       </div>

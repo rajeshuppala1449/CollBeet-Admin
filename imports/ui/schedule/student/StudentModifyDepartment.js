@@ -13,6 +13,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import compose from "recompose/compose";
 import { Button } from "@material-ui/core";
 
+import { Meteor } from "meteor/meteor";
+
 const useStyles = theme => ({
   dialogTitle: {
     fontFamily: "Sniglet",
@@ -53,15 +55,16 @@ const useStyles = theme => ({
 });
 
 class ModifyDepartmentDialog extends Component {
-  
+
   render() {
-    
     const {
       modifyDeptOpen,
       modifyDeptHandleClose,
       activesem,
       addSem,
-      removeSem
+      removeSem,
+      handleDeptAddSemestersSubmit,
+      handleDeptRemoveSemestersSubmit
     } = this.props;
 
     const allSemarray = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -84,8 +87,7 @@ class ModifyDepartmentDialog extends Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText className={this.props.classes.fieldContext}>
-              Add or remove semesters or delete department.{""} &#9888;Page is
-              set to refresh on closing of this Dialog.
+              Add or remove semesters or delete department.
             </DialogContentText>
             <Grid container className={this.props.classes.gridCheckList}>
               <Grid item>
@@ -97,8 +99,9 @@ class ModifyDepartmentDialog extends Component {
                 <FormControl
                   component="fieldset"
                   className={this.props.classes.semChecklist}
+                  key="removesemformcontrol"
                 >
-                  <FormGroup row>
+                  <FormGroup key="sem-fg-sm" row>
                     {activesem.map(({ semid }) => (
                       <FormControlLabel
                         control={
@@ -124,7 +127,13 @@ class ModifyDepartmentDialog extends Component {
               justify="flex-end"
               direction="row"
             >
-              <Button variant="outlined" className={this.props.classes.button}>
+              <Button
+                key="remove-button-md"
+                variant="outlined"
+                key="removebutton"
+                className={this.props.classes.button}
+                onClick={handleDeptRemoveSemestersSubmit}
+              >
                 Remove
               </Button>
             </Grid>
@@ -139,8 +148,9 @@ class ModifyDepartmentDialog extends Component {
                 <FormControl
                   component="fieldset"
                   className={this.props.classes.semChecklist}
+                  key="addsemformcontrol"
                 >
-                  <FormGroup row>
+                  <FormGroup key="asem-fg-sm" row>
                     {remainingSemArray.map(e => (
                       <FormControlLabel
                         control={
@@ -166,7 +176,13 @@ class ModifyDepartmentDialog extends Component {
               justify="flex-end"
               direction="row"
             >
-              <Button variant="outlined" className={this.props.classes.button}>
+              <Button
+                key="add-button-md"
+                variant="outlined"
+                key="addbutton"
+                className={this.props.classes.button}
+                onClick={handleDeptAddSemestersSubmit}
+              >
                 Add
               </Button>
             </Grid>

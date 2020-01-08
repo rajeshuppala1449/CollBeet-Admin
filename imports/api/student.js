@@ -115,6 +115,7 @@ Meteor.methods({
       );
     }
   },
+
   "student.removeLecture"(deptCode, semValue, dayid, lectureId) {
     check(deptCode, String);
     check(dayid, Number);
@@ -142,5 +143,34 @@ Meteor.methods({
         arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
       }
     );
+  },
+
+  "student.addDeptSemesters"(addSemestersArr, deptCode) {
+    check(deptCode, String);
+    const dayArr = [1, 2, 3, 4, 5, 6].map(i => {
+      return { dayid: i };
+    });
+
+    const semArr = addSemestersArr.sort().map(i => {
+      return { semid: i, schedule: dayArr };
+    });
+
+    Student.update(
+      {
+        deptcode: deptCode
+      },
+      { $push: { activesem: { $each: semArr } } }
+    );
+  },
+
+  "student.removeDeptSemesters" (deptCode, removeSemestersArr) {
+    check(deptCode, String);
+
+    removeSemestersArr.forEach(i => Student.update(
+      {
+        deptcode: deptCode
+      },
+      { $pull: {activesem: { semid: i } } }
+    ))
   }
 });

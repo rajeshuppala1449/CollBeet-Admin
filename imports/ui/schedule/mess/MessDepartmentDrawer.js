@@ -126,8 +126,6 @@ class MessDepartmentDrawer extends Component {
       dayid,
       initial
     });
-
-    console.log(this.state.day, this.state.dayid, this.state.initial)
   };
 
   render() {

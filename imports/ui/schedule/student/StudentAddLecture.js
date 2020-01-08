@@ -423,6 +423,7 @@ class AddLectureDialog extends Component {
                   </Button>
                 </ButtonGroup>
                 <Menu
+                  key="sem-menu-al"
                   id="simple-menu"
                   anchorEl={semAnchorEl}
                   keepMounted
@@ -472,6 +473,7 @@ class AddLectureDialog extends Component {
                   </Button>
                 </ButtonGroup>
                 <Menu
+                  key="day-menu-al"
                   id="simple-menu"
                   anchorEl={dayAnchorEl}
                   keepMounted
