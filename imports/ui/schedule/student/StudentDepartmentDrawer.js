@@ -242,6 +242,7 @@ class StudentDepartmentDrawer extends Component {
                 path={path}
                 deptCode={deptcode}
                 activesem={active_sem_array}
+                studentSchedule={student_schedule}
               />
             ) : (
               <div id="notfound">

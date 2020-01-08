@@ -256,6 +256,23 @@ class StudentContent extends Component {
     });
   };
 
+  handleDeleteDepartment = event => {
+    event.preventDefault();
+    const { deptCode, studentSchedule } = this.props;
+
+    const taskId = studentSchedule
+      .filter(function(i) {
+        return i.deptcode === deptCode;
+      })
+      .map(function(i) {
+        return i._id;
+      })[0];
+
+    Meteor.call("student.removeDepartment", taskId);
+
+    console.log("deptDelete");
+  };
+
   modifyDeptClose = () => {
     this.setState({
       modifyDeptDialogOpen: false,
@@ -531,7 +548,8 @@ class StudentContent extends Component {
       addSem,
       removeSem,
       handleDeptAddSemestersSubmit,
-      handleDeptRemoveSemestersSubmit
+      handleDeptRemoveSemestersSubmit,
+      handleDeleteDepartment
     } = this;
 
     return (
@@ -668,6 +686,7 @@ class StudentContent extends Component {
           activesem={activesem}
         />
         <ModifyDepartmentDialog
+          dept={dept}
           modifyDeptOpen={modifyDeptDialogOpen}
           modifyDeptHandleClose={modifyDeptClose}
           activesem={activesem}
@@ -677,6 +696,7 @@ class StudentContent extends Component {
           removeSemestersArr={removeSemestersArr}
           handleDeptAddSemestersSubmit={handleDeptAddSemestersSubmit}
           handleDeptRemoveSemestersSubmit={handleDeptRemoveSemestersSubmit}
+          handleDeleteDepartment={handleDeleteDepartment}
         />
         <Box className={this.props.classes.box}>{this.content()}</Box>
       </div>

@@ -163,14 +163,23 @@ Meteor.methods({
     );
   },
 
-  "student.removeDeptSemesters" (deptCode, removeSemestersArr) {
+  "student.removeDeptSemesters"(deptCode, removeSemestersArr) {
     check(deptCode, String);
 
-    removeSemestersArr.forEach(i => Student.update(
-      {
-        deptcode: deptCode
-      },
-      { $pull: {activesem: { semid: i } } }
-    ))
+    removeSemestersArr.forEach(i =>
+      Student.update(
+        {
+          deptcode: deptCode
+        },
+        { $pull: { activesem: { semid: i } } }
+      )
+    );
+  },
+
+  "student.removeDepartment"(taskId) {
+    check(taskId, String);
+    Student.remove(taskId);
+
+    location.reload();
   }
 });
