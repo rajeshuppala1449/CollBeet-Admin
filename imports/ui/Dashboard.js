@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import StudentDepartmentDrawer from "./schedule/student/StudentDepartmentDrawer";
 import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
+import AnnouncementWindow from "./announcements/AnnouncementsMain";
 
 const useStyles = theme => ({
   root: {
@@ -211,11 +212,11 @@ class Dashboard extends Component {
                 </ListItemIcon>
                 <ListItemText primary="Mess Schedule" />
               </ListItem>
-              <ListItem button component={Link} to="#">
+              <ListItem button component={Link} to="/announcements">
                 <ListItemIcon>
                   <WebIcon />
                 </ListItemIcon>
-                <ListItemText primary="News Section" />
+                <ListItemText primary="Announcements" />
               </ListItem>
               <ListItem button component={Link} to="#">
                 <ListItemIcon>
@@ -236,6 +237,7 @@ class Dashboard extends Component {
             <Switch>
               <Route path="/" exact component={StudentDepartmentDrawer} />
               <Route path="/mess" component={MessDepartmentDrawer} />
+              <Route path="/announcements" component={AnnouncementWindow} />
             </Switch>
           </main>
         </div>
