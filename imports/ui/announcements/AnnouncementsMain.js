@@ -36,8 +36,35 @@ const useStyles = theme => ({
     marginLeft: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
+  },
+  txt: {
+    root: {
+      "& input:valid + fieldset": {
+        borderColor: "#e65100",
+        borderWidth: 2
+      }
+    }
   }
 });
+
+const CssTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "#e65100"
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#e65100"
+    },
+    "& .MuiOutlinedInput-root": {
+      "&:hover fieldset": {
+        borderColor: "#ffcb05",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#e65100"
+      }
+    }
+  }
+})(TextField);
 
 class AnnouncementWindow extends Component {
   render() {
@@ -56,11 +83,11 @@ class AnnouncementWindow extends Component {
         <footer className={this.props.classes.footer}>
           <Grid container className={this.props.classes.grid}>
             <Grid item className={this.props.classes.griditem}>
-              <TextField
-                id="outlined-multiline-static"
+              <CssTextField
                 label="Enter Announcements Here"
                 variant="outlined"
                 fullWidth
+                id="validation-outlined-input"
               />
             </Grid>
             <Grid item>
