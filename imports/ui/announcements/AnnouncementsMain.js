@@ -36,14 +36,6 @@ const useStyles = theme => ({
     marginLeft: theme.spacing(1),
     fontFamily: "Sniglet",
     color: "#e65100"
-  },
-  txt: {
-    root: {
-      "& input:valid + fieldset": {
-        borderColor: "#e65100",
-        borderWidth: 2
-      }
-    }
   }
 });
 
@@ -57,7 +49,7 @@ const CssTextField = withStyles({
     },
     "& .MuiOutlinedInput-root": {
       "&:hover fieldset": {
-        borderColor: "#ffcb05",
+        borderColor: "#ffcb05"
       },
       "&.Mui-focused fieldset": {
         borderColor: "#e65100"
