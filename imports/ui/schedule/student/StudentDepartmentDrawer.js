@@ -109,7 +109,6 @@ class StudentDepartmentDrawer extends Component {
   state = {
     deptAnchorEl: null,
     open: false,
-    disable: true,
     dept: "",
     path: "",
     deptcode: "",
@@ -134,15 +133,13 @@ class StudentDepartmentDrawer extends Component {
       var filteredAry = arr.filter(e => e !== i);
 
       this.setState({
-        semesters: filteredAry,
-        disable: false
+        semesters: filteredAry
       });
     } else {
       var addedAry = arr.concat(i);
 
       this.setState({
-        semesters: addedAry,
-        disable: false
+        semesters: addedAry
       });
     }
   };
@@ -151,8 +148,7 @@ class StudentDepartmentDrawer extends Component {
     this.setState({
       open: false,
       menuDept: "",
-      semesters: [],
-      disable: true
+      semesters: []
     });
   };
 
@@ -187,32 +183,13 @@ class StudentDepartmentDrawer extends Component {
     this.setState({
       open: false,
       menuDept: "",
-      semesters: [],
-      disable: true
+      semesters: []
     });
   };
 
-  render() {
-    const {
-      handleClose,
-      handleClickOpen,
-      changeDepartment,
-      deptHandleClick,
-      deptHandleClose,
-      anchorRef,
-      handleSubmit
-    } = this;
-    const {
-      open,
-      dept,
-      path,
-      deptcode,
-      deptAnchorEl,
-      menuDept,
-      menuDeptCode,
-      disable
-    } = this.state;
+  addButton() {
     const { student_schedule } = this.props;
+    const { menuDept, menuDeptCode, semesters } = this.state;
 
     const menu_deptId = student_schedule
       .filter(function(d) {
@@ -221,6 +198,62 @@ class StudentDepartmentDrawer extends Component {
       .map(function(i) {
         return i._id;
       })[0];
+
+    if (!menuDeptCode) {
+      return (
+        <Button
+          variant="outlined"
+          className={this.props.classes.submitButton}
+          disabled={true}
+        >
+          Please Select Department
+        </Button>
+      );
+    } else if (menu_deptId) {
+      return (
+        <Button
+          variant="outlined"
+          className={this.props.classes.submitButton}
+          disabled={true}
+        >
+          Department Already Exists
+        </Button>
+      );
+    } else if (semesters.length == 0) {
+      return (
+        <Button
+          variant="outlined"
+          className={this.props.classes.submitButton}
+          disabled={true}
+        >
+          Please Select Semesters
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          variant="outlined"
+          className={this.props.classes.submitButton}
+          onClick={this.handleSubmit}
+        >
+          Add
+        </Button>
+      );
+    }
+  }
+
+  render() {
+    const {
+      handleClose,
+      handleClickOpen,
+      changeDepartment,
+      deptHandleClick,
+      deptHandleClose,
+      anchorRef
+    } = this;
+    const { open, dept, path, deptcode, deptAnchorEl, menuDept } = this.state;
+
+    const { student_schedule } = this.props;
 
     const active_sem_array = student_schedule
       .filter(function(d) {
@@ -440,26 +473,7 @@ class StudentDepartmentDrawer extends Component {
                   </Grid>
                 </Grid>
               </DialogContent>
-              <DialogActions>
-                {!menu_deptId ? (
-                  <Button
-                    variant="outlined"
-                    className={this.props.classes.submitButton}
-                    onClick={handleSubmit}
-                    disabled={disable}
-                  >
-                    Add
-                  </Button>
-                ) : (
-                  <Button
-                    variant="outlined"
-                    className={this.props.classes.submitButton}
-                    disabled
-                  >
-                    Department Already Exists
-                  </Button>
-                )}
-              </DialogActions>
+              <DialogActions>{this.addButton()}</DialogActions>
             </Dialog>
           </main>
 
