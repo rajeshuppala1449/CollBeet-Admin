@@ -72,6 +72,43 @@
   font-weight: 400;
 }
 
+#notfound3 {
+  position: relative;
+  height: 76vh;
+}
+
+#notfound3 .notfound3 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound3 {
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  line-height: 1;
+}
+
+.notfound3 h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 33px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  color: #e65100;
+}
+
+.notfound3 p {
+  font-family: "Sniglet";
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+}
+
 .bee {
   width: 5vh;
   height: 7.5vh;
@@ -92,7 +129,8 @@
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   margin: 0 auto;
 }
-.bee__oval--top:after, .bee__oval--top:before {
+.bee__oval--top:after,
+.bee__oval--top:before {
   content: "";
   position: absolute;
   top: -10%;
@@ -104,17 +142,17 @@
 }
 .bee__oval--top:after {
   -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  transform: rotate(-45deg);
   right: -15%;
 }
 .bee__oval--top:before {
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
   left: -15%;
 }
 .bee__oval--bottom {
   -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
   margin-top: 20%;
   position: relative;
 }
@@ -124,7 +162,7 @@
   left: 50%;
   bottom: 5%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 1.5vh solid transparent;
@@ -137,45 +175,89 @@
   width: 60%;
   height: 70%;
   background-color: #ffcb05;
-  border-radius: 50%  50%  50%  50%  / 65%   65%   35%  35%;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
 }
 .bee__wing--left {
   left: -25%;
   -webkit-transform: rotate(35deg) rotateX(0);
-          transform: rotate(35deg) rotateX(0);
-  -webkit-animation: fly-l .5s infinite alternate;
-          animation: fly-l .5s infinite alternate;
+  transform: rotate(35deg) rotateX(0);
+  -webkit-animation: fly-l 0.5s infinite alternate;
+  animation: fly-l 0.5s infinite alternate;
 }
 .bee__wing--right {
   right: -25%;
   -webkit-transform: rotate(-35deg);
-          transform: rotate(-35deg);
-  -webkit-animation: fly-r .5s infinite alternate;
-          animation: fly-r .5s infinite alternate;
+  transform: rotate(-35deg);
+  -webkit-animation: fly-r 0.5s infinite alternate;
+  animation: fly-r 0.5s infinite alternate;
 }
 
 @keyframes fly-l {
   100% {
     -webkit-transform: rotate(30deg) rotateX(15deg);
-            transform: rotate(30deg) rotateX(15deg);
+    transform: rotate(30deg) rotateX(15deg);
   }
 }
 
 @keyframes fly-l {
   100% {
     -webkit-transform: rotate(30deg) rotateX(15deg);
-            transform: rotate(30deg) rotateX(15deg);
+    transform: rotate(30deg) rotateX(15deg);
   }
 }
 @-webkit-keyframes fly-r {
   100% {
     -webkit-transform: rotate(-30deg) rotateX(-15deg);
-            transform: rotate(-30deg) rotateX(-15deg);
+    transform: rotate(-30deg) rotateX(-15deg);
   }
 }
 @keyframes fly-r {
   100% {
     -webkit-transform: rotate(-30deg) rotateX(-15deg);
-            transform: rotate(-30deg) rotateX(-15deg);
+    transform: rotate(-30deg) rotateX(-15deg);
   }
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.message .timestamp {
+  display: flex;
+  justify-content: center;
+  color: #999;
+  font-weight: 600;
+  font-size: 12px;
+  margin: 10px 0px;
+  text-transform: uppercase;
+}
+
+.message .bubble-container {
+  font-size: 14px;
+  display: flex;
+  color: #000;
+  font-family: "Sniglet";
+}
+
+.message.start .bubble-container .bubble {
+  /* margin-top: 10px; */
+  border-top-left-radius: 20px;
+}
+
+.message.end .bubble-container .bubble {
+  border-bottom-left-radius: 20px;
+  /* margin-bottom: 10px; */
+}
+
+.message .bubble-container .bubble {
+  margin: 1px 0px;
+  background: #feab35;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 75%;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
