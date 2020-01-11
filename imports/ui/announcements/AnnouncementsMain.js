@@ -150,7 +150,12 @@ class AnnouncementWindow extends Component {
       return (
         <div>
           {data.map(({ _id, message, time }) => (
-            <MessageBubble key={_id} message={message} timestamp={time} data={data} />
+            <MessageBubble
+              key={_id}
+              message={message}
+              timestamp={time}
+              data={data}
+            />
           ))}
         </div>
       );
