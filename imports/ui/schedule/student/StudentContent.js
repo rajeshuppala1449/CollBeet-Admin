@@ -327,7 +327,7 @@ class StudentContent extends Component {
                   <div className="bee__oval bee__oval--bottom"></div>
                 </div>
                 <h2>Lectures</h2>
-                <p>Please Add Lectures.</p>
+                <p>Please Add Lectures. Click on "+ Add A Lecture" button to add lectures.</p>
               </div>
             </div>
           );
@@ -498,7 +498,7 @@ class StudentContent extends Component {
               <div className="bee__oval bee__oval--bottom"></div>
             </div>
             <h2>Lectures</h2>
-            <p>Please Add Lectures.</p>
+            <p>Please Add Lectures. Click on "+ Add A Lecture" button to add lectures.</p>
           </div>
         </div>
       );

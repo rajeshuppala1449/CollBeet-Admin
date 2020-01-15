@@ -11,10 +11,13 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import LocationForm from "./LocationsForm";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import HelpIcon from "@material-ui/icons/Help";
+
+import LocationForm from "./LocationsForm";
+import LocationsFormStaffroom from "./LocationsFormStaffroom";
+import LocationsFormLab from "./LocationsFormLab";
 
 const useStyles = theme => ({
   rootAvatar: {
@@ -283,7 +286,7 @@ class LocationWindow extends Component {
               </Grid>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <LocationForm responseid="lab-lf" />
+              <LocationsFormLab />
             </ExpansionPanelDetails>
           </ExpansionPanel>
 
@@ -317,7 +320,7 @@ class LocationWindow extends Component {
               </Grid>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <LocationForm responseid="staff-room" />
+              <LocationsFormStaffroom />
             </ExpansionPanelDetails>
           </ExpansionPanel>
 

@@ -22,7 +22,7 @@ Meteor.methods({
     var taskId = Locations.find({})
       .fetch()
       .filter(function(res) {
-        return res.responseid === responseid
+        return res.responseid === responseid;
       })
       .map(function(i) {
         return i._id;
@@ -31,7 +31,7 @@ Meteor.methods({
     if (taskId) {
       Locations.update(
         { _id: taskId },
-        {$set: {"responsetext":responsetext}}
+        { $set: { responsetext: responsetext } }
       );
     } else {
       Locations.insert({
@@ -41,8 +41,43 @@ Meteor.methods({
     }
   },
 
-  'locations.removeresponse'(taskId) {
+  "locations.removeresponse"(taskId) {
     check(taskId, String);
     Locations.remove(taskId);
   },
+
+  "locations.addstaffroomlocation"(
+    responseText,
+    menuDeptCode,
+    menuDept
+  ) {
+    check(responseText, String);
+    check(menuDeptCode, String);
+    check(menuDept, String);
+
+    Locations.insert({
+      responsetext: responseText,
+      deptcode: menuDeptCode,
+      department: menuDept,
+      staffroom: true
+    });
+  },
+
+
+  "locations.addlablocation"(
+    responseText,
+    menuDeptCode,
+    menuDept
+  ) {
+    check(responseText, String);
+    check(menuDeptCode, String);
+    check(menuDept, String);
+
+    Locations.insert({
+      responsetext: responseText,
+      deptcode: menuDeptCode,
+      department: menuDept,
+      lab: true
+    });
+  }
 });
