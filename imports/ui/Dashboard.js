@@ -27,6 +27,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import StudentDepartmentDrawer from "./schedule/student/StudentDepartmentDrawer";
 import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
 import AnnouncementWindow from "./announcements/AnnouncementsMain";
+import LocationWindow from "./locations/LocationsMain";
+import InfoWindow from "./info/InfoMain"
 
 const useStyles = theme => ({
   root: {
@@ -218,13 +220,13 @@ class Dashboard extends Component {
                 </ListItemIcon>
                 <ListItemText primary="Announcements" />
               </ListItem>
-              <ListItem button component={Link} to="#">
+              <ListItem button component={Link} to="/locations">
                 <ListItemIcon>
                   <NavigationIcon />
                 </ListItemIcon>
                 <ListItemText primary="Locations" />
               </ListItem>
-              <ListItem button component={Link} to="#">
+              <ListItem button component={Link} to="/info">
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
@@ -238,6 +240,8 @@ class Dashboard extends Component {
               <Route path="/" exact component={StudentDepartmentDrawer} />
               <Route path="/mess" component={MessDepartmentDrawer} />
               <Route path="/announcements" component={AnnouncementWindow} />
+              <Route path="/locations" component={LocationWindow} />
+              <Route path="/info" component={InfoWindow} />
             </Switch>
           </main>
         </div>

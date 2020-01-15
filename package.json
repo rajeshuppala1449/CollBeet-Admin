@@ -17,6 +17,7 @@
     "bcrypt": "^3.0.7",
     "classnames": "^2.2.6",
     "core-js": "^3.4.7",
+    "jquery": "^3.4.1",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
     "react": "^16.12.0",

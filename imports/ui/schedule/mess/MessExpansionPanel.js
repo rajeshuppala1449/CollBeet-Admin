@@ -34,6 +34,7 @@ class MessExpansionPanel extends Component {
     const { day, dayid } = this.props;
     return (
       <div className={this.props.classes.root}>
+        
         <ExpansionPanel>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -49,6 +50,7 @@ class MessExpansionPanel extends Component {
             <MessForm day={day} dayid={dayid} type="breakfast" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
+
         <ExpansionPanel>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -66,6 +68,7 @@ class MessExpansionPanel extends Component {
             <MessForm day={day} dayid={dayid} type="lunch" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
+
         <ExpansionPanel>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -83,6 +86,7 @@ class MessExpansionPanel extends Component {
             <MessForm day={day} dayid={dayid} type="snack" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
+
         <ExpansionPanel>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -98,6 +102,7 @@ class MessExpansionPanel extends Component {
             <MessForm day={day} dayid={dayid} type="dinner" />
           </ExpansionPanelDetails>
         </ExpansionPanel>
+
       </div>
     );
   }
