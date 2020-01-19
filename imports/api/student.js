@@ -180,6 +180,6 @@ Meteor.methods({
     check(taskId, String);
     Student.remove(taskId);
 
-    location.reload();
+    window.location.reload();
   }
 });

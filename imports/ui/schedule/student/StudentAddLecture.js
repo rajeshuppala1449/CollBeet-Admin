@@ -227,7 +227,7 @@ class AddLectureDialog extends Component {
       teacherName,
       startTime,
       endTime,
-      breakValue
+      breakValue,
     );
   };
 

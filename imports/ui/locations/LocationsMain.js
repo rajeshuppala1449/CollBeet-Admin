@@ -70,33 +70,10 @@ const useStyles = theme => ({
     fontFamily: "Sniglet",
     fontSize: 18
   },
-  grid: {
-    flex: 1,
-    alignItems: "center"
-  },
   helpbutton: {
     color: "#e65100"
   }
 });
-
-const CssTextField = withStyles({
-  root: {
-    "& label.Mui-focused": {
-      color: "#e65100"
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#e65100"
-    },
-    "& .MuiOutlinedInput-root": {
-      "&:hover fieldset": {
-        borderColor: "#ffcb05"
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#e65100"
-      }
-    }
-  }
-})(TextField);
 
 class LocationWindow extends Component {
   render() {
@@ -129,7 +106,75 @@ class LocationWindow extends Component {
               <Grid container className={this.props.classes.grid}>
                 <Grid item>
                   <Typography className={this.props.classes.heading}>
-                    Where can I find Principal Office?
+                    Where can I find this Staffroom?
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <LocationsFormStaffroom />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    Where can I find this Lab?
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <LocationsFormLab />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    Where can I find Principal's Office?
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -265,7 +310,7 @@ class LocationWindow extends Component {
               <Grid container className={this.props.classes.grid}>
                 <Grid item>
                   <Typography className={this.props.classes.heading}>
-                    Where can I find this Lab?
+                    Where can I find Auditorium?
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -286,41 +331,7 @@ class LocationWindow extends Component {
               </Grid>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <LocationsFormLab />
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-
-          <ExpansionPanel>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Grid container className={this.props.classes.grid}>
-                <Grid item>
-                  <Typography className={this.props.classes.heading}>
-                    Where can I find this Staffroom?
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Tooltip
-                    disableFocusListener
-                    disableTouchListener
-                    placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
-                  >
-                    <IconButton
-                      aria-label="delete"
-                      className={this.props.classes.helpbutton}
-                    >
-                      <HelpIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Grid>
-              </Grid>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <LocationsFormStaffroom />
+              <LocationForm responseid="audit-orium" />
             </ExpansionPanelDetails>
           </ExpansionPanel>
 

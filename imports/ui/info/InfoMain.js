@@ -6,6 +6,13 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import SchoolIcon from '@material-ui/icons/School';
 import Divider from "@material-ui/core/Divider"
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import HelpIcon from "@material-ui/icons/Help";
 
 const useStyles = theme => ({
   rootAvatar: {
@@ -33,6 +40,16 @@ const useStyles = theme => ({
     color: "#000000",
     width: 50,
     height: 50
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+    color: "#000000",
+    fontFamily: "Sniglet",
+    fontSize: 18
+  },
+  helpbutton: {
+    color: "#e65100"
   }
 });
 
@@ -56,6 +73,44 @@ class InfoWindow extends Component {
           </Grid>
         </Grid>
         <Divider className={this.props.classes.rootAvatar} />
+
+        <div className={this.props.classes.rootAvatar}>
+
+        <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    Where can I find Principal's Office?
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              {/* <LocationForm responseid="principal-office" /> */}
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+        </div>
       </div>
     );
   }
