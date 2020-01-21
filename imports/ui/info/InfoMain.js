@@ -4,8 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import SchoolIcon from '@material-ui/icons/School';
-import Divider from "@material-ui/core/Divider"
+import SchoolIcon from "@material-ui/icons/School";
+import Divider from "@material-ui/core/Divider";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -13,6 +13,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import HelpIcon from "@material-ui/icons/Help";
+
+import InfoForm from "./InfoForm";
 
 const useStyles = theme => ({
   rootAvatar: {
@@ -75,8 +77,7 @@ class InfoWindow extends Component {
         <Divider className={this.props.classes.rootAvatar} />
 
         <div className={this.props.classes.rootAvatar}>
-
-        <ExpansionPanel>
+          <ExpansionPanel>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -85,7 +86,7 @@ class InfoWindow extends Component {
               <Grid container className={this.props.classes.grid}>
                 <Grid item>
                   <Typography className={this.props.classes.heading}>
-                    Where can I find Principal's Office?
+                    What's our college name?
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -106,10 +107,111 @@ class InfoWindow extends Component {
               </Grid>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              {/* <LocationForm responseid="principal-office" /> */}
+              <InfoForm responseid="college-name" />
             </ExpansionPanelDetails>
           </ExpansionPanel>
 
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    What's our college address?
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <InfoForm responseid="college-address" />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    What's our college website?
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <InfoForm responseid="college-website" />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    What's our college phone number?
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <InfoForm responseid="college-phoneno" />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
         </div>
       </div>
     );
