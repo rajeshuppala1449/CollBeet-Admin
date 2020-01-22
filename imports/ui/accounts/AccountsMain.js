@@ -8,7 +8,9 @@ import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+
 import { Meteor } from "meteor/meteor";
+import compose from "recompose/compose";
 
 function Copyright() {
   return (
@@ -104,6 +106,66 @@ class SignInSide extends Component {
     Meteor.loginWithPassword(username, password);
   };
 
+  submitButton() {
+    const { username, password } = this.state;
+    const { accounts_list } = this.props;
+    console.log(Meteor.users.find());
+
+    if (accounts_list) {
+      if (!username || !password) {
+        return (
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            className={this.props.classes.submit}
+            disabled
+          >
+            Register
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            className={this.props.classes.submit}
+            onClick={this.registerUser()}
+          >
+            Register
+          </Button>
+        );
+      }
+    } else {
+      if (!username || !password) {
+        return (
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            className={this.props.classes.submit}
+            disabled
+          >
+            Login
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            className={this.props.classes.submit}
+            onClick={this.loginUser()}
+          >
+            Login
+          </Button>
+        );
+      }
+    }
+  }
+
   render() {
     const classes = this.props.classes;
 
@@ -139,6 +201,7 @@ class SignInSide extends Component {
               autoComplete="username"
               autoFocus
               onChange={this.changeTexfieldData("username")}
+              value={this.state.username}
             />
             <CssTextField
               variant="outlined"
@@ -150,16 +213,9 @@ class SignInSide extends Component {
               id="password"
               autoComplete="current-password"
               onChange={this.changeTexfieldData("password")}
+              value={this.state.password}
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              className={classes.submit}
-              onClick={this.loginUser()}
-            >
-              Register
-            </Button>
+            {this.submitButton()}
           </div>
         </div>
         <Box mt={8}>
@@ -170,4 +226,4 @@ class SignInSide extends Component {
   }
 }
 
-export default withStyles(useStyles)(SignInSide);
+export default compose(withStyles(useStyles))(SignInSide);
