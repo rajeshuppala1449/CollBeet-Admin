@@ -74,7 +74,7 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-class SignInSide extends Component {
+class UserLogin extends Component {
   state = {
     username: "",
     password: ""
@@ -84,17 +84,6 @@ class SignInSide extends Component {
     e.preventDefault();
     this.setState({
       [input]: e.target.value
-    });
-  };
-
-  registerUser = () => e => {
-    e.preventDefault();
-
-    const { username, password } = this.state;
-
-    Accounts.createUser({
-      username: username,
-      password: password
     });
   };
 
@@ -108,61 +97,31 @@ class SignInSide extends Component {
 
   submitButton() {
     const { username, password } = this.state;
-    const { accounts_list } = this.props;
-    console.log(Meteor.users.find());
 
-    if (accounts_list) {
-      if (!username || !password) {
-        return (
-          <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            className={this.props.classes.submit}
-            disabled
-          >
-            Register
-          </Button>
-        );
-      } else {
-        return (
-          <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            className={this.props.classes.submit}
-            onClick={this.registerUser()}
-          >
-            Register
-          </Button>
-        );
-      }
+    if (!username || !password) {
+      return (
+        <Button
+          type="submit"
+          fullWidth
+          variant="outlined"
+          className={this.props.classes.submit}
+          disabled
+        >
+          Login
+        </Button>
+      );
     } else {
-      if (!username || !password) {
-        return (
-          <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            className={this.props.classes.submit}
-            disabled
-          >
-            Login
-          </Button>
-        );
-      } else {
-        return (
-          <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            className={this.props.classes.submit}
-            onClick={this.loginUser()}
-          >
-            Login
-          </Button>
-        );
-      }
+      return (
+        <Button
+          type="submit"
+          fullWidth
+          variant="outlined"
+          className={this.props.classes.submit}
+          onClick={this.loginUser()}
+        >
+          Login
+        </Button>
+      );
     }
   }
 
@@ -203,6 +162,7 @@ class SignInSide extends Component {
               onChange={this.changeTexfieldData("username")}
               value={this.state.username}
             />
+
             <CssTextField
               variant="outlined"
               margin="normal"
@@ -215,6 +175,7 @@ class SignInSide extends Component {
               onChange={this.changeTexfieldData("password")}
               value={this.state.password}
             />
+
             {this.submitButton()}
           </div>
         </div>
@@ -226,4 +187,4 @@ class SignInSide extends Component {
   }
 }
 
-export default compose(withStyles(useStyles))(SignInSide);
+export default compose(withStyles(useStyles))(UserLogin);

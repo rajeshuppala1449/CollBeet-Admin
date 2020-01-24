@@ -3,10 +3,8 @@ import { Meteor } from "meteor/meteor";
 import { render } from "react-dom";
 
 import "../imports/startup/accounts-config.js";
-import Dashboard from "../imports/ui/Dashboard";
-import AccountsMain from "../imports/ui/accounts/AccountsMain"
+import App from "../imports/ui/App"
 
 Meteor.startup(() => {
-//render(<Dashboard />, document.getElementById("render-target"));
-render(<AccountsMain />, document.getElementById("render-target"));
+render(<App />, document.getElementById("render-target"));
 });

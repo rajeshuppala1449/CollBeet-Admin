@@ -29,6 +29,7 @@ import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
 import AnnouncementWindow from "./announcements/AnnouncementsMain";
 import LocationWindow from "./locations/LocationsMain";
 import InfoWindow from "./info/InfoMain"
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = theme => ({
   root: {
@@ -130,6 +131,12 @@ class Dashboard extends Component {
     });
   };
 
+  logoutUser = () => e => {
+    e.preventDefault();
+
+    Meteor.logout();
+  };
+
   render() {
     const { open } = this.state;
     const { handleDrawerOpen, handleDrawerClose } = this;
@@ -165,8 +172,8 @@ class Dashboard extends Component {
               >
                 CollBeet
               </Typography>
-              <Button color="inherit" className={this.props.classes.userButton}>
-                Login
+              <Button color="inherit" className={this.props.classes.userButton} onClick={this.logoutUser()}>
+                <ExitToAppIcon />
               </Button>
             </Toolbar>
           </AppBar>
