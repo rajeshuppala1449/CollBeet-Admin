@@ -131,62 +131,60 @@ class UserRegister extends Component {
     const classes = this.props.classes;
 
     return (
-      <div>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar
-              variant="square"
-              alt="Logo"
-              src="./logo.png"
-              className={classes.avatar}
-            ></Avatar>
-            <Typography
-              noWrap
-              className={this.props.classes.title}
-              component="h1"
-              variant="h5"
-            >
-              CollBeet
-            </Typography>
-            <Typography noWrap className={this.props.classes.subtitle}>
-              Admin
-            </Typography>
-            <div className={classes.form}>
-              <CssTextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                onChange={this.changeTexfieldData("username")}
-                value={this.state.username}
-              />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar
+            variant="square"
+            alt="Logo"
+            src="./logo.png"
+            className={classes.avatar}
+          ></Avatar>
+          <Typography
+            noWrap
+            className={this.props.classes.title}
+            component="h1"
+            variant="h5"
+          >
+            CollBeet
+          </Typography>
+          <Typography noWrap className={this.props.classes.subtitle}>
+            Admin
+          </Typography>
+          <div className={classes.form}>
+            <CssTextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              onChange={this.changeTexfieldData("username")}
+              value={this.state.username}
+            />
 
-              <CssTextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={this.changeTexfieldData("password")}
-                value={this.state.password}
-              />
+            <CssTextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={this.changeTexfieldData("password")}
+              value={this.state.password}
+            />
 
-              {this.submitButton()}
-            </div>
+            {this.submitButton()}
           </div>
-          <Box mt={8}>
-            <Copyright />
-          </Box>
-        </Container>
-      </div>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
     );
   }
 }

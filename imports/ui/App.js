@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import compose from "recompose/compose";
+
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
+import { Random } from "meteor/random";
 
 import Dashboard from "./Dashboard";
 import UserLogin from "./accounts/AccountsLogin";
-import UserRegister from "./accounts/AccountsRegister";
+import AccountsLogin from "./accounts/AccountsLogin";
+//import UserRegister from "./accounts/AccountsRegister";
 
 class App extends Component {
   mountPage() {
@@ -14,9 +17,16 @@ class App extends Component {
     if (userid) {
       return <Dashboard />;
     } else {
-      if (Meteor.users.find().count() == 0) {
-        return <UserRegister />;
-      }
+      Meteor.startup(() => {
+        if (!Meteor.users.find().count()) {
+          const user = {
+            username: "admin",
+            password: "admin"
+          };
+
+          Accounts.createUser(user);
+        }
+      });
       return <UserLogin />;
     }
   }
