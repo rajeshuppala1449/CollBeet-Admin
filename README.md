@@ -8,6 +8,10 @@
 
 Project is in early phase of development but you can still start developing. Here are the instructions:
 
+## Deploy to Cloud:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Clone the Repository:
 
   `git clone https://github.com/kalol-institute-of-technology/CollBeet-Admin`
