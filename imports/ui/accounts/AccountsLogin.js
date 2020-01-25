@@ -12,7 +12,7 @@ import Slide from "@material-ui/core/Slide";
 
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-import WarningIcon from '@material-ui/icons/Warning';
+import WarningIcon from "@material-ui/icons/Warning";
 
 import { Meteor } from "meteor/meteor";
 import compose from "recompose/compose";
@@ -109,6 +109,26 @@ class UserLogin extends Component {
     });
   };
 
+  enterPressed = event => {
+    var code = event.keyCode || event.which;
+    const { username, password } = this.state;
+    const currentComponent = this;
+
+    if (code === 13) {
+      if (username && password) {
+        event.preventDefault();
+
+        Meteor.loginWithPassword(username, password, function(err) {
+          if (err) {
+            currentComponent.setState({
+              open: true
+            });
+          }
+        });
+      }
+    }
+  };
+
   loginUser = () => e => {
     e.preventDefault();
 
@@ -190,6 +210,7 @@ class UserLogin extends Component {
               autoFocus
               onChange={this.changeTexfieldData("username")}
               value={this.state.username}
+              onKeyPress={this.enterPressed.bind(this)}
             />
 
             <CssTextField
@@ -203,6 +224,7 @@ class UserLogin extends Component {
               autoComplete="current-password"
               onChange={this.changeTexfieldData("password")}
               value={this.state.password}
+              onKeyPress={this.enterPressed.bind(this)}
             />
 
             {this.submitButton()}

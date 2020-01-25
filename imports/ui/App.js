@@ -3,12 +3,9 @@ import compose from "recompose/compose";
 
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
-// import { Random } from "meteor/random";
 
 import Dashboard from "./Dashboard";
 import UserLogin from "./accounts/AccountsLogin";
-// import AccountsLogin from "./accounts/AccountsLogin";
-// import UserRegister from "./accounts/AccountsRegister";
 
 class App extends Component {
   mountPage() {
