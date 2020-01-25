@@ -21,6 +21,10 @@ Meteor.methods({
     check(menuPath, String);
     check(menuDeptCode, String);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     const dayArr = [1, 2, 3, 4, 5, 6].map(i => {
       return { dayid: i };
     });
@@ -56,6 +60,10 @@ Meteor.methods({
       check(endTime, String);
       check(deptCode, String);
 
+      if (!this.userId) {
+        throw new Meteor.Error("not-authorized");
+      }
+
       Student.rawCollection().update(
         {
           deptcode: deptCode,
@@ -88,6 +96,10 @@ Meteor.methods({
       check(startTime, String);
       check(endTime, String);
       check(deptCode, String);
+
+      if (!this.userId) {
+        throw new Meteor.Error("not-authorized");
+      }
 
       Student.rawCollection().update(
         {
@@ -122,6 +134,10 @@ Meteor.methods({
     check(semValue, Number);
     check(lectureId, String);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Student.rawCollection().update(
       {
         deptcode: deptCode,
@@ -155,6 +171,10 @@ Meteor.methods({
       return { semid: i, schedule: dayArr };
     });
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Student.update(
       {
         deptcode: deptCode
@@ -165,6 +185,10 @@ Meteor.methods({
 
   "student.removeDeptSemesters"(deptCode, removeSemestersArr) {
     check(deptCode, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
 
     removeSemestersArr.forEach(i =>
       Student.update(
@@ -179,6 +203,10 @@ Meteor.methods({
   "student.removeDepartment"(taskId) {
     check(taskId, String);
     Student.remove(taskId);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
 
     if (Meteor.isClient) {
       window.location.reload();

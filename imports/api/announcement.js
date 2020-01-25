@@ -19,13 +19,22 @@ Meteor.methods({
     check(announcementMessage, String);
     check(time, Number);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Announcements.insert({
       message: announcementMessage,
       time
     });
   },
-  'announcements.removeMessage'(messageId) {
+  "announcements.removeMessage"(messageId) {
     check(messageId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Announcements.remove(messageId);
-  },
+  }
 });

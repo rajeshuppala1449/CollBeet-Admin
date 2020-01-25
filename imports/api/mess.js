@@ -21,6 +21,10 @@ Meteor.methods({
     check(type, String);
     check(fooditems, String);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     var taskId = Mess.find({})
       .fetch()
       .filter(function(food) {
@@ -31,10 +35,7 @@ Meteor.methods({
       })[0];
 
     if (taskId) {
-      Mess.update(
-        { _id: taskId },
-        {$set: {"fooditems":fooditems}}
-      );
+      Mess.update({ _id: taskId }, { $set: { fooditems: fooditems } });
     } else {
       Mess.insert({
         day,
@@ -45,8 +46,13 @@ Meteor.methods({
     }
   },
 
-  'mess.removefood'(taskId) {
+  "mess.removefood"(taskId) {
     check(taskId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Mess.remove(taskId);
-  },
+  }
 });

@@ -19,6 +19,10 @@ Meteor.methods({
     check(responseid, String);
     check(responsetext, String);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     var taskId = Locations.find({})
       .fetch()
       .filter(function(res) {
@@ -43,17 +47,22 @@ Meteor.methods({
 
   "locations.removeresponse"(taskId) {
     check(taskId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Locations.remove(taskId);
   },
 
-  "locations.addstaffroomlocation"(
-    responseText,
-    menuDeptCode,
-    menuDept
-  ) {
+  "locations.addstaffroomlocation"(responseText, menuDeptCode, menuDept) {
     check(responseText, String);
     check(menuDeptCode, String);
     check(menuDept, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
 
     Locations.insert({
       responsetext: responseText,
@@ -63,15 +72,14 @@ Meteor.methods({
     });
   },
 
-
-  "locations.addlablocation"(
-    responseText,
-    menuDeptCode,
-    menuDept
-  ) {
+  "locations.addlablocation"(responseText, menuDeptCode, menuDept) {
     check(responseText, String);
     check(menuDeptCode, String);
     check(menuDept, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
 
     Locations.insert({
       responsetext: responseText,

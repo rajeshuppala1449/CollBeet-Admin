@@ -19,6 +19,10 @@ Meteor.methods({
     check(responseid, String);
     check(responsetext, String);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     var taskId = Info.find({})
       .fetch()
       .filter(function(res) {
@@ -29,10 +33,7 @@ Meteor.methods({
       })[0];
 
     if (taskId) {
-      Info.update(
-        { _id: taskId },
-        { $set: { responsetext: responsetext } }
-      );
+      Info.update({ _id: taskId }, { $set: { responsetext: responsetext } });
     } else {
       Info.insert({
         responseid,
@@ -43,6 +44,11 @@ Meteor.methods({
 
   "info.removeresponse"(taskId) {
     check(taskId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Info.remove(taskId);
-  },
+  }
 });

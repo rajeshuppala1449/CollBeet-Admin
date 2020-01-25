@@ -25,4 +25,3 @@ accounts-password
 meteortesting:mocha
 nimble:restivus
 jquery
-tmeasday:publish-counts
