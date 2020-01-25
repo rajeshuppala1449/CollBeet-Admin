@@ -8,6 +8,11 @@ import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Slide from "@material-ui/core/Slide";
+
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import WarningIcon from '@material-ui/icons/Warning';
 
 import { Meteor } from "meteor/meteor";
 import compose from "recompose/compose";
@@ -21,6 +26,10 @@ function Copyright() {
       </Link>{" "}
     </Typography>
   );
+}
+
+function SlideTransition(props) {
+  return <Slide {...props} direction="up" />;
 }
 
 const useStyles = theme => ({
@@ -55,6 +64,11 @@ const useStyles = theme => ({
   subtitle: {
     color: "#4285f4",
     fontFamily: "Sniglet"
+  },
+  errdialog: {
+    background: "#ffcb05",
+    fontFamily: "Sniglet",
+    color: "#242729"
   }
 });
 
@@ -77,7 +91,9 @@ const CssTextField = withStyles({
 class UserLogin extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    open: false,
+    Transition: SlideTransition
   };
 
   changeTexfieldData = input => e => {
@@ -87,12 +103,25 @@ class UserLogin extends Component {
     });
   };
 
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
+
   loginUser = () => e => {
     e.preventDefault();
 
     const { username, password } = this.state;
+    const currentComponent = this;
 
-    Meteor.loginWithPassword(username, password);
+    Meteor.loginWithPassword(username, password, function(err) {
+      if (err) {
+        currentComponent.setState({
+          open: true
+        });
+      }
+    });
   };
 
   submitButton() {
@@ -177,6 +206,35 @@ class UserLogin extends Component {
             />
 
             {this.submitButton()}
+
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center"
+              }}
+              open={this.state.open}
+              autoHideDuration={6000}
+              onClose={this.handleClose}
+              message="Login Error"
+              TransitionComponent={this.state.Transition}
+              ContentProps={{
+                classes: {
+                  root: this.props.classes.errdialog
+                }
+              }}
+              action={
+                <React.Fragment>
+                  <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={this.handleClose}
+                  >
+                    <WarningIcon fontSize="small" />
+                  </IconButton>
+                </React.Fragment>
+              }
+            />
           </div>
         </div>
         <Box mt={8}>
