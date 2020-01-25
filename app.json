@@ -1,0 +1,21 @@
+{
+    "name": "CollBeet Admin",
+    "description": "Admin Panel For CollBeet Assistant",
+    "repository": "https://github.com/kalol-institute-of-technology/CollBeet-Admin",
+    "logo": "https://user-images.githubusercontent.com/41849970/73120763-059d5f80-3f98-11ea-934f-d2e704116ec5.png",
+    "keywords": ["meteor", "voice", "google", "assistant", "college"],
+    "website": "https://dsckitrc.tech/",
+    "env": {
+      "BUILDPACK_URL": "https://github.com/RocketChat/meteor-buildpack-horse.git",
+      "HEROKU_APP_NAME": {
+        "description": "Please re-enter your App Name from the top.",
+        "required": true
+      },
+      "DEPLOY_PLATFORM": "heroku",
+      "USERNAME": "",
+      "PASSORD": ""
+    },
+    "addons": [
+      "mongolab"
+    ]
+  }
