@@ -6,13 +6,17 @@
   "keywords": ["meteor", "voice", "google", "assistant", "college"],
   "website": "https://dsckitrc.tech/",
   "env": {
-    "BUILDPACK_URL": "https://github.com/AdmitHub/meteor-buildpack-horse.git",
     "ADMIN_PASSWORD": {
-        "description": "This password will be use to create an Admin account"
-      },
+      "description": "This password will be use to create an Admin account"
+    },
     "ADMIN_USERNAME": {
-        "description": "This username will be use to create an Admin account"
-      }
+      "description": "This username will be use to create an Admin account"
+    }
   },
+  "buildpacks": [
+    {
+      "url": "https://github.com/AdmitHub/meteor-buildpack-horse.git"
+    }
+  ],
   "addons": ["mongolab"]
 }
