@@ -7,8 +7,8 @@
   "website": "https://dsckitrc.tech/",
   "env": {
     "BUILDPACK_URL": "https://github.com/AdmitHub/meteor-buildpack-horse.git",
-    "ADMIN_USERNAME": "",
-    "ADMIN_PASSWORD": ""
+    "ADMIN_PASSWORD": "",
+    "ADMIN_USERNAME": ""
   },
   "addons": ["mongolab"]
 }
