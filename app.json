@@ -7,6 +7,10 @@
   "website": "https://dsckitrc.tech/",
   "env": {
     "BUILDPACK_URL": "https://github.com/AdmitHub/meteor-buildpack-horse.git",
+    "HEROKU_APP_NAME": {
+      "description": "Please re-enter your App Name from the top.",
+      "required": true
+    },
     "DEPLOY_PLATFORM": "heroku",
     "ADMIN_USERNAME": {
       "description": "username",
