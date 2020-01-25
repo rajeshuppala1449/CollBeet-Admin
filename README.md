@@ -8,24 +8,22 @@
 
 Project is in early phase of development but you can still start developing. Here are the instructions:
 
-## Deploy to Cloud:
+## Deploy to Cloud
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+## Clone the Repository
 
-## Clone the Repository:
+`git clone https://github.com/kalol-institute-of-technology/CollBeet-Admin`
 
-  `git clone https://github.com/kalol-institute-of-technology/CollBeet-Admin`
-  
-## Change Directory:
+## Change Directory
 
-  `cd CollBeet-Admin`
-  
-## Install Meteor Dependencies:
+`cd CollBeet-Admin`
 
-  `meteor npm install`
-  
+## Install Meteor Dependencies
+
+`meteor npm install`
+
 ## Run Metoer Build
 
-  `meteor`
+`meteor`
