@@ -7,12 +7,19 @@
   "website": "https://dsckitrc.tech/",
   "env": {
     "BUILDPACK_URL": "https://github.com/AdmitHub/meteor-buildpack-horse.git",
-    "ADMIN_PASSWORD": {
-        "description": "This password will be use to create an Admin account"
-      },
+    "HEROKU_APP_NAME": {
+      "description": "Please re-enter your App Name from the top.",
+      "required": true
+    },
+    "DEPLOY_PLATFORM": "heroku",
     "ADMIN_USERNAME": {
-        "description": "This username will be use to create an Admin account"
-      }
+      "description": "username",
+      "required": true
+    },
+    "ADMIN_PASSWORD": {
+      "description": "password",
+      "required": true
+    }
   },
   "addons": ["mongolab"]
 }
