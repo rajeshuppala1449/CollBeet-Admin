@@ -142,11 +142,6 @@ class Dashboard extends Component {
     const { handleDrawerOpen, handleDrawerClose } = this;
     const theme = useTheme;
 
-    const username = process.env.ADMIN_USERNAME;
-    const password = process.env.ADMIN_PASSWORD;
-
-    console.log(username + password);
-
     return (
       <Router>
         <div className={this.props.classes.root}>
