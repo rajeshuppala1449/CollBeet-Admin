@@ -17,8 +17,8 @@ class App extends Component {
       Meteor.startup(() => {
         if (!Meteor.users.find().count()) {
           const user = {
-            username: process.env.ADMIN_USERNAME,
-            password: process.env.ADMIN_PASSWORD,
+            username: "admin",
+            password: "admin"
           };
 
           Accounts.createUser(user);
