@@ -65,7 +65,7 @@ Meteor.methods({
           deptcode: deptCode,
           activesem: {
             $elemMatch: {
-              semid: semValue,
+              semid: semValue
             }
           }
         },
@@ -81,7 +81,7 @@ Meteor.methods({
               dayid: dayid
             }
           }
-        },
+        }
       );
     } else {
       check(dayid, Number);
@@ -99,7 +99,7 @@ Meteor.methods({
           deptcode: deptCode,
           activesem: {
             $elemMatch: {
-              semid: semValue,
+              semid: semValue
             }
           }
         },
