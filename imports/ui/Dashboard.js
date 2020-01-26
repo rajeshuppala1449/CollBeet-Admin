@@ -30,7 +30,45 @@ import AnnouncementWindow from "./announcements/AnnouncementsMain";
 import LocationWindow from "./locations/LocationsMain";
 import InfoWindow from "./info/InfoMain";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Tooltip from "@material-ui/core/Tooltip";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
+
+import Snackbar from "@material-ui/core/Snackbar";
+import WarningIcon from "@material-ui/icons/Warning";
+import Slide from "@material-ui/core/Slide";
+import CheckIcon from "@material-ui/icons/Check";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+
+import { Meteor } from "meteor/meteor";
+
+function SlideTransition(props) {
+  return <Slide {...props} direction="up" />;
+}
+
+const CssTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "#e65100"
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#e65100"
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "#e65100"
+      }
+    }
+  }
+})(TextField);
 
 const useStyles = theme => ({
   root: {
@@ -106,12 +144,46 @@ const useStyles = theme => ({
   },
   listitem: {
     fontFamily: "Sniglet"
+  },
+  errdialog: {
+    background: "#ffcb05",
+    fontFamily: "Sniglet",
+    color: "#242729"
+  },
+  chsuccessdialog: {
+    background: "#81c784",
+    fontFamily: "Sniglet",
+    color: "#242729"
+  },
+  submitButton: {
+    fontFamily: "Sniglet",
+    color: "#e65100"
+  },
+  dialogTitle: {
+    fontFamily: "Open Sans",
+    color: "#242729",
+    fontSize: 25
   }
 });
 
 class Dashboard extends Component {
   state = {
-    open: false
+    open: false,
+    dialogopen: false,
+    currentpassword: "",
+    newpassword: "",
+    errchpass: false,
+    succhpass: false,
+    Transition: SlideTransition,
+    showcurrentpassword: false,
+    shownewpassword: false
+  };
+
+  changeTexfieldData = input => e => {
+    e.preventDefault();
+    this.setState({
+      [input]: e.target.value
+    });
   };
 
   handleDrawerOpen = () => {
@@ -126,9 +198,43 @@ class Dashboard extends Component {
     });
   };
 
+  handleDialogOpen = () => {
+    this.setState({
+      dialogopen: true
+    });
+  };
+
+  handleDialogClose = () => {
+    this.setState({
+      dialogopen: false
+    });
+  };
+
   handleFieldsChange = input => e => {
     this.setState({
       [input]: e.target.value
+    });
+  };
+
+  changeUserPassword = () => e => {
+    e.preventDefault();
+
+    const { currentpassword, newpassword } = this.state;
+    const currentComponent = this;
+
+    Accounts.changePassword(currentpassword, newpassword, function(err) {
+      if (err) {
+        currentComponent.setState({
+          errchpass: true
+        });
+      } else {
+        currentComponent.setState({
+          succhpass: true,
+          dialogopen: false,
+          currentpassword: "",
+          newpassword: ""
+        });
+      }
     });
   };
 
@@ -137,6 +243,56 @@ class Dashboard extends Component {
 
     Meteor.logout();
   };
+
+  handleErrChClose = () => {
+    this.setState({
+      errchpass: false
+    });
+  };
+
+  handleSucChClose = () => {
+    this.setState({
+      succhpass: false
+    });
+  };
+
+  handleClickShowCurrentPassword = () => {
+    this.setState({
+      showcurrentpassword: !this.state.showcurrentpassword
+    });
+  };
+
+  handleClickShowNewPassword = () => {
+    this.setState({
+      shownewpassword: !this.state.shownewpassword
+    });
+  };
+
+  resetButton() {
+    const { newpassword, currentpassword } = this.state;
+
+    if (newpassword && currentpassword) {
+      return (
+        <Button
+          onClick={this.changeUserPassword()}
+          variant="outlined"
+          className={this.props.classes.submitButton}
+        >
+          Change
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          disabled
+          variant="outlined"
+          className={this.props.classes.submitButton}
+        >
+          Change
+        </Button>
+      );
+    }
+  }
 
   render() {
     const { open } = this.state;
@@ -176,21 +332,37 @@ class Dashboard extends Component {
                 CollBeet
               </Typography>
 
-              <Button
-                color="inherit"
-                className={this.props.classes.userButton}
-                onClick={this.logoutUser()}
+              <Tooltip
+                disableFocusListener
+                disableTouchListener
+                title="Change Password"
+                placement="bottom"
+                arrow
               >
-                <VpnKeyIcon />
-              </Button>
+                <Button
+                  color="inherit"
+                  className={this.props.classes.userButton}
+                  onClick={this.handleDialogOpen}
+                >
+                  <VpnKeyIcon />
+                </Button>
+              </Tooltip>
 
-              <Button
-                color="inherit"
-                className={this.props.classes.userButton}
-                onClick={this.logoutUser()}
+              <Tooltip
+                disableFocusListener
+                disableTouchListener
+                title="Logout"
+                placement="bottom"
+                arrow
               >
-                <ExitToAppIcon />
-              </Button>
+                <Button
+                  color="inherit"
+                  className={this.props.classes.userButton}
+                  onClick={this.logoutUser()}
+                >
+                  <ExitToAppIcon />
+                </Button>
+              </Tooltip>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -266,6 +438,142 @@ class Dashboard extends Component {
               <Route path="/locations" component={LocationWindow} />
               <Route path="/info" component={InfoWindow} />
             </Switch>
+            <Dialog
+              id="change-pass-dialog"
+              open={this.state.dialogopen}
+              onClose={this.handleDialogClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title">
+                <Typography className={this.props.classes.dialogTitle}>
+                  Change Password
+                </Typography>
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  To change password, please enter your current password and new
+                  password and hit Submit.
+                </DialogContentText>
+
+                <CssTextField
+                  autoFocus
+                  margin="dense"
+                  id="current-pass"
+                  label="Current Password"
+                  type={this.state.showcurrentpassword ? "text" : "password"}
+                  fullWidth
+                  variant="outlined"
+                  onChange={this.changeTexfieldData("currentpassword")}
+                  value={this.state.currentpassword}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={this.handleClickShowCurrentPassword}
+                          edge="end"
+                        >
+                          {this.state.showcurrentpassword ? (
+                            <VisibilityOffIcon />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+
+                <CssTextField
+                  autoFocus
+                  margin="dense"
+                  id="new-pass"
+                  label="New Password"
+                  type={this.state.shownewpassword ? "text" : "password"}
+                  fullWidth
+                  variant="outlined"
+                  onChange={this.changeTexfieldData("newpassword")}
+                  value={this.state.newpassword}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={this.handleClickShowNewPassword}
+                          edge="end"
+                        >
+                          {this.state.shownewpassword ? (
+                            <VisibilityOffIcon />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+
+                <DialogActions>{this.resetButton()}</DialogActions>
+              </DialogContent>
+            </Dialog>
+
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center"
+              }}
+              open={this.state.errchpass}
+              autoHideDuration={6000}
+              onClose={this.handleErrChClose}
+              message="Incorrect Password. Try Again"
+              TransitionComponent={this.state.Transition}
+              ContentProps={{
+                classes: {
+                  root: this.props.classes.errdialog
+                }
+              }}
+              action={
+                <React.Fragment>
+                  <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={this.handleErrChClose}
+                  >
+                    <WarningIcon fontSize="small" />
+                  </IconButton>
+                </React.Fragment>
+              }
+            />
+
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center"
+              }}
+              open={this.state.succhpass}
+              autoHideDuration={6000}
+              onClose={this.handleSucChClose}
+              message="Password Changed Successfully"
+              TransitionComponent={this.state.Transition}
+              ContentProps={{
+                classes: {
+                  root: this.props.classes.chsuccessdialog
+                }
+              }}
+              action={
+                <React.Fragment>
+                  <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={this.handleSucChClose}
+                  >
+                    <CheckIcon fontSize="small" />
+                  </IconButton>
+                </React.Fragment>
+              }
+            />
           </main>
         </div>
       </Router>
