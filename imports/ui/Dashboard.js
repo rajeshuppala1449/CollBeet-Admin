@@ -28,8 +28,9 @@ import StudentDepartmentDrawer from "./schedule/student/StudentDepartmentDrawer"
 import MessDepartmentDrawer from "./schedule/mess/MessDepartmentDrawer";
 import AnnouncementWindow from "./announcements/AnnouncementsMain";
 import LocationWindow from "./locations/LocationsMain";
-import InfoWindow from "./info/InfoMain"
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import InfoWindow from "./info/InfoMain";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
 const useStyles = theme => ({
   root: {
@@ -164,7 +165,9 @@ class Dashboard extends Component {
               >
                 <MenuIcon />
               </IconButton>
+
               <Avatar variant="square" alt="Logo" src="./logo.png"></Avatar>
+
               <Typography
                 variant="h6"
                 noWrap
@@ -172,7 +175,20 @@ class Dashboard extends Component {
               >
                 CollBeet
               </Typography>
-              <Button color="inherit" className={this.props.classes.userButton} onClick={this.logoutUser()}>
+
+              <Button
+                color="inherit"
+                className={this.props.classes.userButton}
+                onClick={this.logoutUser()}
+              >
+                <VpnKeyIcon />
+              </Button>
+
+              <Button
+                color="inherit"
+                className={this.props.classes.userButton}
+                onClick={this.logoutUser()}
+              >
                 <ExitToAppIcon />
               </Button>
             </Toolbar>

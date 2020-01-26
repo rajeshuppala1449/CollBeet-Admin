@@ -18,6 +18,7 @@ import { Meteor } from "meteor/meteor";
 import compose from "recompose/compose";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 function Copyright() {
   return (
@@ -242,7 +243,7 @@ class UserLogin extends Component {
                       onClick={this.handleClickShowPassword}
                       edge="end"
                     >
-                      <Visibility />
+                      {this.state.showpassword ? <VisibilityOffIcon /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 )
