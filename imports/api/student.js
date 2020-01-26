@@ -16,9 +16,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "student.addDept"(menuDept, menuPath, menuDeptCode, semesters) {
+  "student.addDept"(menuDept, menuInitials, menuDeptCode, semesters) {
     check(menuDept, String);
-    check(menuPath, String);
+    check(menuInitials, String);
     check(menuDeptCode, String);
 
     if (!this.userId) {
@@ -31,7 +31,7 @@ Meteor.methods({
 
     Student.insert({
       dept: menuDept,
-      avpath: menuPath,
+      initials: menuInitials,
       deptcode: menuDeptCode,
       activesem: semArr
     });

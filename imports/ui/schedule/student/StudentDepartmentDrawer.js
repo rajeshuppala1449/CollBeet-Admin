@@ -52,8 +52,9 @@ const useStyles = theme => ({
     flex: 1
   },
   departmentButtons: {
+    color: "#212121",
     background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
-    color: "#242729"
+    fontFamily: "Sniglet"
   },
   dialogTitle: {
     fontFamily: "Sniglet",
@@ -112,11 +113,11 @@ class StudentDepartmentDrawer extends Component {
     deptAnchorEl: null,
     open: false,
     dept: "",
-    path: "",
+    initials: "",
     deptcode: "",
     menuDept: "",
     semesters: [],
-    menuPath: "",
+    menuInitials: "",
     menuDeptCode: ""
   };
 
@@ -154,10 +155,10 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  changeDepartment = (dept, avpath, deptcode) => e => {
+  changeDepartment = (dept, initials, deptcode) => e => {
     this.setState({
       dept: dept,
-      path: avpath,
+      initials: initials,
       deptcode: deptcode
     });
   };
@@ -168,19 +169,19 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  deptHandleClose = (dept, path, deptCode) => e => {
+  deptHandleClose = (dept, initials, deptCode) => e => {
     this.setState({
       deptAnchorEl: null,
       menuDept: dept,
-      menuPath: path,
+      menuInitials: initials,
       menuDeptCode: deptCode
     });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { menuDept, menuPath, menuDeptCode, semesters } = this.state;
-    Meteor.call("student.addDept", menuDept, menuPath, menuDeptCode, semesters);
+    const { menuDept, menuInitials, menuDeptCode, semesters } = this.state;
+    Meteor.call("student.addDept", menuDept, menuInitials, menuDeptCode, semesters);
 
     this.setState({
       open: false,
@@ -253,7 +254,7 @@ class StudentDepartmentDrawer extends Component {
       deptHandleClose,
       anchorRef
     } = this;
-    const { open, dept, path, deptcode, deptAnchorEl, menuDept } = this.state;
+    const { open, dept, initials, deptcode, deptAnchorEl, menuDept } = this.state;
 
     const { student_schedule } = this.props;
 
@@ -271,10 +272,10 @@ class StudentDepartmentDrawer extends Component {
           <CssBaseline />
 
           <main className={this.props.classes.content}>
-            {dept && path ? (
+            {dept && initials ? (
               <StudentContent
                 dept={dept}
-                path={path}
+                initials={initials}
                 deptCode={deptcode}
                 activesem={active_sem_array}
                 studentSchedule={student_schedule}
@@ -358,10 +359,10 @@ class StudentDepartmentDrawer extends Component {
                         horizontal: "center"
                       }}
                     >
-                      {array.map(({ dept, path, deptCode }) => (
+                      {array.map(({ dept, initials, deptCode }) => (
                         <MenuItem
                           key={deptCode}
-                          onClick={deptHandleClose(dept, path, deptCode)}
+                          onClick={deptHandleClose(dept, initials, deptCode)}
                           className={this.props.classes.menu}
                         >
                           {dept}
@@ -510,7 +511,7 @@ class StudentDepartmentDrawer extends Component {
             </List>
             <Divider />
             <List>
-              {student_schedule.map(({ dept, avpath, deptcode }) => (
+              {student_schedule.map(({ dept, initials, deptcode }) => (
                 <Tooltip
                   disableFocusListener
                   disableTouchListener
@@ -522,14 +523,14 @@ class StudentDepartmentDrawer extends Component {
                   <ListItem
                     button
                     key={dept}
-                    onClick={changeDepartment(dept, avpath, deptcode)}
+                    onClick={changeDepartment(dept, initials, deptcode)}
                   >
                     <ListItemIcon>
                       <Avatar
-                        src={avpath}
+                        
                         className={this.props.classes.departmentButtons}
                       >
-                        {dept}
+                        {initials}
                       </Avatar>
                     </ListItemIcon>
                   </ListItem>

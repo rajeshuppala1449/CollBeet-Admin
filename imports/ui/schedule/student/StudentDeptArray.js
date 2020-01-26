@@ -1,27 +1,27 @@
 export const array = [
   {
     dept: "Information Technology",
-    path: "./studentDrawerIcons/it-logo.png",
+    initials: "IT",
     deptCode: "beit00"
   },
   {
     dept: "Electrical Engineering",
-    path: "./studentDrawerIcons/electrical-logo.png",
+    initials: "EE",
     deptCode: "beee00"
   },
   {
     dept: "Computer Science",
-    path: "./studentDrawerIcons/cs-logo.png",
+    initials: "CS",
     deptCode: "becs00"
   },
   {
     dept: "Mechanical Engineering",
-    path: "./studentDrawerIcons/mechanical-logo.png",
+    initials: "ME",
     deptCode: "beme00"
   },
   {
     dept: "Civil Enginnering",
-    path: "./studentDrawerIcons/civil-logo.png",
+    initials: "CE",
     deptCode: "bece00"
   }
 ];

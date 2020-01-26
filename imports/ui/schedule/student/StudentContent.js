@@ -61,7 +61,10 @@ const useStyles = theme => ({
   bigAvatar: {
     width: 80,
     height: 80,
-    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
+    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
+    color: "#212121",
+    fontFamily: "Sniglet",
+    fontSize: 32
   },
   grid: {
     flex: 1,
@@ -535,7 +538,7 @@ class StudentContent extends Component {
       addSemestersArr,
       removeSemestersArr
     } = this.state;
-    const { dept, path, activesem, deptCode } = this.props;
+    const { dept, initials, activesem, deptCode } = this.props;
 
     const {
       dayHandleClick,
@@ -558,11 +561,9 @@ class StudentContent extends Component {
       <div className={this.props.classes.rootAvatar}>
         <Grid container className={this.props.classes.grid}>
           <Grid item>
-            <Avatar
-              alt="Remy Sharp"
-              src={path}
-              className={this.props.classes.bigAvatar}
-            />
+            <Avatar alt="Remy Sharp" className={this.props.classes.bigAvatar}>
+              {initials}
+            </Avatar>
           </Grid>
           <Grid item className={this.props.classes.separator}>
             <Typography className={this.props.classes.branchTitle}>
