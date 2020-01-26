@@ -26,6 +26,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { array } from "./StudentDeptArray";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import AddIcon from '@material-ui/icons/Add';
 
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
@@ -51,7 +52,8 @@ const useStyles = theme => ({
     flex: 1
   },
   departmentButtons: {
-    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)"
+    background: "linear-gradient(45deg, #ffc107 90%, #ff9800 30%)",
+    color: "#242729"
   },
   dialogTitle: {
     fontFamily: "Sniglet",
@@ -497,11 +499,10 @@ class StudentDepartmentDrawer extends Component {
               >
                 <ListItem button key="plus" onClick={handleClickOpen}>
                   <ListItemIcon>
-                    <Avatar
-                      src="./plus-logo.png"
+                     <Avatar
                       className={this.props.classes.departmentButtons}
                     >
-                      Plus
+                      <AddIcon />
                     </Avatar>
                   </ListItemIcon>
                 </ListItem>
