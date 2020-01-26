@@ -16,6 +16,8 @@ import WarningIcon from "@material-ui/icons/Warning";
 
 import { Meteor } from "meteor/meteor";
 import compose from "recompose/compose";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
 
 function Copyright() {
   return (
@@ -93,7 +95,8 @@ class UserLogin extends Component {
     username: "",
     password: "",
     open: false,
-    Transition: SlideTransition
+    Transition: SlideTransition,
+    showpassword: false
   };
 
   changeTexfieldData = input => e => {
@@ -108,6 +111,12 @@ class UserLogin extends Component {
       open: false
     });
   };
+
+  handleClickShowPassword = () => {
+    this.setState({
+      showpassword: !this.state.showpassword
+    });
+  }
 
   enterPressed = event => {
     var code = event.keyCode || event.which;
@@ -219,12 +228,25 @@ class UserLogin extends Component {
               fullWidth
               name="password"
               label="Password"
-              type="password"
+              type={this.state.showpassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
               onChange={this.changeTexfieldData("password")}
               value={this.state.password}
               onKeyPress={this.enterPressed.bind(this)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                      edge="end"
+                    >
+                      <Visibility />
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
             />
 
             {this.submitButton()}
