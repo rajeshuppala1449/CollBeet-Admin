@@ -25,12 +25,8 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    const dayArr = [1, 2, 3, 4, 5, 6].map(i => {
-      return { dayid: i };
-    });
-
     const semArr = semesters.sort().map(i => {
-      return { semid: i, schedule: dayArr };
+      return { semid: i, schedule: [] };
     });
 
     Student.insert({
@@ -64,31 +60,28 @@ Meteor.methods({
         throw new Meteor.Error("not-authorized");
       }
 
-      Student.rawCollection().update(
+      Student.update(
         {
           deptcode: deptCode,
           activesem: {
             $elemMatch: {
               semid: semValue,
-              "schedule.dayid": dayid
             }
           }
         },
         {
           $push: {
-            "activesem.$[outer].schedule.$[inner].lecture": {
+            "activesem.0.schedule": {
               lectureId: Random.id(),
               lectureName: lectureName,
               teacherName: teacherName,
               startTime: startTime,
               endTime: endTime,
-              breakValue: breakValue
+              breakValue: breakValue,
+              dayid: dayid
             }
           }
         },
-        {
-          arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
-        }
       );
     } else {
       check(dayid, Number);
@@ -101,28 +94,25 @@ Meteor.methods({
         throw new Meteor.Error("not-authorized");
       }
 
-      Student.rawCollection().update(
+      Student.update(
         {
           deptcode: deptCode,
           activesem: {
             $elemMatch: {
               semid: semValue,
-              "schedule.dayid": dayid
             }
           }
         },
         {
           $push: {
-            "activesem.$[outer].schedule.$[inner].lecture": {
+            "activesem.0.schedule": {
               lectureId: Random.id(),
               startTime: startTime,
               endTime: endTime,
-              breakValue: breakValue
+              breakValue: breakValue,
+              dayid: dayid
             }
           }
-        },
-        {
-          arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
         }
       );
     }
@@ -138,37 +128,30 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Student.rawCollection().update(
+    Student.update(
       {
         deptcode: deptCode,
         activesem: {
           $elemMatch: {
-            semid: semValue,
-            "schedule.dayid": dayid
+            semid: semValue
           }
         }
       },
       {
         $pull: {
-          "activesem.$[outer].schedule.$[inner].lecture": {
+          "activesem.0.schedule": {
             lectureId: lectureId
           }
         }
-      },
-      {
-        arrayFilters: [{ "outer.semid": semValue }, { "inner.dayid": dayid }]
       }
     );
   },
 
   "student.addDeptSemesters"(addSemestersArr, deptCode) {
     check(deptCode, String);
-    const dayArr = [1, 2, 3, 4, 5, 6].map(i => {
-      return { dayid: i };
-    });
 
     const semArr = addSemestersArr.sort().map(i => {
-      return { semid: i, schedule: dayArr };
+      return { semid: i, schedule: [] };
     });
 
     if (!this.userId) {

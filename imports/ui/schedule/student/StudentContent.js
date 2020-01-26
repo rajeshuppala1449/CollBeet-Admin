@@ -305,13 +305,9 @@ class StudentContent extends Component {
       })[0];
 
     if (schedule_array && dayId) {
-      const lecture_array = schedule_array
-        .filter(function(d) {
-          return d.dayid === dayId;
-        })
-        .map(function(d) {
-          return d.lecture;
-        })[0];
+      const lecture_array = schedule_array.filter(function(d) {
+        return d.dayid === dayId;
+      });
 
       if (lecture_array) {
         if (lecture_array.length === 0) {
@@ -327,7 +323,10 @@ class StudentContent extends Component {
                   <div className="bee__oval bee__oval--bottom"></div>
                 </div>
                 <h2>Lectures</h2>
-                <p>Please Add Lectures. Click on "+ Add A Lecture" button to add lectures.</p>
+                <p>
+                  Please Add Lectures. Click on "+ Add A Lecture" button to add
+                  lectures.
+                </p>
               </div>
             </div>
           );
@@ -498,7 +497,10 @@ class StudentContent extends Component {
               <div className="bee__oval bee__oval--bottom"></div>
             </div>
             <h2>Lectures</h2>
-            <p>Please Add Lectures. Click on "+ Add A Lecture" button to add lectures.</p>
+            <p>
+              Please Add Lectures. Click on "+ Add A Lecture" button to add
+              lectures.
+            </p>
           </div>
         </div>
       );
