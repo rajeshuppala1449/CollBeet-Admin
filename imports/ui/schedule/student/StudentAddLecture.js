@@ -61,7 +61,8 @@ const useStyles = theme => ({
     fontSize: 25
   },
   fieldContext: {
-    fontFamily: "Open Sans"
+    fontFamily: "Open Sans",
+    fontSize: 15
   },
   fieldTitle: {
     fontFamily: "Open Sans",
@@ -227,7 +228,7 @@ class AddLectureDialog extends Component {
       teacherName,
       startTime,
       endTime,
-      breakValue,
+      breakValue
     );
   };
 
@@ -360,7 +361,7 @@ class AddLectureDialog extends Component {
       changeStartTime,
       changeEndTime,
       changeBreakValueTrue,
-      changeBreakValueFalse,
+      changeBreakValueFalse
     } = this;
 
     return (
@@ -377,7 +378,9 @@ class AddLectureDialog extends Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText className={this.props.classes.fieldContext}>
-              Please add lectures for {dept} branch, also include breaks:
+              Please add lectures for {dept} branch. Make sure that lectures are
+              added in chronological order according to their
+              startime. You can also include breaks.
             </DialogContentText>
             <Grid container className={this.props.classes.grid}>
               <Grid item>
