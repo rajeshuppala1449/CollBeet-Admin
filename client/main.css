@@ -261,3 +261,17 @@
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+
+.refreshbutton {
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-color: #feab35;
+  border-radius: 4px;
+  color: #e65100;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-family: "Sniglet";
+}

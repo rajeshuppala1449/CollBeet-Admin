@@ -26,7 +26,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { array } from "./StudentDeptArray";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
@@ -129,7 +129,7 @@ class StudentDepartmentDrawer extends Component {
     });
   };
 
-  addSem = i => e => {
+  addSem = i => () => {
     const arr = this.state.semesters;
 
     if (arr.includes(i)) {
@@ -181,7 +181,13 @@ class StudentDepartmentDrawer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { menuDept, menuInitials, menuDeptCode, semesters } = this.state;
-    Meteor.call("student.addDept", menuDept, menuInitials, menuDeptCode, semesters);
+    Meteor.call(
+      "student.addDept",
+      menuDept,
+      menuInitials,
+      menuDeptCode,
+      semesters
+    );
 
     this.setState({
       open: false,
@@ -254,7 +260,14 @@ class StudentDepartmentDrawer extends Component {
       deptHandleClose,
       anchorRef
     } = this;
-    const { open, dept, initials, deptcode, deptAnchorEl, menuDept } = this.state;
+    const {
+      open,
+      dept,
+      initials,
+      deptcode,
+      deptAnchorEl,
+      menuDept
+    } = this.state;
 
     const { student_schedule } = this.props;
 
@@ -500,9 +513,7 @@ class StudentDepartmentDrawer extends Component {
               >
                 <ListItem button key="plus" onClick={handleClickOpen}>
                   <ListItemIcon>
-                     <Avatar
-                      className={this.props.classes.departmentButtons}
-                    >
+                    <Avatar className={this.props.classes.departmentButtons}>
                       <AddIcon />
                     </Avatar>
                   </ListItemIcon>
@@ -526,10 +537,7 @@ class StudentDepartmentDrawer extends Component {
                     onClick={changeDepartment(dept, initials, deptcode)}
                   >
                     <ListItemIcon>
-                      <Avatar
-                        
-                        className={this.props.classes.departmentButtons}
-                      >
+                      <Avatar className={this.props.classes.departmentButtons}>
                         {initials}
                       </Avatar>
                     </ListItemIcon>

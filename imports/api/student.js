@@ -190,9 +190,5 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
-
-    if (Meteor.isClient) {
-      window.location.reload();
-    }
   }
 });

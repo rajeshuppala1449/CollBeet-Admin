@@ -272,8 +272,6 @@ class StudentContent extends Component {
       })[0];
 
     Meteor.call("student.removeDepartment", taskId);
-
-    console.log("deptDelete");
   };
 
   modifyDeptClose = () => {
@@ -293,6 +291,11 @@ class StudentContent extends Component {
     const dayid = dayId;
 
     Meteor.call("student.removeLecture", deptCode, semValue, dayid, lectureId);
+  };
+
+  reloadPage = () => e => {
+    e.preventDefault();
+    window.location.reload();
   };
 
   content() {
@@ -325,7 +328,7 @@ class StudentContent extends Component {
                   <div className="bee__rect"> </div>
                   <div className="bee__oval bee__oval--bottom"></div>
                 </div>
-                <h2>Lectures</h2>
+                <h2>No Lectures</h2>
                 <p>
                   Please Add Lectures. Click on "+ Add A Lecture" button to add
                   lectures.
@@ -558,150 +561,180 @@ class StudentContent extends Component {
     } = this;
 
     return (
-      <div className={this.props.classes.rootAvatar}>
-        <Grid container className={this.props.classes.grid}>
-          <Grid item>
-            <Avatar alt="Remy Sharp" className={this.props.classes.bigAvatar}>
-              {initials}
-            </Avatar>
-          </Grid>
-          <Grid item className={this.props.classes.separator}>
-            <Typography className={this.props.classes.branchTitle}>
-              {dept}
-            </Typography>
-            <Button
-              variant="outlined"
-              size="small"
-              className={this.props.classes.settingsLectureButton}
-              onClick={modifyDeptOpen}
-            >
-              Modify
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="outlined"
-              className={this.props.classes.addLectureButton}
-              onClick={dialogHandleOpen}
-            >
-              + Add A Lecture
-            </Button>
-          </Grid>
-          <Grid item>
-            <ButtonGroup
-              variant="outlined"
-              className={this.props.classes.fieldButtonGroup}
-              ref={anchorRef}
-              aria-label="split button"
-            >
-              <Button className={this.props.classes.fieldButton}>
-                Semester {semId}
-              </Button>
-              <Button
-                aria-controls={open ? "split-button-menu" : undefined}
-                aria-expanded={open ? "true" : undefined}
-                aria-label="select merge strategy"
-                aria-haspopup="menu"
-                className={this.props.classes.fieldButton}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                size="small"
-                onClick={semHandleClick}
-              >
-                <ArrowDropDownIcon />
-              </Button>
-            </ButtonGroup>
-            <Menu
-              key="semester-menu-sc"
-              id="simple-menu"
-              anchorEl={semAnchorEl}
-              keepMounted
-              open={Boolean(semAnchorEl)}
-              getContentAnchorEl={null}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-              transformOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              {activesem.map(({ semid }) => (
-                <MenuItem
-                  key={semid}
-                  onClick={semHandleClose(semid)}
-                  className={this.props.classes.menu}
+      <div>
+        {activesem ? (
+          <div className={this.props.classes.rootAvatar}>
+            <Grid container className={this.props.classes.grid}>
+              <Grid item>
+                <Avatar
+                  alt="Remy Sharp"
+                  className={this.props.classes.bigAvatar}
                 >
-                  {semid}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Grid>
-          <Grid item>
-            <ButtonGroup
-              variant="outlined"
-              className={this.props.classes.fieldButtonGroup}
-              ref={anchorRef}
-              aria-label="split button"
-            >
-              <Button className={this.props.classes.fieldButton}>
-                {dayValue ? dayValue : "day"}
-              </Button>
-              <Button
-                aria-controls={open ? "split-button-menu" : undefined}
-                aria-expanded={open ? "true" : undefined}
-                aria-label="select merge strategy"
-                aria-haspopup="menu"
-                className={this.props.classes.fieldButton}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                size="small"
-                onClick={dayHandleClick}
-              >
-                <ArrowDropDownIcon />
-              </Button>
-            </ButtonGroup>
-            <Menu
-              key="day-menu-sc"
-              id="simple-menu"
-              anchorEl={dayAnchorEl}
-              keepMounted
-              open={Boolean(dayAnchorEl)}
-              onClose={dayHandleClose}
-              getContentAnchorEl={null}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-              transformOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              {dayarr.map(({ day, dayid }) => (
-                <MenuItem
-                  key={day}
-                  value={day}
-                  onClick={dayHandleClose(dayid, day)}
-                  className={this.props.classes.menu}
+                  {initials}
+                </Avatar>
+              </Grid>
+              <Grid item className={this.props.classes.separator}>
+                <Typography className={this.props.classes.branchTitle}>
+                  {dept}
+                </Typography>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  className={this.props.classes.settingsLectureButton}
+                  onClick={modifyDeptOpen}
                 >
-                  {day.charAt(0).toUpperCase() + day.slice(1)}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Grid>
-        </Grid>
-        <Divider className={this.props.classes.rootAvatar} />
-        <AddLectureDialog
-          open={dialogOpen}
-          handleClose={dialogHandleClose}
-          dept={dept}
-          deptCode={deptCode}
-          activesem={activesem}
-        />
-        <ModifyDepartmentDialog
-          dept={dept}
-          modifyDeptOpen={modifyDeptDialogOpen}
-          modifyDeptHandleClose={modifyDeptClose}
-          activesem={activesem}
-          addSem={addSem}
-          removeSem={removeSem}
-          addSemestersArr={addSemestersArr}
-          removeSemestersArr={removeSemestersArr}
-          handleDeptAddSemestersSubmit={handleDeptAddSemestersSubmit}
-          handleDeptRemoveSemestersSubmit={handleDeptRemoveSemestersSubmit}
-          handleDeleteDepartment={handleDeleteDepartment}
-        />
-        <Box className={this.props.classes.box}>{this.content()}</Box>
+                  Modify
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  className={this.props.classes.addLectureButton}
+                  onClick={dialogHandleOpen}
+                >
+                  + Add A Lecture
+                </Button>
+              </Grid>
+              <Grid item>
+                <ButtonGroup
+                  variant="outlined"
+                  className={this.props.classes.fieldButtonGroup}
+                  ref={anchorRef}
+                  aria-label="split button"
+                >
+                  <Button className={this.props.classes.fieldButton}>
+                    Semester {semId}
+                  </Button>
+                  <Button
+                    aria-controls={open ? "split-button-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu"
+                    className={this.props.classes.fieldButton}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    onClick={semHandleClick}
+                  >
+                    <ArrowDropDownIcon />
+                  </Button>
+                </ButtonGroup>
+                <Menu
+                  key="semester-menu-sc"
+                  id="simple-menu"
+                  anchorEl={semAnchorEl}
+                  keepMounted
+                  open={Boolean(semAnchorEl)}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  transformOrigin={{ vertical: "top", horizontal: "center" }}
+                >
+                  {activesem.map(({ semid }) => (
+                    <MenuItem
+                      key={semid}
+                      onClick={semHandleClose(semid)}
+                      className={this.props.classes.menu}
+                    >
+                      {semid}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Grid>
+              <Grid item>
+                <ButtonGroup
+                  variant="outlined"
+                  className={this.props.classes.fieldButtonGroup}
+                  ref={anchorRef}
+                  aria-label="split button"
+                >
+                  <Button className={this.props.classes.fieldButton}>
+                    {dayValue ? dayValue : "day"}
+                  </Button>
+                  <Button
+                    aria-controls={open ? "split-button-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu"
+                    className={this.props.classes.fieldButton}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    size="small"
+                    onClick={dayHandleClick}
+                  >
+                    <ArrowDropDownIcon />
+                  </Button>
+                </ButtonGroup>
+                <Menu
+                  key="day-menu-sc"
+                  id="simple-menu"
+                  anchorEl={dayAnchorEl}
+                  keepMounted
+                  open={Boolean(dayAnchorEl)}
+                  onClose={dayHandleClose}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  transformOrigin={{ vertical: "top", horizontal: "center" }}
+                >
+                  {dayarr.map(({ day, dayid }) => (
+                    <MenuItem
+                      key={day}
+                      value={day}
+                      onClick={dayHandleClose(dayid, day)}
+                      className={this.props.classes.menu}
+                    >
+                      {day.charAt(0).toUpperCase() + day.slice(1)}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Grid>
+            </Grid>
+            <Divider className={this.props.classes.rootAvatar} />
+            <AddLectureDialog
+              open={dialogOpen}
+              handleClose={dialogHandleClose}
+              dept={dept}
+              deptCode={deptCode}
+              activesem={activesem}
+            />
+            <ModifyDepartmentDialog
+              dept={dept}
+              modifyDeptOpen={modifyDeptDialogOpen}
+              modifyDeptHandleClose={modifyDeptClose}
+              activesem={activesem}
+              addSem={addSem}
+              removeSem={removeSem}
+              addSemestersArr={addSemestersArr}
+              removeSemestersArr={removeSemestersArr}
+              handleDeptAddSemestersSubmit={handleDeptAddSemestersSubmit}
+              handleDeptRemoveSemestersSubmit={handleDeptRemoveSemestersSubmit}
+              handleDeleteDepartment={handleDeleteDepartment}
+            />
+            <Box className={this.props.classes.box}>{this.content()}</Box>
+          </div>
+        ) : (
+          <div id="notfound">
+            <div className="notfound">
+              <div className="bee">
+                <div className="bee__wing bee__wing--left"></div>
+                <div className="bee__wing bee__wing--right"></div>
+                <div className="bee__oval bee__oval--top"></div>
+                <div className="bee__rect"></div>
+                <div className="bee__rect"> </div>
+                <div className="bee__oval bee__oval--bottom"></div>
+              </div>
+              <h2>Department Deleted</h2>
+              <p>Please refresh this page once before proceeding.</p>
+              <form>
+                <input
+                  className="refreshbutton"
+                  type="button"
+                  value="Refresh"
+                  onClick={this.reloadPage()}
+                />
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
