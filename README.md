@@ -6,7 +6,7 @@
 
 # CollBeet Admin
 
-Project is in early phase of development but you can still start developing. Here are the instructions:
+This project is an Admin Dashboard for CollBeet Assistant meant for access only by Administrator. The dashboard after deployment will by default setup using username and password **admin**.
 
 ## Deploy to Cloud
 
