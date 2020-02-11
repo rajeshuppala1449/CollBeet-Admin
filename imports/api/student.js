@@ -71,7 +71,7 @@ Meteor.methods({
         },
         {
           $push: {
-            "activesem.0.schedule": {
+            "activesem.$.schedule": {
               lectureId: Random.id(),
               lectureName: lectureName,
               teacherName: teacherName,
@@ -105,7 +105,7 @@ Meteor.methods({
         },
         {
           $push: {
-            "activesem.0.schedule": {
+            "activesem.$.schedule": {
               lectureId: Random.id(),
               startTime: startTime,
               endTime: endTime,
@@ -139,7 +139,7 @@ Meteor.methods({
       },
       {
         $pull: {
-          "activesem.0.schedule": {
+          "activesem.$.schedule": {
             lectureId: lectureId
           }
         }
