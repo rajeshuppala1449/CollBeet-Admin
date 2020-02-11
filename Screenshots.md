@@ -14,6 +14,8 @@ This screenshot shows all current supported features available in CollBeet Admin
 Using this section, administrator can add/modify departments, semesters and lectures.
 
 <img width="720" alt="Screenshot 2020-02-11 at 7 23 11 PM" src="https://user-images.githubusercontent.com/41849970/74242926-c9daf780-4d04-11ea-8eb1-6f43b34fe1d2.png">
+<img width="720" alt="Screenshot 2020-02-11 at 7 43 18 PM" src="https://user-images.githubusercontent.com/41849970/74244060-dbbd9a00-4d06-11ea-8709-ed0a133fd3d2.png">
+<img width="720" alt="Screenshot 2020-02-11 at 7 43 39 PM" src="https://user-images.githubusercontent.com/41849970/74244068-dd875d80-4d06-11ea-8429-9a85f3d68994.png">
 
 ---
 
