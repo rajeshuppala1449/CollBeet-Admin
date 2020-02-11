@@ -46,7 +46,7 @@ Familiarity with following technologies will also help in further development of
 
 For production servers we highly recommend using [GCP Compute Engine](https://cloud.google.com/compute) for deployment purposes. You can find further instructions below:
 
-[Insert Link Here](https://www.google.com/)
+[Full Guide](https://github.com/kalol-institute-of-technology/CollBeet-Admin/blob/master/docs/gcpcomputedeploy.md)
 
 ### Heroku Deployment
 
