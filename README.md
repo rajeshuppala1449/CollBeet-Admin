@@ -6,7 +6,7 @@
 
 # CollBeet Admin
 
-CollBeet Admin is a dashboard interface design only for use of Administrators. With CollBeet Admin, admins can easily add student schedules, mess schedules, daily announcements, college locations and college info, which can later be accessed easily using CollBeet Assistant by students (clients). It is designed as a completely open source, free and decentralised software that can be deployed individually on any cloud platfor by developer/admin alongside CollBeet Assistant. We have already added support for all major engineering branches and added features that will be very useful for most of college students but feel free to add/change code as per your accordance to make it more suitable for your individual college needs.
+CollBeet Admin is a dashboard interface design only for use of Administrators. With CollBeet Admin, admins can easily add student schedules, mess schedules, daily announcements, college locations and college info, which can later be accessed easily using CollBeet Assistant by students (clients). It is designed as a completely open source, free and decentralised software that can be deployed individually on any cloud platform by developer/admin alongside [CollBeet Assistant](https://github.com/kalol-institute-of-technology/CollBeet-Assistant). We have already added support for all major engineering branches and added features that will be very useful for most of college students but feel free to add/change code as per your accordance to make it more suitable for your individual college needs.
 
 [For Screenshots click here](https://github.com/kalol-institute-of-technology/CollBeet-Admin/blob/master/Screenshots.md)
 
