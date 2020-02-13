@@ -17,7 +17,6 @@ CollBeet Admin is a dashboard interface design only for use of Administrators. W
 * [Deployment](#deployment)
     * [GCP Compute Engine Deployment](#gcp-compute-engine-deployment)
     * [Heroku (Ideal for test purposes)](#heroku-deployment)
-    * [Let Us Handle Deployment](#let-us-handle-deployment)
 * [Change Admin Password](#change-admin-password)
 * [Development](#development)
     * [Developer Environment Setup](#developer-environment-setup)
@@ -53,10 +52,6 @@ For production servers we highly recommend using [GCP Compute Engine](https://cl
 Just click the following button to deploy CollBeet Admin on a Heroku Server. However due to higher cost we only recommend Heroku only if you are planning to use this server for testing purposes. For production, we highly recommend GCP Compute Engine Deployment.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-### Let Us Handle Deployment
-
-If you are an organisation or someone looking to not get into hassle of Cloud deployment and management of resources, let us take care of it for a small fee. You can contact on `ravalprajval@gmail.com` for further discussion and help. We can also help you in customisation of CollBeet Assistant and Admin as per your college requirements.
 
 ## Change Admin Password
 
