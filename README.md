@@ -43,7 +43,7 @@ Familiarity with following technologies will also help in further development of
 
 ### GCP Compute Engine Deployment
 
-For production servers we highly recommend using [GCP Compute Engine](https://cloud.google.com/compute) for deployment purposes. You can find further instructions below:
+For production servers and deployment we highly recommend using [GCP Compute Engine](https://cloud.google.com/compute). You can find further instructions below on how to deploy CollBeet Admin:
 
 [Full Guide](https://github.com/kalol-institute-of-technology/CollBeet-Admin/blob/master/docs/gcpcomputedeploy.md)
 
