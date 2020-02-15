@@ -107,8 +107,10 @@ class AnnouncementWindow extends Component {
         event.preventDefault();
         const { announcementMessage } = this.state;
 
-        const time = new Date().getTime();
-        Meteor.call("announcements.addMessage", announcementMessage, time);
+        const d1 = new Date();
+        const time = d1.getTime();
+        const onlyDate = d1.setHours(0,0,0,0);
+        Meteor.call("announcements.addMessage", announcementMessage, time, onlyDate);
 
         this.setState({
           announcementMessage: ""

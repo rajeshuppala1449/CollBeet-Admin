@@ -15,7 +15,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "announcements.addMessage"(announcementMessage, time) {
+  "announcements.addMessage"(announcementMessage, time, onlyDate) {
     check(announcementMessage, String);
     check(time, Number);
 
@@ -25,7 +25,8 @@ Meteor.methods({
 
     Announcements.insert({
       message: announcementMessage,
-      time
+      time,
+      date: onlyDate
     });
   },
   "announcements.removeMessage"(messageId) {
