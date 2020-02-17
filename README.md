@@ -49,11 +49,15 @@ For production servers and deployment we highly recommend using [GCP Compute Eng
 
 [Full Guide](https://github.com/kalol-institute-of-technology/CollBeet-Admin/blob/master/docs/gcpcomputedeploy.md)
 
+---
+
 ### Heroku Deployment
 
 Just click the following button to deploy CollBeet Admin on a Heroku Server. However due to higher cost we only recommend Heroku only if you are planning to use this server for testing purposes. For production, we highly recommend GCP Compute Engine Deployment.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+---
 
 ## Setup
 
@@ -66,13 +70,19 @@ CollBeet Admin after deployment will be setup by default with following Admin cr
     
 You can change Change Admin Password to whatever you like, using the **Change Password** button, located on the upper left hand side corner of the dashboard.
 
+---
+
 ### Adding Data
 
 CollBeet Admin is designed to make sure you can easily add/modify data, so that users always get fresh data. Here are the section wise steps to adding data. Note: Expected responses are for Smart Speaker. In Screen enabled devices, given responses may be replaced with a more appropriate responses such as Table cards and Lists.
 
+---
+
 #### Student Schedule
 
 To add student schedule, you need to first add a Department with current active semesters. After adding the department, just click on **+Add A Lecture** button, and fill all the required details. You can add following two types of lectures:
+
+---
 
 1) **Normal Lectures** - To add a normal lecture, select semester and day of that lecture. Then add Lecture name, Teacher name, Start time and End time.
 
@@ -90,17 +100,23 @@ To add student schedule, you need to first add a Department with current active 
 
 3) **Modify Department** - Since active semesters do keep changing every six months or so. You can add/remove active semester by clicking on **Modify** button under department name. If the department is no longer required you can also delete department.
 
+---
+
 #### Mess Schedule
 
 1) **Adding Meals** - To add mess schedule, select the day you want to add mess schedule for and then select the meal type. You can then add all the dishes that are being served that day and click on **Add**.
 
    Expected Response: *In [Meal Type] today, we are serving [Food Items].*
    
+---
+   
 #### Announcements
 
 1)**Adding Announcements** - If you have any announcement to make for all the student of your college, you can add it using this tab. Just use the textfield provided and write your announcment. You can add as many annoucement as you want for that particular day.
 
    Expected Response: *You have following [Total Announcements Number] announcement(s) today. [Entered Announcements]*
+   
+---
    
 #### Locations
 
@@ -116,6 +132,8 @@ To add student schedule, you need to first add a Department with current active 
 
    Expected Response: *You can find it at [Entered Location]*
    
+---
+   
 #### College Info
 
 1) **Adding College Info** - Some of the general information about your college such as College Name, Address, Phone Number and Website can be added using this section.
@@ -123,19 +141,27 @@ To add student schedule, you need to first add a Department with current active 
    Expected Response: *It is [Requested College Info]*
    
    Example Response for College Name: *It is Kalol Institute Of Technology and Research Center*
+   
+---
 
 ## Development
 
 Even though CollBeet Admin is designed as a ready to use software, it is possible that your college has some different requirements than vanilla version. Because this is an open source and our very friendly MIT License, feel free to change/add code as per your requirements. Refer to following points to know more on how to do it.
 
+---
+
 ### Developer Environment Setup
 
 Setting up Developer Environment for CollBeet Admin is super easy, make sure you have all following required prerequisites installed on your machine and follow the given steps:
+
+---
 
 #### Prerequisites
 + [Meteor >=1.9](https://www.meteor.com/install)
 + [VSCode or equivalent editor](https://code.visualstudio.com/)
 + [Git CLI](https://git-scm.com/)
+
+---
 
 #### Steps:
 1. Fork this repository.
@@ -157,6 +183,8 @@ Setting up Developer Environment for CollBeet Admin is super easy, make sure you
     
 Server should start now and will be running on `http://localhost:3000`. Any changes you make to your code will be updated automatically.
 
+---
+
 ### REST API Endpoints
 
 REST API Endpoints are used by CollBeet-Assistant to communicate with CollBeet-Admin. You can access any of this endpoints, on your browser or [Postman](https://www.postman.com/). For ex: If you have a localhost server and want to access student endpoint just write following URL: `http://localhost:3000/api/student`
@@ -168,3 +196,5 @@ REST API Endpoints are used by CollBeet-Assistant to communicate with CollBeet-A
 | `/api/announcements`      | Gets added announcments.        |
 | `/api/info`       | Gets added general information about college. |
 | `/api/locations` | Gets all added location info about college.       |
+
+---
