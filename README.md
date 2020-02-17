@@ -121,6 +121,7 @@ To add student schedule, you need to first add a Department with current active 
 1) **Adding College Info** - Some of the general information about your college such as College Name, Address, Phone Number and Website can be added using this section.
 
    Expected Response: *It is [Requested College Info]*
+   
    Example Response for College Name: *It is Kalol Institute Of Technology and Research Center*
 
 ## Development
