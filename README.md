@@ -17,7 +17,9 @@ CollBeet Admin is a dashboard interface design only for use of Administrators. W
 * [Deployment](#deployment)
     * [GCP Compute Engine Deployment](#gcp-compute-engine-deployment)
     * [Heroku (Ideal for test purposes)](#heroku-deployment)
-* [Change Admin Password](#change-admin-password)
+* [Setup](#setup)
+    * [Change Admin Password](#change-admin-password)
+    * [Adding Data](#adding-data)
 * [Development](#development)
     * [Developer Environment Setup](#developer-environment-setup)
         * [Prerequisites](#prerequisites)
@@ -53,7 +55,9 @@ Just click the following button to deploy CollBeet Admin on a Heroku Server. How
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## Change Admin Password
+## Setup
+
+### Change Admin Password
 
 CollBeet Admin after deployment will be setup by default with following Admin credentials:
 
@@ -61,6 +65,63 @@ CollBeet Admin after deployment will be setup by default with following Admin cr
     Password: admin
     
 You can change Change Admin Password to whatever you like, using the **Change Password** button, located on the upper left hand side corner of the dashboard.
+
+### Adding Data
+
+CollBeet Admin is designed to make sure you can easily add/modify data, so that users always get fresh data. Here are the section wise steps to adding data. Note: Expected responses are for Smart Speaker. In Screen enabled devices, given responses may be replaced with a more appropriate responses such as Table cards and Lists.
+
+#### Student Schedule
+
+To add student schedule, you need to first add a Department with current active semesters. After adding the department, just click on **+Add A Lecture** button, and fill all the required details. You can add following two types of lectures:
+
+1) **Normal Lectures** - To add a normal lecture, select semester and day of that lecture. Then add Lecture name, Teacher name, Start time and End time.
+
+   Expected Response From Assistant: *You have a [Lecture Name] Lecture coming up next from [Start Time] to [End Time]. Lecture will be taken by [Teacher Name]*
+
+   Assistant will automatically detect the lecture based on student current timezone and will return a response with the upcoming lecture details. If there are no upcoming lectures, student will recieve following response.
+
+   Expected Response: *You have no lectures coming up next. I think you are done for the day. Enjoy!!*
+
+2) **Break Lectures** - To add a break lecture, select semester and day of that lecture. Then add Start time and End time.
+
+   Expected Response: *You have a break coming up next.*
+
+   Assistant will automatically detect the lecture based on student current timezone and will return above response if a break is coming up next.
+
+3) **Modify Department** - Since active semesters do keep changing every six months or so. You can add/remove active semester by clicking on **Modify** button under department name. If the department is no longer required you can also delete department.
+
+#### Mess Schedule
+
+1) **Adding Meals** - To add mess schedule, select the day you want to add mess schedule for and then select the meal type. You can then add all the dishes that are being served that day and click on **Add**.
+
+   Expected Response: *In [Meal Type] today, we are serving [Food Items].*
+   
+#### Announcements
+
+1)**Adding Announcements** - If you have any announcement to make for all the student of your college, you can add it using this tab. Just use the textfield provided and write your announcment. You can add as many annoucement as you want for that particular day.
+
+   Expected Response: *You have following [Total Announcements Number] announcement(s) today. [Entered Announcements]*
+   
+#### Locations
+
+1) **Adding Staffroom Location** - In a college there can be multiple staffrooms for every department. To add a stafroom, first select the desired department and then add the staffroom location.
+
+   Expected Response: *You can find [Department Name] staff room at [Entered Location].*
+   
+1) **Adding Lab Location** - In a college there can be multiple labs for every department. To add a lab, first select the desired department and then add the lab location.
+
+   Expected Response: *You can find [Department Name] lab at [Entered Location].*
+   
+1) **Adding Various Location** - In CollBeet, you can add locations to various places such as Principal's office, Admin Office,Cafeteria etc. Just select the desired location and add directions for that location.
+
+   Expected Response: *You can find it at [Entered Location]*
+   
+#### College Info
+
+1) **Adding College Info** - Some of the general information about your college such as College Name, Address, Phone Number and Website can be added using this section.
+
+   Expected Response: *It is [Requested College Info]*
+   Example Response for College Name: *It is Kalol Institute Of Technology and Research Center*
 
 ## Development
 
