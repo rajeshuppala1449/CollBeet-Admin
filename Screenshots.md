@@ -6,7 +6,7 @@ Maybe slow to load depending on your internet speed.
 ### Sidebar
 This screenshot shows all current supported features available in CollBeet Admin.
 
-<img width="720" alt="Screenshot 2020-02-11 at 7 26 57 PM" src="https://user-images.githubusercontent.com/41849970/74242949-d2333280-4d04-11ea-9404-77794f91530b.png">
+<img width="720" alt="Screenshot 2020-02-11 at 7 26 57 PM" src="https://user-images.githubusercontent.com/41849970/74753615-63228480-5296-11ea-9cd3-d6eca796d6d9.png">
 
 ---
 
