@@ -48,10 +48,10 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
 
 1. Add the copied SSH Key to your Compute Instance. [Guide Here](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#instance-only)
     
-1. Running this command will install all dependecies and also create a `.deploy` folder in your root directory. Access this folder using VSCode or any editor, and open `mup.js`. In this file, you need to change/add following details:
+1. Open your **root** directory using [VSCode](https://code.visualstudio.com/) or any other editor, and open `.deploy` folder. In this folder, open `mup.js`, in this file you need to change/add following details:
 
-    1. In `servers` section, Change `host` field with the External IP of your VM Instance.
-    1. In `username` field, add username you used during SSH Setup in your instance.
+    1. In `servers` section, Change `host` field with the **External IP** of your VM Instance.
+    1. In `username` field, add **username** you used for generating SSH key.
     1. In `app` section, change `name` field with your app name. For example: `collbeetapp3000`
     1. In `docker` section, change `image` field with following docker image - **abernix/meteord:node-12.14.0-base**
     
@@ -59,7 +59,7 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
  
     `mup setup --verbose`
     
-    **Note**: If you face any SSH related errors during this command. Run `ssh-add -K [PATH_TO_SSH_KEY]` and try running `mup setup --verbose` command again.
+    **Note**: If you face any SSH related errors during this command. Run `ssh-add -K [PATH_TO_GENERATED_SSH_KEY]` and try running `mup setup --verbose` command again.
     
  1. Deploy the code.
  
