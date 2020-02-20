@@ -11,7 +11,7 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
 
 ### Create A VM Instance:
 
-1. Go to [GCP Compute Page](https://cloud.google.com/compute) and select `Go To Console`.
+1. Go to [GCP Compute Page](https://cloud.google.com/compute) and select `Go To Console`. (**Note**: Sign in using your Google Account if `Go To Console` is not showing up.)
 
 1. Create a VM Instance by clicking, `Create Instance`.
 
