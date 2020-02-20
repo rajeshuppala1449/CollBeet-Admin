@@ -68,7 +68,7 @@ CollBeet Admin after deployment will be setup by default with following Admin cr
     Username: admin
     Password: admin
     
-You can change Change Admin Password to whatever you like, using the **Change Password** button, located on the upper left hand side corner of the dashboard.
+You can change Change Admin Password to whatever you like, using the **Change Password** button, located on the upper left corner of the dashboard.
 
 ---
 
