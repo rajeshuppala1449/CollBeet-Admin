@@ -65,4 +65,5 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
  
  1. Meteor Up [Documentation](http://meteor-up.com/docs.html)
  1. GCP Compute Engine [Documentation](https://cloud.google.com/compute/docs)
+ 1. Regarding SSH Setup [Documentation](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#addkey)
  1. Setting up Custom Domain with GCP Compute Engine [here](https://www.youtube.com/watch?v=4iciq0ck8Ns)
