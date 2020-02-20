@@ -57,7 +57,9 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
  
     `mup deploy --verbose`
     
- **WooHoo!!** CollBeet Admin is now up and running on GCP Cloud. You can use either choose to keep using External IP as your preffered choice or setup HTTPs using a custom domain for more security. If successfull proceed to [setup stage](https://github.com/kalol-institute-of-technology/CollBeet-Admin#setup).
+ **WooHoo!!** CollBeet Admin is now up and running on GCP Cloud. You can use either choose to keep using External IP as your preffered choice or setup HTTPs using a custom domain for more security. 
+ 
+ If successfull proceed to [setup stage](https://github.com/kalol-institute-of-technology/CollBeet-Admin#setup). If you are facing some issues in deployment, do try going through some of the following resources.
  
  ---
  
