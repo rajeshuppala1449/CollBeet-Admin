@@ -66,7 +66,7 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
  
     `mup setup --verbose`
     
-    **Note**: If you face any SSH related errors during this command. Run `ssh-add -K [PATH_TO_GENERATED_SSH_KEY]` and try running `mup setup --verbose` command again.
+    **Note**: If you face `Error: All configured authentication methods failed` during this command. Run `ssh-add -K [PATH_TO_GENERATED_SSH_KEY]` and try running `mup setup --verbose` command again.
     
  1. Deploy the code.
  
