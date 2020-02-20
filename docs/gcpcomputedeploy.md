@@ -42,16 +42,24 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
 
     `meteor npm install --save @babel/runtime && mkdir .deploy && cd .deploy && mup init`
     
+1. Generate an SSH Key on your machine. [Guide Here](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#createsshkeys)
+
+1. Locate the generated SSH Key. [Guide Here](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#locatesshkeys). Open it using [VIM](https://www.keycdn.com/blog/vim-commands) or any other command line editors in your terminal, and copy the entire SSH key.
+
+1. Add the copied SSH Key to your Compute Instance. [Guide Here](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#instance-only)
+    
 1. Running this command will install all dependecies and also create a `.deploy` folder in your root directory. Access this folder using VSCode or any editor, and open `mup.js`. In this file, you need to change/add following details:
 
     1. In `servers` section, Change `host` field with the External IP of your VM Instance.
-    1. In `username` field, add username you are using with GCP.
+    1. In `username` field, add username you used during SSH Setup in your instance.
     1. In `app` section, change `name` field with your app name. For example: `collbeetapp3000`
     1. In `docker` section, change `image` field with following docker image - **abernix/meteord:node-12.14.0-base**
     
  1. Locally set up the remote servers you have specified in your config by running the following command,
  
     `mup setup --verbose`
+    
+    **Note**: If you face any SSH related errors during this command. Run `ssh-add -K [PATH_TO_SSH_KEY]` and try running `mup setup --verbose` command again.
     
  1. Deploy the code.
  
