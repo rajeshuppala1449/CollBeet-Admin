@@ -42,6 +42,9 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
 
     `meteor npm install --save @babel/runtime && mkdir .deploy && cd .deploy && mup init`
     
+    **Note:** If you get an error saying `Meteor command not found`, this means you do not have Meteor installed in your machine. You can install it from [here](https://www.meteor.com/install).
+
+    
 1. Generate an SSH Key on your machine. [Guide Here](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#createsshkeys)
 
 1. Locate the generated SSH Key. [Guide Here](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#locatesshkeys). Open it using [VIM](https://www.keycdn.com/blog/vim-commands) or any other command line editors in your terminal, and copy the entire SSH key.
