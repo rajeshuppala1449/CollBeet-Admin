@@ -40,7 +40,7 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
     
 1. We will be using [Meteor Up](http://meteor-up.com/) (MUP), to deploy our code on server. You can install **MUP** using following command,
 
-    `$ npm install --global mup`
+    `npm install --global mup`
     
 1. Once MUP is installed, run following command,
 
