@@ -53,7 +53,7 @@ For production servers and deployment we highly recommend using [GCP Compute Eng
 
 ### Heroku Deployment
 
-Just click the following button to deploy CollBeet Admin on a Heroku Server. However due to higher cost we only recommend Heroku only if you are planning to use this server for testing purposes. For production, we highly recommend GCP Compute Engine Deployment.
+Just click the following button to deploy CollBeet Admin on a Heroku Server. However due to higher cost we recommend Heroku only if you are planning to use this server for testing purposes. For production, we highly recommend GCP Compute Engine Deployment.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
