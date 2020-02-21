@@ -2,6 +2,8 @@
 
 Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Just follow the below given steps and your Dashboard will be deployed in no time.
 
+**Note:** Following steps may be a little advanced if you have no prior experience with Cloud Deployment. 
+
 ### Index
 * [Step 1: Create A VM Instance](#create-a-vm-instance)
 * [Step 2: Deploy CollBeet Admin](#deploy-collbeet-admin)
