@@ -62,7 +62,11 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
     1. In `app` section, change `name` field with your app name. For example: `collbeetapp3000`
     1. In `docker` section, change `image` field with following docker image - **abernix/meteord:node-12.14.0-base**
     
- 1. Locally set up the remote servers you have specified in your config by running the following command,
+1. Change to **.deploy** directory,
+
+    `cd .deploy`
+    
+1. Locally set up the remote servers you have specified in your config by running the following command,
  
     `mup setup --verbose`
     
@@ -72,7 +76,7 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
             
     and then try running `mup setup --verbose` command again.
     
- 1. Deploy the code.
+1. Deploy the code.
  
     `mup deploy --verbose`
     
