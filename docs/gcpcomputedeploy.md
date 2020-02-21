@@ -80,9 +80,9 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
  
     `mup deploy --verbose`
     
- **WooHoo!!** CollBeet Admin is now up and running on GCP Cloud. You can use either choose to keep using External IP as your preffered choice or setup HTTPs using a custom domain for more security. 
+ **WooHoo!!** CollBeet Admin is now up and running on GCP Cloud. Further step include setting up HTTPs using a custom domain  with SSL for your deployed app on GCE, since Google Assistant does not allow REST API calls over HTTP. You can refer to this video, to setup a SSL Encrypted Custom Domain [here](https://www.youtube.com/watch?v=4iciq0ck8Ns). 
  
- If successfull proceed to [setup stage](https://github.com/kalol-institute-of-technology/CollBeet-Admin#setup). If you are facing some issues in deployment, do try going through some of the following resources.
+If successfull proceed to [setup stage](https://github.com/kalol-institute-of-technology/CollBeet-Admin#setup). If you are facing some issues in deployment, do try going through some of the following resources.
  
  ---
  
