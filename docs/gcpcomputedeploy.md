@@ -92,3 +92,4 @@ If successfull proceed to [setup stage](https://github.com/kalol-institute-of-te
  1. GCP Compute Engine [Documentation](https://cloud.google.com/compute/docs)
  1. Regarding SSH Setup [Documentation](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#addkey)
  1. Setting up Custom Domain with GCP Compute Engine [here](https://www.youtube.com/watch?v=4iciq0ck8Ns) or [here](https://www.youtube.com/watch?v=eXtqqofrhOo) or [Text Guide](https://www.cloudbooklet.com/setting-up-google-cloud-dns-for-your-domain/)
+ 1. Reverse Proxy with MUP to force HTTPS [Documentation](http://meteor-up.com/docs.html#reverse-proxy)
