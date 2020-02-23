@@ -30,11 +30,9 @@ Deploying CollBeet Admin on GCP Compute Engine is a simple two-step process. Jus
 
 ### Deploy CollBeet Admin
 
-1. **Fork** the repo.
-
 1. **Clone** the repository to your local machine using following command,
 
-    `git clone your-repo-url`
+    `git clone https://github.com/kalol-institute-of-technology/CollBeet-Admin`
     
 1. Go to **root** directory,
 
