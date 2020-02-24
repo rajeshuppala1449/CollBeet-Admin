@@ -50,5 +50,66 @@ Meteor.methods({
     }
 
     Info.remove(taskId);
+  },
+
+  "info.addhoddetail"(hodContact, hodName, menuDeptCode, menuDept) {
+    check(hodName, String);
+    check(menuDeptCode, String);
+    check(menuDept, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Info.insert({
+      hodContact: hodContact,
+      hodName: hodName,
+      deptcode: menuDeptCode,
+      department: menuDept,
+      hoddetail: true
+    });
+  },
+
+  "info.addfeedetail"(semesterFee, menuDeptCode, menuDept) {
+    check(semesterFee, String);
+    check(menuDeptCode, String);
+    check(menuDept, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Info.insert({
+      semesterFee: semesterFee,
+      deptcode: menuDeptCode,
+      department: menuDept,
+      feestructure: true
+    });
+  },
+
+  "info.addclub"(
+    clubName,
+    clubLeaderName,
+    clubLeaderContact,
+    menuClubCode,
+    menuType
+  ) {
+    check(clubName, String);
+    check(clubLeaderName, String);
+    check(menuClubCode, String);
+    check(menuType, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Info.insert({
+      clubName: clubName,
+      clubLeaderName: clubLeaderName,
+      clubLeaderContact: clubLeaderContact,
+      clubRefCode: menuClubCode,
+      clubType: menuType,
+      clubdetail: true
+    });
   }
 });

@@ -15,6 +15,9 @@ import IconButton from "@material-ui/core/IconButton";
 import HelpIcon from "@material-ui/icons/Help";
 
 import InfoForm from "./InfoForm";
+import HodDetailsForm from "./InfoHodDetailsForm";
+import FeeDetailsForm from "./InfoFeeStructure";
+import CollegeClubsDetailsForm from "./InfoClubDetails"
 
 const useStyles = theme => ({
   rootAvatar: {
@@ -94,7 +97,7 @@ class InfoWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter full name of your college in this field."
                   >
                     <IconButton
                       aria-label="delete"
@@ -128,7 +131,7 @@ class InfoWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Official College Address to be entered here."
                   >
                     <IconButton
                       aria-label="delete"
@@ -162,7 +165,7 @@ class InfoWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Official College Website to be entered here."
                   >
                     <IconButton
                       aria-label="delete"
@@ -196,7 +199,7 @@ class InfoWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Main college phone number to be entered here. If Landline number, include area code."
                   >
                     <IconButton
                       aria-label="delete"
@@ -212,6 +215,109 @@ class InfoWindow extends Component {
               <InfoForm responseid="college-phoneno" />
             </ExpansionPanelDetails>
           </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    Head Of Department Details
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Enter Head Of Department details. Details to be entered department wise."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <HodDetailsForm />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    Fee Structure
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Enter semester fees for students of every department."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <FeeDetailsForm />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Grid container className={this.props.classes.grid}>
+                <Grid item>
+                  <Typography className={this.props.classes.heading}>
+                    College Clubs
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    placement="right"
+                    title="Enter details of various active clubs in your college."
+                  >
+                    <IconButton
+                      aria-label="delete"
+                      className={this.props.classes.helpbutton}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <CollegeClubsDetailsForm />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
         </div>
       </div>
     );

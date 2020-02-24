@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import NavigationIcon from "@material-ui/icons/Navigation";
 import Divider from "@material-ui/core/Divider";
-import TextField from "@material-ui/core/TextField";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -114,7 +113,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to various department staffroom's."
                   >
                     <IconButton
                       aria-label="delete"
@@ -148,7 +147,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to various department laboratories."
                   >
                     <IconButton
                       aria-label="delete"
@@ -182,7 +181,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to Principal Office."
                   >
                     <IconButton
                       aria-label="delete"
@@ -216,7 +215,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to College Administrator's office."
                   >
                     <IconButton
                       aria-label="delete"
@@ -250,7 +249,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to Cafeteria."
                   >
                     <IconButton
                       aria-label="delete"
@@ -284,7 +283,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to Mess Hall (Canteen)"
                   >
                     <IconButton
                       aria-label="delete"
@@ -318,7 +317,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to Auditorium."
                   >
                     <IconButton
                       aria-label="delete"
@@ -352,7 +351,7 @@ class LocationWindow extends Component {
                     disableFocusListener
                     disableTouchListener
                     placement="right"
-                    title="Imagine a student is asking you this question. Response should be similar to how you would answer him."
+                    title="Enter directions to main security cabin."
                   >
                     <IconButton
                       aria-label="delete"
