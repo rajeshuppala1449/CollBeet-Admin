@@ -14,9 +14,20 @@ import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
 
 import AddLectureDialog from "./StudentAddLecture";
+import EditLectureDialog from "./StudentEditLecture";
 import ModifyDepartmentDialog from "./StudentModifyDepartment";
 import compose from "recompose/compose";
 import moment from "moment";
+
+const getTimefromTimestamp = timestamp => {
+  var regex = /\T(.*?)\+/;
+  var regTime = regex.exec(timestamp)[1];
+
+  var timeArr = regTime.split(":");
+  var onlySortedTime = timeArr.slice(0, -1).join(":");
+
+  return onlySortedTime;
+};
 
 const dayarr = [
   {
@@ -151,7 +162,14 @@ class StudentContent extends Component {
     dialogOpen: false,
     modifyDeptDialogOpen: false,
     removeSemestersArr: [],
-    addSemestersArr: []
+    addSemestersArr: [],
+    editDialogOpen: false,
+    editLectureId: "",
+    editBreakValue: null,
+    editLectureName: "",
+    editTeacherName: "",
+    editStartTime: "",
+    editEndTime: ""
   };
 
   anchorRef = React.createRef(null);
@@ -198,6 +216,108 @@ class StudentContent extends Component {
   modifyDeptOpen = () => {
     this.setState({
       modifyDeptDialogOpen: true
+    });
+  };
+
+  modifyDeptClose = () => {
+    this.setState({
+      modifyDeptDialogOpen: false,
+      removeSemestersArr: [],
+      addSemestersArr: []
+    });
+  };
+
+  editDialogHandleOpen = (
+    lectureId,
+    breakValue,
+    lectureName,
+    teacherName,
+    startTime,
+    endTime
+  ) => event => {
+    event.preventDefault();
+
+    this.setState({
+      editDialogOpen: true,
+      editLectureId: lectureId,
+      editBreakValue: breakValue,
+      editLectureName: lectureName,
+      editTeacherName: teacherName,
+      editStartTime: startTime,
+      editEndTime: endTime
+    });
+  };
+
+  editDialogHandleClose = () => {
+    this.setState({
+      editDialogOpen: false,
+      editLectureId: "",
+      editBreakValue: null,
+      editLectureName: "",
+      editTeacherName: "",
+      editStartTime: "",
+      editEndTime: ""
+    });
+  };
+
+  changeTexfieldData = input => e => {
+    this.setState({
+      [input]: e.target.value
+    });
+  };
+
+  changeStartTime = time => {
+    this.setState({
+      editStartTime: time.format()
+    });
+  };
+
+  changeEndTime = time => {
+    this.setState({
+      editEndTime: time.format()
+    });
+  };
+
+  handleEditLect = e => {
+    e.preventDefault();
+
+    const {
+      semId,
+      dayId,
+      editLectureId,
+      editBreakValue,
+      editLectureName,
+      editTeacherName,
+      editStartTime,
+      editEndTime
+    } = this.state;
+
+    const { deptCode } = this.props;
+    const dayid = dayId;
+    const semValue = semId;
+    const lectureId = editLectureId;
+
+    Meteor.call(
+      "student.editLecture",
+      deptCode,
+      dayid,
+      semValue,
+      lectureId,
+      editBreakValue,
+      editLectureName,
+      editTeacherName,
+      editStartTime,
+      editEndTime
+    );
+
+    this.setState({
+      editDialogOpen: false,
+      editLectureId: "",
+      editBreakValue: null,
+      editLectureName: "",
+      editTeacherName: "",
+      editStartTime: "",
+      editEndTime: ""
     });
   };
 
@@ -274,23 +394,14 @@ class StudentContent extends Component {
     Meteor.call("student.removeDepartment", taskId);
   };
 
-  modifyDeptClose = () => {
-    this.setState({
-      modifyDeptDialogOpen: false,
-      removeSemestersArr: [],
-      addSemestersArr: []
-    });
-  };
-
   handleLectDelete = lectureId => e => {
     e.preventDefault();
 
-    const { semId, dayId } = this.state;
+    const { semId } = this.state;
     const { deptCode } = this.props;
     const semValue = semId;
-    const dayid = dayId;
 
-    Meteor.call("student.removeLecture", deptCode, semValue, dayid, lectureId);
+    Meteor.call("student.removeLecture", deptCode, semValue, lectureId);
   };
 
   reloadPage = () => e => {
@@ -337,6 +448,24 @@ class StudentContent extends Component {
             </div>
           );
         }
+
+        lecture_array.sort(function(a, b) {
+          const astart = getTimefromTimestamp(a.startTime);
+          const bstart = getTimefromTimestamp(b.startTime);
+
+          if (
+            parseInt(astart.split(":")[0]) - parseInt(bstart.split(":")[0]) ===
+            0
+          ) {
+            return (
+              parseInt(astart.split(":")[1]) - parseInt(bstart.split(":")[1])
+            );
+          } else {
+            return (
+              parseInt(astart.split(":")[0]) - parseInt(bstart.split(":")[0])
+            );
+          }
+        });
 
         return lecture_array.map(
           (
@@ -400,6 +529,20 @@ class StudentContent extends Component {
                     </Grid>
                   </CardContent>
                   <CardActions>
+                    <Button
+                      variant="outlined"
+                      className={this.props.classes.addLectureButton}
+                      onClick={this.editDialogHandleOpen(
+                        lectureId,
+                        breakValue,
+                        "lectureName",
+                        "teacherName",
+                        startTime,
+                        endTime
+                      )}
+                    >
+                      Edit
+                    </Button>
                     <Button
                       variant="outlined"
                       className={this.props.classes.addLectureButton}
@@ -480,6 +623,20 @@ class StudentContent extends Component {
                     <Button
                       variant="outlined"
                       className={this.props.classes.addLectureButton}
+                      onClick={this.editDialogHandleOpen(
+                        lectureId,
+                        breakValue,
+                        lectureName,
+                        teacherName,
+                        startTime,
+                        endTime
+                      )}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      className={this.props.classes.addLectureButton}
                       onClick={this.handleLectDelete(lectureId)}
                     >
                       Delete
@@ -539,7 +696,8 @@ class StudentContent extends Component {
       dialogOpen,
       modifyDeptDialogOpen,
       addSemestersArr,
-      removeSemestersArr
+      removeSemestersArr,
+      editDialogOpen
     } = this.state;
     const { dept, initials, activesem, deptCode } = this.props;
 
@@ -557,7 +715,12 @@ class StudentContent extends Component {
       removeSem,
       handleDeptAddSemestersSubmit,
       handleDeptRemoveSemestersSubmit,
-      handleDeleteDepartment
+      handleDeleteDepartment,
+      editDialogHandleClose,
+      changeTexfieldData,
+      changeStartTime,
+      changeEndTime,
+      handleEditLect
     } = this;
 
     return (
@@ -695,6 +858,23 @@ class StudentContent extends Component {
               dept={dept}
               deptCode={deptCode}
               activesem={activesem}
+            />
+            <EditLectureDialog
+              open={editDialogOpen}
+              handleClose={editDialogHandleClose}
+              dept={dept}
+              deptCode={deptCode}
+              activesem={activesem}
+              editBreakValue={this.state.editBreakValue}
+              editLectureId={this.state.editDialogOpen}
+              editLectureName={this.state.editLectureName}
+              editTeacherName={this.state.editTeacherName}
+              editStartTime={this.state.editStartTime}
+              editEndTime={this.state.editEndTime}
+              changeTexfieldData={changeTexfieldData}
+              changeStartTime={changeStartTime}
+              changeEndTime={changeEndTime}
+              handleEditLect={handleEditLect}
             />
             <ModifyDepartmentDialog
               dept={dept}

@@ -379,8 +379,8 @@ class AddLectureDialog extends Component {
           <DialogContent>
             <DialogContentText className={this.props.classes.fieldContext}>
               Please add lectures for {dept} branch. Make sure that lectures are
-              added in chronological order according to their
-              startime. You can also include breaks.
+              added in chronological order according to their startime. You can
+              also include breaks.
             </DialogContentText>
             <Grid container className={this.props.classes.grid}>
               <Grid item>
@@ -576,7 +576,7 @@ class AddLectureDialog extends Component {
             <Grid container className={this.props.classes.grid}>
               <Grid item>
                 <Typography className={this.props.classes.fieldTitle}>
-                  Start Time:
+                  Lecture Start Time:
                 </Typography>
               </Grid>
               <Grid item>
@@ -589,9 +589,12 @@ class AddLectureDialog extends Component {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
+            </Grid>
+
+            <Grid container className={this.props.classes.grid}>
               <Grid item>
                 <Typography className={this.props.classes.fieldTitle}>
-                  End Time:
+                  Lecture End Time:
                 </Typography>
               </Grid>
               <Grid item>

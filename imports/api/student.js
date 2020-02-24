@@ -118,9 +118,127 @@ Meteor.methods({
     }
   },
 
-  "student.removeLecture"(deptCode, semValue, dayid, lectureId) {
+  "student.editLecture"(
+    deptCode,
+    dayid,
+    semValue,
+    lectureId,
+    editBreakValue,
+    editLectureName,
+    editTeacherName,
+    editStartTime,
+    editEndTime
+  ) {
+    if (editBreakValue === false) {
+      check(deptCode, String);
+      check(dayid, Number);
+      check(semValue, Number);
+      check(lectureId, String);
+      check(editLectureName, String);
+      check(editTeacherName, String);
+      check(editStartTime, String);
+      check(editEndTime, String);
+
+      if (!this.userId) {
+        throw new Meteor.Error("not-authorized");
+      }
+
+      Student.update(
+        {
+          deptcode: deptCode,
+          activesem: {
+            $elemMatch: {
+              semid: semValue
+            }
+          }
+        },
+        {
+          $pull: {
+            "activesem.$.schedule": {
+              lectureId: lectureId
+            }
+          }
+        }
+      );
+
+      Student.update(
+        {
+          deptcode: deptCode,
+          activesem: {
+            $elemMatch: {
+              semid: semValue
+            }
+          }
+        },
+        {
+          $push: {
+            "activesem.$.schedule": {
+              lectureId: lectureId,
+              lectureName: editLectureName,
+              teacherName: editTeacherName,
+              startTime: editStartTime,
+              endTime: editEndTime,
+              dayid: dayid,
+              breakValue: editBreakValue
+            }
+          }
+        }
+      );
+    } else {
+      check(deptCode, String);
+      check(semValue, Number);
+      check(lectureId, String);
+      check(editStartTime, String);
+      check(editEndTime, String);
+
+      if (!this.userId) {
+        throw new Meteor.Error("not-authorized");
+      }
+
+      Student.update(
+        {
+          deptcode: deptCode,
+          activesem: {
+            $elemMatch: {
+              semid: semValue
+            }
+          }
+        },
+        {
+          $pull: {
+            "activesem.$.schedule": {
+              lectureId: lectureId
+            }
+          }
+        }
+      );
+
+      Student.update(
+        {
+          deptcode: deptCode,
+          activesem: {
+            $elemMatch: {
+              semid: semValue
+            }
+          }
+        },
+        {
+          $push: {
+            "activesem.$.schedule": {
+              lectureId: lectureId,
+              startTime: editStartTime,
+              endTime: editEndTime,
+              dayid: dayid,
+              breakValue: editBreakValue
+            }
+          }
+        }
+      );
+    }
+  },
+
+  "student.removeLecture"(deptCode, semValue, lectureId) {
     check(deptCode, String);
-    check(dayid, Number);
     check(semValue, Number);
     check(lectureId, String);
 
