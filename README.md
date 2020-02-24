@@ -142,6 +142,18 @@ To add student schedule, you need to first add a Department with current active 
    
    Example Response for College Name: *It is Kalol Institute Of Technology and Research Center*
    
+1) **Adding HOD Details** - Add head of department details.
+
+   Expected Response: *Semester Fee is [Fee Amount].*
+   
+1) **Adding Fee Details** - Add fee amount of various departments.
+
+   Expected Response: *[Department Name] Head Of Department is [HODName]. Head Of Department Contact is [HodContact]*
+   
+1) **Adding College Club Details** - Add details about various active clubs in your college here.
+
+   Expected Response: *You have [Club Count] active club(s) in your college. Access from a screen enabled device to get more details.*
+   
 ---
 
 ## Development
