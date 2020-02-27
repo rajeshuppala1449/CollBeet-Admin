@@ -211,7 +211,7 @@ REST API Endpoints are used by CollBeet-Assistant to communicate with CollBeet-A
 
 ---
 
-<p align="center">Designed and Developed with :heart: by [Raval Prajval](https://github.com/PrajvalRaval)</p>
+<p align="center">Designed and Developed with :heart: by <a href="https://www.linkedin.com/in/prajvalraval/">Raval Prajval</a></p>
 
 ----
 
