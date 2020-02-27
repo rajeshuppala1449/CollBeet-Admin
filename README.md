@@ -210,3 +210,8 @@ REST API Endpoints are used by CollBeet-Assistant to communicate with CollBeet-A
 | `/api/locations` | Gets all added location info about college.       |
 
 ---
+
+->Designed and Developed with :heart: by [Raval Prajval](https://github.com/PrajvalRaval)<-
+
+----
+
