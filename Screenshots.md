@@ -28,14 +28,14 @@ Using this section, administrator can add/modify different meals served in Colle
 ---
 
 ### Daily Announcments
-Using this section, administrator can add daily announcments.
+Using this section, administrator can add daily announcments or use it creatively such as publishing daily new articles here.
 
 <img width="720" alt="Screenshot 2020-02-11 at 7 25 19 PM" src="https://user-images.githubusercontent.com/41849970/74242941-ce9fab80-4d04-11ea-8d01-638d8bff288d.png">
 
 ---
 
 ### College Locations
-Using this section, administrator can setup different locations addresses around college.
+Using this section, administrator can setup directions to different important locations around college.
 
 <img width="720" alt="Screenshot 2020-02-11 at 7 25 39 PM" src="https://user-images.githubusercontent.com/41849970/74242942-cf384200-4d04-11ea-9c13-a316dcd0deaf.png">
 <img width="720" alt="Screenshot 2020-02-11 at 7 25 43 PM" src="https://user-images.githubusercontent.com/41849970/75547945-11c28400-5a52-11ea-87f6-6a0e396d9041.png">
@@ -43,7 +43,7 @@ Using this section, administrator can setup different locations addresses around
 ---
 
 ### College Info
-Using this section, administrator can setup answer to frequently asked questions by students regarding general college info.
+Using this section, administrator can setup answer to frequently asked questions by students regarding general college info, fee structure, head of department details and active college clubs.
 
 <img width="720" alt="Screenshot 2020-02-11 at 7 26 12 PM" src="https://user-images.githubusercontent.com/41849970/75548008-299a0800-5a52-11ea-801f-032188863f0a.png">
 <img width="720" alt="Screenshot 2020-02-11 at 7 26 24 PM" src="https://user-images.githubusercontent.com/41849970/74242947-d19a9c00-4d04-11ea-8a63-8d41ce754419.png">
