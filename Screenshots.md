@@ -38,7 +38,7 @@ Using this section, administrator can add daily announcments.
 Using this section, administrator can setup different locations addresses around college.
 
 <img width="720" alt="Screenshot 2020-02-11 at 7 25 39 PM" src="https://user-images.githubusercontent.com/41849970/74242942-cf384200-4d04-11ea-9c13-a316dcd0deaf.png">
-<img width="720" alt="Screenshot 2020-02-11 at 7 25 43 PM" src="https://user-images.githubusercontent.com/41849970/74242944-cf384200-4d04-11ea-88a5-a0a12c0868b6.png">
+<img width="720" alt="Screenshot 2020-02-11 at 7 25 43 PM" src="https://user-images.githubusercontent.com/41849970/75547945-11c28400-5a52-11ea-87f6-6a0e396d9041.png">
 
 ---
 
