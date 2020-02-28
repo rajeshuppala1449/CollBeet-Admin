@@ -45,7 +45,8 @@ Using this section, administrator can setup different locations addresses around
 ### College Info
 Using this section, administrator can setup answer to frequently asked questions by students regarding general college info.
 
-<img width="720" alt="Screenshot 2020-02-11 at 7 26 12 PM" src="https://user-images.githubusercontent.com/41849970/74242946-d0696f00-4d04-11ea-8c69-e26844c7a622.png">
+<img width="720" alt="Screenshot 2020-02-11 at 7 26 12 PM" src="https://user-images.githubusercontent.com/41849970/75548008-299a0800-5a52-11ea-801f-032188863f0a.png">
 <img width="720" alt="Screenshot 2020-02-11 at 7 26 24 PM" src="https://user-images.githubusercontent.com/41849970/74242947-d19a9c00-4d04-11ea-8a63-8d41ce754419.png">
+<img width="720" alt="Screenshot 2020-02-11 at 7 26 24 P1" src="https://user-images.githubusercontent.com/41849970/75548017-2e5ebc00-5a52-11ea-8b88-c58912d8a982.png">
 
 ---
